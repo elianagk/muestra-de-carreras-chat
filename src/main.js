@@ -3,6 +3,8 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify';
+import  fb  from './firebase';
+
 import { ValidationObserver, ValidationProvider } from 'vee-validate';
 
 Vue.config.productionTip = false
@@ -13,5 +15,6 @@ new Vue({
   router,
   store,
   vuetify,
+  fb,
   render: function (h) { return h(App) }
 }).$mount('#app') 

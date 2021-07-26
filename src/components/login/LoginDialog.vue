@@ -4,10 +4,10 @@
     <div>   
         <v-dialog v-model="dialog" persistent max-width="468">
         <v-card>
-            <v-card-title class="headline">Login using Google account</v-card-title>        
-            <v-card-text>Please do not send confidential information. Any message leaked will not be held responsible.</v-card-text>
+            <v-card-title class="headline">Ingrese su nombre</v-card-title>        
             <v-card-actions>
             <v-spacer></v-spacer>
+            <input type="text" class="form-control" placeholder="Nombre de usuario" v-model="username">
             <v-btn color="green darken-1" text @click="handleLogin">Agree</v-btn>
             </v-card-actions>
         </v-card>
@@ -43,7 +43,7 @@ export default {
     props: [],
     data() {
         return {
-            
+            username: ''
         }
     },
     computed: {
@@ -64,7 +64,7 @@ export default {
     methods: {
         ...mapActions('userModule', ['login']),
         async handleLogin(e) {
-            this.login();
+            this.login(this.username);
         }
     }
 }

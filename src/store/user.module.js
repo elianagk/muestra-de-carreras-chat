@@ -5,19 +5,18 @@ const user = JSON.parse(localStorage.getItem('user'));
 const state = user ? { status: { loggedIn: true }, user } : { status: {}, user: null };
 
 const actions = {
-    async login({commit}) {
+    async login({commit}, username) {
         commit('loginRequest');
+
         const firebaseLogin = await fb.login();
         
         if(firebaseLogin.success) {
             // Store / update the user info into the firebase            
             const uid = firebaseLogin.data.user.uid;
-            const name = firebaseLogin.data.user.displayName;
-            const email = firebaseLogin.data.user.email;
-            const photo = firebaseLogin.data.user.photoURL;
+            const name = username
 
             try {
-                var result = await userService.createUpdate(uid, name, email, photo);
+                var result = await userService.createUpdate(uid, name);
                 if(result.success) {
                     // Set the user as login
                     userService.login(uid);
@@ -25,9 +24,8 @@ const actions = {
                     // Set the state
                     var user = {
                         ID: uid,
-                        Name: name,
-                        Email: email,
-                        Photo: photo
+                        Name: name
+                    
                     };
 
                     commit('loginSuccess', user);
