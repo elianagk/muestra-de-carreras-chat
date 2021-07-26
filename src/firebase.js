@@ -20,7 +20,7 @@ firebase.initializeApp(firebaseConfig);
 const fb = {
   auth: firebase.auth(),
   firestore: firebase.firestore(),
-  async login(username) {
+  async login() {
       return firebase.auth().signInAnonymously()
               .then(function(result) {
                   return {success: true, data: result};

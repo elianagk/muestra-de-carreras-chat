@@ -53,7 +53,7 @@ export default {
             return this.sortedUsers.filter(user => {
                 // Filter out self
                 var valid = this.userState ? this.userState.ID != user.id : false;
-                valid = valid && ( user.name.toLowerCase().includes(this.searchInput.toLowerCase()) || user.email.toLowerCase().includes(this.searchInput.toLowerCase()) );
+                valid = valid && ( user.name.toLowerCase().includes(this.searchInput.toLowerCase()));
                 return valid;
             });
         },

@@ -17,7 +17,6 @@
             <!--Aca deberiamos sacar el mail y todos esos datos que no queremos mostrar-->
             <v-list-item-content>
                 <v-list-item-title class="body-2">{{user.name}}</v-list-item-title>
-                <v-list-item-subtitle class="caption">{{user.email}}</v-list-item-subtitle>
             </v-list-item-content>
         </v-list-item>
     </div>
