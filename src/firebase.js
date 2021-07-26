@@ -16,3 +16,29 @@ var firebaseConfig = {
   
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+
+const fb = {
+  auth: firebase.auth(),
+  firestore: firebase.firestore(),
+  async login(username) {
+      // const provider = new firebase.auth.GoogleAuthProvider();
+      return firebase.auth().signInAnonymously()
+              .then(function(result) {
+                  return {success: true, data: result};
+              })
+              .catch(function(error){
+                  return {success: false, error: error.message};
+              });
+  },
+  // async logout() {
+  //     return firebase.auth().signOut()
+  //         .then(function() {
+  //             return {success: true};
+  //         })
+  //         .catch(function(error) {
+  //             return {success: false, error: error};
+  //         });
+  // }
+}
+
+export default fb
