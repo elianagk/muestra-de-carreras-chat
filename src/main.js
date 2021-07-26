@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
-// import router from './router'
+import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify';
 import { ValidationObserver, ValidationProvider } from 'vee-validate';
@@ -14,4 +14,4 @@ new Vue({
   store,
   vuetify,
   render: function (h) { return h(App) }
-}).$mount('#app')
+}).$mount('#app') 
