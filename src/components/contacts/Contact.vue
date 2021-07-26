@@ -10,9 +10,6 @@
                 offset-y="10"
                 class="mr-2" 
             >
-                <v-avatar size="38">
-                    <img :src="`${user.photoUrl}`" :alt="`${user.name}`" />
-                </v-avatar>
             </v-badge>
             <!--Aca deberiamos sacar el mail y todos esos datos que no queremos mostrar-->
             <v-list-item-content>

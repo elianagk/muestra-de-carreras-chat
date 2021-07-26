@@ -3,7 +3,7 @@
         <v-list-item two-line class="px-0">
             <v-avatar size="38" class="mr-2" color="indigo">
                 <v-icon v-if="!room.isPrivate" dark>mdi-account-circle</v-icon>
-                <img v-if="room.isPrivate"  :src="`${room.photoUrl}`" :alt="`${room.name}`" />
+                
             </v-avatar>
 
             <v-list-item-content>

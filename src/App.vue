@@ -17,7 +17,7 @@
           transition="scale-transition"
           width="30"
         />
-        <h4>Real time chat</h4>
+        <h4>Chat -NOMBRE STAND-</h4>
       </div>
       <v-spacer></v-spacer>
       <v-btn icon @click.stop="rightdrawer = !rightdrawer">
