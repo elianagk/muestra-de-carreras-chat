@@ -6,9 +6,9 @@
         <v-card>
             <v-card-title class="headline">Ingrese su nombre</v-card-title>        
             <v-card-actions>
+            <input type="text" class="form-control px-4" placeholder="Nombre de usuario" v-model="username">
             <v-spacer></v-spacer>
-            <input type="text" class="form-control" placeholder="Nombre de usuario" v-model="username">
-            <v-btn color="green darken-1" text @click="handleLogin">Agree</v-btn>
+            <v-btn color="green darken-1" text @click="handleLogin">Confirmar</v-btn>
             </v-card-actions>
         </v-card>
         </v-dialog>
@@ -28,7 +28,7 @@
                 <v-row align="center"
                     justify="center">
                     <v-col align="center">
-                        <v-card-text>Please wait...</v-card-text>
+                        <v-card-text>Por favor espere...</v-card-text>
                     </v-col>
                 </v-row>
             </v-container>

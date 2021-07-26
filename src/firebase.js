@@ -21,7 +21,6 @@ const fb = {
   auth: firebase.auth(),
   firestore: firebase.firestore(),
   async login(username) {
-      // const provider = new firebase.auth.GoogleAuthProvider();
       return firebase.auth().signInAnonymously()
               .then(function(result) {
                   return {success: true, data: result};
