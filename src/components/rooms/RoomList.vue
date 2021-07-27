@@ -6,22 +6,27 @@
             type="list-item-avatar-two-line"
             class="mx-auto"
         ></v-skeleton-loader>
+        <GeneralRoom :key="Groom.id" :room="Groom" :active="Groom.active"/>
         <Room v-for="room in sortedRooms" :key="room.id" :room="room" :active="room.active" />
+        
     </div>
 </template>
 <script>
 import { mapState, mapActions } from 'vuex';
 import Room from './Room';
+import GeneralRoom from './GeneralRoom.vue'
 import fb from '@/firebase';
 export default {
     name: "RoomList",
     components: {
-        Room
+        Room,
+        GeneralRoom
     },
     data() {
         return {
             isLoaded: false,
-            rooms: {}
+            rooms: {},
+            
         }
     },
     computed: {
@@ -37,7 +42,8 @@ export default {
         sortedRooms() {
             var activeRooms = [];
             var inactiveRooms = [];
-            var rooms = this.rooms;
+            var rooms = this.rooms + this.Groom;
+            
             for(var i = 0; i < rooms.length; i++) {
                 var room = rooms[i];
                 // Preprocessing: Build the room name and photo
