@@ -2,19 +2,14 @@
     <div v-on:click="selectRoomHandler" :class="`${status} room`">
         <v-list-item two-line class="px-0">
             <v-avatar size="38" class="mr-2" color="indigo">
-               
-                
             </v-avatar>
             <span handleCreateChat/>
             <v-list-item-content>
-                <v-list-item-title class="body-2">GeneralRoom</v-list-item-title>
+                <v-list-item-title class="body-2">{{room.name}}</v-list-item-title>
             </v-list-item-content>
         </v-list-item>
     </div>
 </template>
-
-
-
 
 <script>
 import { mapState, mapActions } from 'vuex';
@@ -95,3 +90,11 @@ export default {
     }
 }
 </script>
+<style scoped>
+.room {
+    cursor: pointer;
+}
+.room.active, .room:hover {
+    background-color: #eeeeee;
+}
+</style>
