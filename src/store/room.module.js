@@ -34,6 +34,28 @@ const actions = {
         
         commit('setActiveRoom', roomID);
     },
+    async generalRoom({commit, rootState}, {room, users}) {
+       var roomID = room;
+        const resp = await roomService.createPublicChat(users);
+        if(resp.success) {
+            roomID = resp.roomID;
+        }
+            
+        
+        // Get the room detail
+        const response = await roomService.getRoomDetail(roomID);
+        if(response.success && rootState.contactModule.users) {
+            // Postprocessing on the users
+            var users = rootState.contactModule.users.filter(function(val) {
+                return response.userIds.indexOf(val.id) >= 0;
+            });
+            
+            commit('setUsers', users);
+        }        
+        
+        commit('setActiveRoom', roomID);
+
+    },
     async sendMessage({commit, state, rootState}, {message}) {
         var sender = rootState.userModule.user ? rootState.userModule.user.ID : null;
         var room = state.activeRoom;

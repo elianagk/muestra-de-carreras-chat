@@ -5,7 +5,7 @@
             align="center"
             v-if="!isRoomSelected"
         >
-            <v-col class="col-xs-12"><GeneralRoom /></v-col>
+            <v-col class="col-xs-12"><RoomNotSelected /></v-col>
         </v-row>
         <ChatContainer v-if="isRoomSelected" />
         
@@ -13,12 +13,12 @@
 </template>
 <script>
 import { mapState, mapActions } from 'vuex';
-import GeneralRoom from '../rooms/GeneralRoom';
+import RoomNotSelected from './RoomNotSelected';
 import ChatContainer from './ChatContainer';
 export default {
     name: "MessageContainer",
     components: {
-        ChatContainer, GeneralRoom
+        ChatContainer, RoomNotSelected
     },
     computed: {
         ...mapState('userModule', {

@@ -6,7 +6,7 @@
             type="list-item-avatar-two-line"
             class="mx-auto"
         ></v-skeleton-loader>
-        <GeneralRoom :key="1" :room="room" :active="true"/>
+        
         <Room v-for="room in sortedRooms" :key="room.id" :room="room" :active="room.active" />
         
     </div>
@@ -14,7 +14,7 @@
 <script>
 import { mapState, mapActions } from 'vuex';
 import Room from './Room';
-import GeneralRoom from './GeneralRoom.vue'
+import GeneralRoom from './GeneralRoom'
 import fb from '@/firebase';
 export default {
     name: "RoomList",
@@ -26,6 +26,7 @@ export default {
         return {
             isLoaded: false,
             rooms: {},
+            
         }
     },
     computed: {
@@ -56,9 +57,6 @@ export default {
                     names.push(contacts[j].name);                        
                 }
                 room.name = names.join(', ');
-                if(room.isPrivate) {
-                    room.photoUrl = contacts[0] ? contacts[0].photoUrl : "";
-                }
                 // For active room
                 if(room.id == this.roomID) {
                     room.active = true;
@@ -71,6 +69,7 @@ export default {
             }
             return [...activeRooms, ...inactiveRooms];
         },
+       
     },
     created() {
         // Get all the users
