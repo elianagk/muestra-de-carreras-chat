@@ -1,7 +1,7 @@
 import fb from '@/firebase';
 
 export const roomService = {
-    get, createPrivateChat, createChatRoom, getRoomDetail, sendMessage, createPublicChat
+    get, createPrivateChat, createChatRoom, getRoomDetail, sendMessage, createPublicChat, getGeneral
 };
 
 async function get(currentUser, targetUser) {
@@ -19,6 +19,31 @@ async function get(currentUser, targetUser) {
                 for(var i = 0; i < snapshot.docs.length; i++) {
                     // Workaround as multiple array-contains filter is not allowed
                     if(snapshot.docs[i].data().users.indexOf(targetUser) >= 0) {
+                        roomId = snapshot.docs[i].id;
+                        success = true;
+                        break;
+                    }
+                }
+
+                return {success: success, roomID: roomId};
+            }).catch(handleError);
+}
+
+async function getGeneral(users){
+    return fb.firestore.collection("rooms")
+            .where("isPrivate", "==", false)
+            .where("users", "array-contains", users)
+            .get()
+            .then(snapshot => {
+                if (snapshot.empty) {
+                    return {success: false, error: "No chat room(s)"};
+                }  
+                
+                var roomId;
+                var success = false;
+                for(var i = 0; i < snapshot.docs.length; i++) {
+                    // Workaround as multiple array-contains filter is not allowed
+                    if(snapshot.docs[i].data().users.indexOf(users) >= 0) {
                         roomId = snapshot.docs[i].id;
                         success = true;
                         break;

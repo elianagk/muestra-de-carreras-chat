@@ -33,12 +33,10 @@ export default {
                     values.push(value);
                 }
             }
-            console.log(values + " val GR")
             const userIDs = values;
-            console.log(userIDs + " id GR")
             if(userIDs.length > 0) {                
                 const resp = await this.createChatRoom({userIDs});
-                console.log(resp);
+                
 
                 if(resp.success) {
                     // Clear the room selection first
@@ -51,14 +49,13 @@ export default {
                     this.generalRoom(data);
                 }
             }
-            this.clearSelection();
+            
             
         },
-        clearSelection() {
-            this.userIDs = [];
-        }
+        
     },
      created() {
+         console.log(" created");
         this.handleCreateChat();
         
      } 
