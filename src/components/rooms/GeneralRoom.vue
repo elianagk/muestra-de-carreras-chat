@@ -44,7 +44,8 @@ export default {
                     // Select the room again
                     var data = {
                         room: resp.roomID,
-                        users: this.allUsers
+                        users: this.allUsers,
+                        currentUser: null
                     };
                     this.generalRoom(data);
                 }

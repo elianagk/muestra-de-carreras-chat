@@ -32,9 +32,10 @@ async function get(currentUser, targetUser) {
 async function getGeneral(users){
     return fb.firestore.collection("rooms")
             .where("isPrivate", "==", false)
-            .where("users", "array-contains", users)
+            .where("users.uid", "in", users)
             .get()
             .then(snapshot => {
+                console.log(snapshot.empty + " snap" );
                 if (snapshot.empty) {
                     return {success: false, error: "No chat room(s)"};
                 }  
