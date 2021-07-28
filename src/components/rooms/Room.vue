@@ -1,6 +1,6 @@
 <template>
 <div>
-    <GeneralRoom/>
+    
     <div v-on:click="selectRoomHandler" :class="`${status} room`">
         <v-list-item two-line class="px-0">
             <v-avatar size="38" class="mr-2" color="indigo">

@@ -6,7 +6,7 @@
             type="list-item-avatar-two-line"
             class="mx-auto"
         ></v-skeleton-loader>
-        
+        <GeneralRoom/>
         <Room v-for="room in sortedRooms" :key="room.id" :room="room" :active="room.active" />
         
     </div>

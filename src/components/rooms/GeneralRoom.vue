@@ -1,13 +1,6 @@
 <template>
  <div >
-        <v-list-item two-line class="px-0">
-            <v-avatar size="38" class="mr-2" color="indigo">
-                <v-icon v-if="!room.isPrivate" dark>mdi-account-circle</v-icon>
-            </v-avatar>
-           
-                <v-list-item-title class="body-2">General</v-list-item-title>
-            
-        </v-list-item>
+       
     </div>
 </template>
 <script>
@@ -28,12 +21,25 @@ export default {
         }),
         
     },
-    created: {
+    methods: {
         ...mapActions('roomModule', ['createChatRoom', 'generalRoom', 'clearRoom']),
         async handleCreateChat(e) {
-            const {userIDs} = this;
+            const values = [];
+            
+            for(var i = 0; i < this.allUsers.length; i++) {
+                var user = this.allUsers[i];
+                if(user.id != this.user.ID) {
+                    var value = user.id;
+                    values.push(value);
+                }
+            }
+            console.log(values + " val GR")
+            const userIDs = values;
+            console.log(userIDs + " id GR")
             if(userIDs.length > 0) {                
                 const resp = await this.createChatRoom({userIDs});
+                console.log(resp);
+
                 if(resp.success) {
                     // Clear the room selection first
                     this.clearRoom();
@@ -51,6 +57,10 @@ export default {
         clearSelection() {
             this.userIDs = [];
         }
-    }
+    },
+     created() {
+        this.handleCreateChat();
+        
+     } 
 }
 </script>
