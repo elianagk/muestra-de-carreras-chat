@@ -6,7 +6,8 @@
             type="list-item-avatar-two-line"
             class="mx-auto"
         ></v-skeleton-loader>
-        <GeneralRoom :room="generalRoom"/>
+        <!-- Si se llega a borrar de la bdd, comentar el v-if -->
+        <GeneralRoom v-if="generalRoom != null" :room="generalRoom"/>
         <Room v-for="room in sortedRooms" :key="room.id" :room="room" :active="room.active" />
         
     </div>
@@ -87,7 +88,7 @@ export default {
                     console.log("else");
                     this.generalRoom = room;
                     this.generalRoom.name = "General";
-                    console.log(this.generalRoom.name + " GR");
+                    console.log(this.generalRoom.id + " GR");
                 }
             });
             

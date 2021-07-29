@@ -44,23 +44,33 @@ export default {
                 }
             }
             const userIDs = values;
-            if(userIDs.length > 0) {                
+            console.log(this.room + " hay room?");
+            
+            if(this.room == null){
+                if(userIDs.length > 0) {                
                 const resp = await this.createChatRoom({userIDs});
                 console.log( " Room ID GR " + resp.roomID);
 
-                if(resp.success) {
-                    // Clear the room selection first
-                    this.clearRoom();
-                    // Select the room again
-                    var data = {
+                    if(resp.success) {
+                        // Clear the room selection first
+                        this.clearRoom();
+                        // Select the room again
+                        var data = {
+                            room: resp.roomID,
+                            users: this.allUsers,
+                        };
+                        this.generalRoom(data);
+                    }
+                }
+            }else{
+                console.log(this.room.id + " room id");
+                var data = {
                         room: this.room.id,
                         users: this.allUsers,
                     };
                     this.generalRoom(data);
-                }
             }
-            
-            
+ 
         },
         ...mapActions('roomModule', ['selectRoom', 'clearRoom']),
         selectRoomHandler: function(e) {
