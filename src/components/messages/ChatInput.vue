@@ -8,7 +8,7 @@
           no-resize
           rows="2"
           name="message"
-          label="Type 'Enter' to send message"
+          label="Presione 'Enter' para enviar su mensaje"
         ></v-textarea>
     </v-container>
 </template>
