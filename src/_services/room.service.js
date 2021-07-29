@@ -32,25 +32,26 @@ async function get(currentUser, targetUser) {
 async function getGeneral(users){
     return fb.firestore.collection("rooms")
             .where("isPrivate", "==", false)
-            .where("users.uid", "in", users)
             .get()
             .then(snapshot => {
-                console.log(snapshot.empty + " snap" );
+                console.log(snapshot.empty + " RS 37");
                 if (snapshot.empty) {
                     return {success: false, error: "No chat room(s)"};
                 }  
-                
                 var roomId;
                 var success = false;
                 for(var i = 0; i < snapshot.docs.length; i++) {
                     // Workaround as multiple array-contains filter is not allowed
-                    if(snapshot.docs[i].data().users.indexOf(users) >= 0) {
+                    console.log(users.every(j => snapshot.docs[i].data().users.includes(j)) + " RS 45");
+                    if(users.every(user => snapshot.docs[i].data().users.includes(user))) {
                         roomId = snapshot.docs[i].id;
                         success = true;
                         break;
+                    
                     }
+                    
                 }
-
+                console.log(success + " succes");
                 return {success: success, roomID: roomId};
             }).catch(handleError);
 }

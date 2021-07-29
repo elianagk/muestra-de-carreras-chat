@@ -6,7 +6,7 @@
             type="list-item-avatar-two-line"
             class="mx-auto"
         ></v-skeleton-loader>
-        <GeneralRoom/>
+        <GeneralRoom :room="generalRoom"/>
         <Room v-for="room in sortedRooms" :key="room.id" :room="room" :active="room.active" />
         
     </div>
@@ -26,6 +26,7 @@ export default {
         return {
             isLoaded: false,
             rooms: {},
+            generalRoom: null
             
         }
     },
@@ -80,7 +81,13 @@ export default {
             snapshot.forEach((doc) => {
                 const room = doc.data();
                 room.id = doc.id;
-                rooms.push(room);
+                if(room.isPrivate)
+                    rooms.push(room);
+                else{
+                    console.log("else");
+                    this.generalRoom = room;
+                    console.log(this.generalRoom + " GR");
+                }
             });
             
             this.rooms = rooms;

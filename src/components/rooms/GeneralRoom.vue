@@ -7,6 +7,7 @@
 import { mapState, mapActions } from 'vuex';
 export default {
     name: "GeneralRoom",
+    props: ["room"],
     data() {
         return {
             userIDs: [],
@@ -24,39 +25,38 @@ export default {
     methods: {
         ...mapActions('roomModule', ['createChatRoom', 'generalRoom', 'clearRoom']),
         async handleCreateChat(e) {
-            const values = [];
+            // const values = [];
             
-            for(var i = 0; i < this.allUsers.length; i++) {
-                var user = this.allUsers[i];
-                if(user.id != this.user.ID) {
-                    var value = user.id;
-                    values.push(value);
-                }
-            }
-            const userIDs = values;
-            if(userIDs.length > 0) {                
-                const resp = await this.createChatRoom({userIDs});
-                
+            // for(var i = 0; i < this.allUsers.length; i++) {
+            //     var user = this.allUsers[i];
+            //     if(user.id != this.user.ID) {
+            //         var value = user.id;
+            //         values.push(value);
+            //     }
+            // }
+            // const userIDs = values;
+            // if(userIDs.length > 0) {                
+            //     const resp = await this.createChatRoom({userIDs});
+            //     console.log( " Room ID GR " + resp.roomID);
 
-                if(resp.success) {
+            //     if(resp.success) {
                     // Clear the room selection first
                     this.clearRoom();
                     // Select the room again
                     var data = {
-                        room: resp.roomID,
+                        room: this.room.id,
                         users: this.allUsers,
-                        currentUser: null
                     };
                     this.generalRoom(data);
-                }
-            }
+                // }
+            // }
             
             
         },
         
     },
      created() {
-         console.log(" created");
+        console.log(" created");
         this.handleCreateChat();
         
      } 

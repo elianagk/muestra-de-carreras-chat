@@ -34,38 +34,41 @@ const actions = {
         
         commit('setActiveRoom', roomID);
     },
-    async generalRoom({commit, rootState}, {room, users, currentUser}) {
-         // If the room has already been created, then set it as active room (usually triggered from selecting the chat room from left)
-         const ids = [];
+    async generalRoom({commit, rootState}, {room, users}) {
+        // If the room has already been created, then set it as active room (usually triggered from selecting the chat room from left)
+        const ids = [];
          users.forEach(user => {
              ids.push(user.id)
          });
-         const roomResp = await roomService.getGeneral(ids);
-             console.log(roomResp + " resp");
-         var roomID;
-         if(room) {
-             roomID = room;
-         } else {
-             // Else check if there is existing chat room created for the user
-             const roomResp = await roomService.getGeneral(ids);
-             console.log(roomResp + " resp");
-             if(roomResp.success) {
-                 roomID = roomResp.roomID;
-             } 
-         }
- 
-         // Get the room detail
-         const response = await roomService.getRoomDetail(roomID);
-         if(response.success && rootState.contactModule.users) {
-             // Postprocessing on the users
-             var users = rootState.contactModule.users.filter(function(val) {
-                 return response.userIds.indexOf(val.id) >= 0;
-             });
-             
-             commit('setUsers', users);
-         }        
-         
-         commit('setActiveRoom', roomID);
+        var roomID;
+        if(room) {
+            roomID = room;
+        } else {
+            // Else check if there is existing chat room created for the user
+            const roomResp = await roomService.getGeneral(ids);
+            
+            if(roomResp.success) {
+                roomID = roomResp.roomID;
+            } else {
+                const resp = await roomService.createPublicChat(users);
+                if(resp.success) {
+                    roomID = resp.roomID;
+                }
+            }
+        }
+
+        // Get the room detail
+        const response = await roomService.getRoomDetail(roomID);
+        if(response.success && rootState.contactModule.users) {
+            // Postprocessing on the users
+            var users = rootState.contactModule.users.filter(function(val) {
+                return response.userIds.indexOf(val.id) >= 0;
+            });
+            
+            commit('setUsers', users);
+        }        
+        
+        commit('setActiveRoom', roomID);
     },
     async sendMessage({commit, state, rootState}, {message}) {
         var sender = rootState.userModule.user ? rootState.userModule.user.ID : null;
