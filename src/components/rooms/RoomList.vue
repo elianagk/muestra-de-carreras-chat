@@ -86,7 +86,8 @@ export default {
                 else{
                     console.log("else");
                     this.generalRoom = room;
-                    console.log(this.generalRoom + " GR");
+                    this.generalRoom.name = "General";
+                    console.log(this.generalRoom.name + " GR");
                 }
             });
             
