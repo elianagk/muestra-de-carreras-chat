@@ -104,7 +104,7 @@ async function sendMessage(sender, room, message) {
 
 async function createChatRoom(userIDs) {
     var data = {
-        isPrivate: (userIDs.length <= 2),
+        isPrivate: false,
         users: userIDs
     };
     

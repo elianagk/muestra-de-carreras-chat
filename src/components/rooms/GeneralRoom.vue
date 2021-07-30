@@ -1,14 +1,14 @@
 <template>
- <div >
+    <div >
         <div v-on:click="selectRoomHandler" class="room" >
-        <v-list-item two-line class="px-0">
-            <v-avatar size="38" class="mr-2" color="indigo">
-                <v-icon  dark>mdi-account-circle</v-icon>
-            </v-avatar>
-            <v-list-item-content>
-                <v-list-item-title class="body-2">General</v-list-item-title>
-            </v-list-item-content>
-        </v-list-item>
+            <v-list-item two-line class="px-0">
+                <v-avatar size="38" class="mr-2" color="indigo">
+                    <v-icon  dark>mdi-account-circle</v-icon>
+                </v-avatar>
+                <v-list-item-content>
+                    <v-list-item-title class="body-2">General</v-list-item-title>
+                </v-list-item-content>
+            </v-list-item>
         </div>
     </div>
 </template>
