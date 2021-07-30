@@ -5,11 +5,10 @@
             ref="skeleton"
             type="list-item-avatar-two-line"
             class="mx-auto"
-        ></v-skeleton-loader>
-        <!-- Si se llega a borrar de la bdd, comentar el v-if -->
-        <GeneralRoom v-if="generalRoom != null" :room="generalRoom"/>
-        <Room v-for="room in sortedRooms" :key="room.id" :room="room" :active="room.active" />
-        
+        >
+        </v-skeleton-loader>
+        <GeneralRoom ref="GR" :room="generalRoom"/>
+        <Room v-for="room in sortedRooms" :key="room.id" :room="room" :active="room.active" />  
     </div>
 </template>
 <script>
@@ -73,6 +72,11 @@ export default {
         },
        
     },
+    methods: {
+        createGeneralChat() {
+            this.$refs.GR.handleCreateChat();
+        },
+    },
     created() {
         // Get all the users
         fb.firestore.collection("rooms")
@@ -85,13 +89,14 @@ export default {
                 if(room.isPrivate)
                     rooms.push(room);
                 else{
-                    console.log("else");
                     this.generalRoom = room;
                     this.generalRoom.name = "General";
-                    console.log(this.generalRoom.id + " GR");
                 }
             });
-            
+            //If there's no generalChat
+            if(this.generalRoom === null) {
+                this.createGeneralChat();
+            }
             this.rooms = rooms;
             this.isLoaded = true;
         });

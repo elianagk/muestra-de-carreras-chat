@@ -40,7 +40,6 @@
             <div class="overline mt-2 mb-2">Recent chats</div>
             <RoomList v-if="!isRequiresLogin" />
         </v-list>
-        <RoomDialog />
         
     </v-navigation-drawer>
 
@@ -82,7 +81,6 @@ import ContactContainer from  './components/contacts/ContactContainer'
 import MessageContainer from './components/messages/MessageContainer'
 import Avatar from './components/Avatar'
 import RoomList from './components/rooms/RoomList'
-import RoomDialog from './components/rooms/RoomDialog'
 import ContactList from './components/contacts/ContactList'
 export default {
   name: 'App',
@@ -91,8 +89,7 @@ export default {
     ContactContainer,
     MessageContainer,
     Avatar, 
-    RoomList, 
-    RoomDialog,
+    RoomList,
     ContactList
   },
   computed: {

@@ -44,12 +44,10 @@ export default {
                 }
             }
             const userIDs = values;
-            console.log(this.room + " hay room?");
             
             if(this.room == null){
                 if(userIDs.length > 0) {                
                 const resp = await this.createChatRoom({userIDs});
-                console.log( " Room ID GR " + resp.roomID);
 
                     if(resp.success) {
                         // Clear the room selection first
@@ -63,7 +61,6 @@ export default {
                     }
                 }
             }else{
-                console.log(this.room.id + " room id");
                 var data = {
                         room: this.room.id,
                         users: this.allUsers,
@@ -88,13 +85,6 @@ export default {
         }
         
     },
-     created() {
-        console.log(" created");
-         
-         this.handleCreateChat();
-        // console.log(this.room.name + " creat room");
-        
-     } 
 }
 </script>
 <style scoped>

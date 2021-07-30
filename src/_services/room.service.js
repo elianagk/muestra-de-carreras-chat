@@ -34,7 +34,6 @@ async function getGeneral(users){
             .where("isPrivate", "==", false)
             .get()
             .then(snapshot => {
-                console.log(snapshot.empty + " RS 37");
                 if (snapshot.empty) {
                     return {success: false, error: "No chat room(s)"};
                 }  
@@ -42,7 +41,6 @@ async function getGeneral(users){
                 var success = false;
                 for(var i = 0; i < snapshot.docs.length; i++) {
                     // Workaround as multiple array-contains filter is not allowed
-                    console.log(users.every(j => snapshot.docs[i].data().users.includes(j)) + " RS 45");
                     if(users.every(user => snapshot.docs[i].data().users.includes(user))) {
                         roomId = snapshot.docs[i].id;
                         success = true;
@@ -51,7 +49,6 @@ async function getGeneral(users){
                     }
                     
                 }
-                console.log(success + " succes");
                 return {success: success, roomID: roomId};
             }).catch(handleError);
 }
