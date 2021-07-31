@@ -41,7 +41,7 @@ export default {
                             timestamp: change.doc.data().timestamp,
                             senderID: change.doc.data().sender
                         };
-                        
+                        //Deberia modificarse el mensaje para q sea un link
                         newChats.push(chat);
                     }
                 });

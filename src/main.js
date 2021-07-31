@@ -4,12 +4,16 @@ import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify';
 import  fb  from './firebase';
+import linkify from 'vue-linkify'
+ 
+
 
 import { ValidationObserver, ValidationProvider } from 'vee-validate';
 
 Vue.config.productionTip = false
 Vue.component('ValidationObserver', ValidationObserver);
 Vue.component('ValidationProvider', ValidationProvider);
+Vue.directive('linkified', linkify)
 
 new Vue({
   router,
