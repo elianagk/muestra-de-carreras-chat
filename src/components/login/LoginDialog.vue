@@ -1,5 +1,3 @@
-//No deberia existir, ingresar con nombre de usuario de wordpress
-
 <template>
     <div>   
         <v-dialog v-model="dialog" persistent max-width="468">
@@ -12,7 +10,7 @@
             </v-card-actions>
         </v-card>
         </v-dialog>
-        <v-dialog v-model="loader" persistent max-width="468">
+        <v-dialog persistent max-width="468">
             <v-card>
             <v-container fill-height fluid>
                 <v-row align="center"
@@ -64,7 +62,12 @@ export default {
     methods: {
         ...mapActions('userModule', ['login']),
         async handleLogin(e) {
-            this.login(this.username);
+            if(this.username === "") {
+                alert("Ingrese su nombre");
+            }
+            else {
+                this.login(this.username);
+            }
         }
     }
 }
