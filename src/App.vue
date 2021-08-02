@@ -103,17 +103,46 @@ export default {
     isRequiresLogin: function() {
         return !this.userState || Object.keys(this.userState).length === 0;
     },
+    
     existGeneral: function(){
-        fb.firestore.collection("rooms")
-        .where("users", "array-contains", this.allUsers)
-        .get()
-        .then(snapshot => {
+    //   var ids = [];
+    //   this.allUsers.forEach(element => {
+    //     ids.push(element.id);
+    //   });
+    //     fb.firestore.collection("rooms")
+    //     .where("users", "array-contains", ids)
+    //     .get()
+    //     .then(snapshot => {
+    //             if (snapshot.empty) {
+    //               console.log("false");
+    //                 return false;
+    //             }  else{
+    //               console.log("true");
+    //               return true;
+    //             }
+    // });
+     return fb.firestore.collection("rooms")
+            .where("isPrivate", "==", false)
+            .get()
+            .then(snapshot => {
                 if (snapshot.empty) {
-                    return false;
-                }  else{
-                  return true;
+                    return {success: false, error: "No chat room(s)"};
+                }  
+                var roomId;
+                var success = false;
+                for(var i = 0; i < snapshot.docs.length; i++) {
+                    // Workaround as multiple array-contains filter is not allowed
+                    console.log(snapshot.docs[i].data().users);
+                    if(this.allUsers.every(user => snapshot.docs[i].data().users.includes(user))) {
+                        roomId = snapshot.docs[i].id;
+                        success = true;
+                        break;
+                    
+                    }
+                    
                 }
-    });
+                return {success: success, roomID: roomId};
+            });
   },
   
 },
