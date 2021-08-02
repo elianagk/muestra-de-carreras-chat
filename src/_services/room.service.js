@@ -117,18 +117,24 @@ async function createChatRoom(userIDs) {
             }).catch(handleError);
 }
 
-async function addUser(user, roomID) {
+async function addUser(users, roomID) {
     var data = {
-        users: user
+        users: users
     };
     console.log(roomID + " RS id");
-    return fb.firestore.collection("rooms")
-        .where("uid", "==", roomID)
-        .add(data)
-            .then(function(doc) {
-                console.log(doc.id +  " es igual a " + roomID);
-                return {success: true, roomID: doc.id};
-            }).catch(handleError);
+    return fb.firestore.collection("rooms").doc(roomID).update('users', users)
+    // .then(function(doc) {
+    //     console.log(doc);
+    //     return {success: true, roomID: doc.id};
+    // }).catch(handleError);;
+       
+        
+    // console.log(gi.get());
+        // .update(data)
+        //     .then(function(doc) {
+        //         console.log(doc.id +  " es igual a " + roomID);
+        //         return {success: true, roomID: doc.id};
+        //     }).catch(handleError);
 }
 
 function handleError(error) {
