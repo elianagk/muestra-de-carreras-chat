@@ -90,9 +90,14 @@ const actions = {
         commit('clearRoom');
     },
     async addUserToGeneral({commit, rootState}, {user, users}){
-        console.log("RM user " + user);
-       
-        var resp = roomService.getGeneral(users);
+        var array= [];
+        users.forEach(element => {
+            if(element.id != user){
+                array.push(element.id);
+            }
+        });
+
+        const resp = await roomService.getGeneral(array);
 
         console.log("RM resp " + resp.success);
 

@@ -49,7 +49,7 @@ export default {
             userState: state => state.user,
             statusState: state => state.status,
         }),
-        ...mapState('userModule', {
+        ...mapState('contactModule', {
             allUsers: state => state.users
         }),
         loader: function() {
@@ -79,16 +79,6 @@ export default {
                             users: this.allUsers,
                         };
                 this.addUserToGeneral(data);
-                // resp.then(value => console.log(value + " val 1"));
-            
-                // resp.then(value => function(){
-                //     if(value != undefined){
-                //         console.log(value + " value ");
-                //         this.addUserToGeneral(value, this.allUsers);
-                //     }
-                // } );
-                
-                
 
             }
         },

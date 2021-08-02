@@ -41,6 +41,7 @@ async function getGeneral(users){
                 var success = false;
                 for(var i = 0; i < snapshot.docs.length; i++) {
                     // Workaround as multiple array-contains filter is not allowed
+                    console.log(snapshot.docs[i].data().users);
                     if(users.every(user => snapshot.docs[i].data().users.includes(user))) {
                         roomId = snapshot.docs[i].id;
                         success = true;
@@ -52,6 +53,8 @@ async function getGeneral(users){
                 return {success: success, roomID: roomId};
             }).catch(handleError);
 }
+
+
 
 async function createPrivateChat(currentUser, targetUser) {
     var data = {
@@ -116,7 +119,7 @@ async function createChatRoom(userIDs) {
 
 async function addUser(user, roomID) {
     var data = {
-        user: user
+        users: user
     };
     console.log(roomID + " RS id");
     return fb.firestore.collection("rooms")

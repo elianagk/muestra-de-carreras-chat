@@ -38,7 +38,7 @@
             >
             <Avatar />
             <div class="overline mt-2 mb-2">Recent chats</div>
-            <RoomList v-if="!isRequiresLogin" />
+            <RoomList v-if="!isRequiresLogin && existGeneral" />
         </v-list>
         
     </v-navigation-drawer>
@@ -82,6 +82,7 @@ import MessageContainer from './components/messages/MessageContainer'
 import Avatar from './components/Avatar'
 import RoomList from './components/rooms/RoomList'
 import ContactList from './components/contacts/ContactList'
+import fb from '@/firebase'
 export default {
   name: 'App',
   components: {
@@ -96,11 +97,27 @@ export default {
     ...mapState('userModule', {
         userState: state => state.user
     }),
+    ...mapState('contactModule', {
+          allUsers: state => state.users
+      }),
     isRequiresLogin: function() {
         return !this.userState || Object.keys(this.userState).length === 0;
-    }
+    },
+    existGeneral: function(){
+        fb.firestore.collection("rooms")
+        .where("users", "array-contains", this.allUsers)
+        .get()
+        .then(snapshot => {
+                if (snapshot.empty) {
+                    return false;
+                }  else{
+                  return true;
+                }
+    });
   },
-  data: () => ({
+  
+},
+data: () => ({
     leftdrawer: null,
     rightdrawer: null,
     search: ''
