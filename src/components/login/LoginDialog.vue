@@ -61,14 +61,17 @@ export default {
     },
     methods: {
         ...mapActions('userModule', ['login']),
+        ...mapActions('roomModule', ['addUserToGeneral']),
         async handleLogin(e) {
             if(this.username === "") {
                 alert("Ingrese su nombre");
             }
             else {
-                this.login(this.username);
+                //login ahora retorna para tener el uid del user
+                var userID = this.login(this.username);
+                this.addUserToGeneral(userID);
             }
-        }
+        },
     }
 }
 </script>

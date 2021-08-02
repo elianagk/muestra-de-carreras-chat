@@ -28,6 +28,7 @@ const actions = {
                     };
 
                     commit('loginSuccess', user);
+                    return uid;
                 }
             } catch (err) {
                 commit('loginFailure', err);
@@ -35,7 +36,8 @@ const actions = {
             
         } else {
             commit('loginFailure', firebaseLogin.error);
-        }        
+        }    
+        return null; 
     },
     logout({commit, state}) {
         if(state.user.ID) {

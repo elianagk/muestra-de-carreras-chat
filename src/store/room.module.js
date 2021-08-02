@@ -88,6 +88,13 @@ const actions = {
     },
     clearRoom({commit}) {
         commit('clearRoom');
+    },
+    async addUserToGeneral({commit, rootState}, {user}){
+        var resp = roomService.getGeneral();
+        var roomID = resp.roomID;
+
+        const response = await roomService.addUser(user, roomID);
+        return response;
     }
 }
 

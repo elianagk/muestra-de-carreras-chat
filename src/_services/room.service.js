@@ -1,7 +1,7 @@
 import fb from '@/firebase';
 
 export const roomService = {
-    get, createPrivateChat, createChatRoom, getRoomDetail, sendMessage, createPublicChat, getGeneral
+    get, createPrivateChat, createChatRoom, getRoomDetail, sendMessage, createPublicChat, getGeneral, addUser
 };
 
 async function get(currentUser, targetUser) {
@@ -109,6 +109,19 @@ async function createChatRoom(userIDs) {
     };
     
     return fb.firestore.collection("rooms").add(data)
+            .then(function(doc) {
+                return {success: true, roomID: doc.id};
+            }).catch(handleError);
+}
+
+async function addUser(user, roomID) {
+    var data = {
+        user: user
+    };
+    
+    return fb.firestore.collection("rooms")
+        .where("uid", "==", roomID)
+        .add(data)
             .then(function(doc) {
                 return {success: true, roomID: doc.id};
             }).catch(handleError);
