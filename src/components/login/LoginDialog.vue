@@ -49,6 +49,9 @@ export default {
             userState: state => state.user,
             statusState: state => state.status,
         }),
+        ...mapState('userModule', {
+            allUsers: state => state.users
+        }),
         loader: function() {
             return this.statusState && this.statusState.loggingIn;
         },
@@ -68,8 +71,25 @@ export default {
             }
             else {
                 //login ahora retorna para tener el uid del user
-                var userID = this.login(this.username);
-                this.addUserToGeneral(userID);
+                
+                var resp = await this.login(this.username);
+                console.log(resp.user.ID);
+                 var data = {
+                            user: resp.user.ID,
+                            users: this.allUsers,
+                        };
+                this.addUserToGeneral(data);
+                // resp.then(value => console.log(value + " val 1"));
+            
+                // resp.then(value => function(){
+                //     if(value != undefined){
+                //         console.log(value + " value ");
+                //         this.addUserToGeneral(value, this.allUsers);
+                //     }
+                // } );
+                
+                
+
             }
         },
     }

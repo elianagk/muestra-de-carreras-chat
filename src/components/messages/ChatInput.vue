@@ -27,11 +27,18 @@ export default {
             if(this.message.length > 0) {
                 const {message} = this;
                 this.sendMessage({message}); 
+                
             }   
-            this.resetMessage();        
+            this.resetMessage();  
+            this.notifyMessage();   
+            //disparar evento luego de llamar a submitHandler   
         },
         resetMessage() {
             this.message = '';
+        },
+        notifyMessage(){
+            console.log("notificar");
+            this.$emit('NuevoMensaje');
         }
     }
 }

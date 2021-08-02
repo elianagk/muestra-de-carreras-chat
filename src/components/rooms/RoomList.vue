@@ -90,11 +90,13 @@ export default {
                     rooms.push(room);
                 else{
                     this.generalRoom = room;
+                    console.log("General Room id " + this.generalRoom.id);
                     this.generalRoom.name = "General";
                 }
             });
             //If there's no generalChat
             if(this.generalRoom === null) {
+                console.log("Creando general");
                 this.createGeneralChat();
             }
             this.rooms = rooms;

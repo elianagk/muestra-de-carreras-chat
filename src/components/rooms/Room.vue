@@ -3,8 +3,10 @@
     
     <div v-on:click="selectRoomHandler" :class="`${status} room`">
         <v-list-item two-line class="px-0">
-            <v-avatar size="38" class="mr-2" color="indigo">
+            <v-avatar size="38" class="mr-2"  color="indigo" >
+                <!-- <new-input @notifyMessage="selectColor()"></new-input> -->
                 <v-icon v-if="!room.isPrivate" dark>mdi-account-circle</v-icon>
+               
             </v-avatar>
             <v-list-item-content>
                 <v-list-item-title class="body-2">{{room.name}}</v-list-item-title>
@@ -15,12 +17,14 @@
 </template>
 <script>
 import { mapState, mapActions } from 'vuex';
-import GeneralRoom from './GeneralRoom'
+import GeneralRoom from './GeneralRoom';
+import ChatInput from '../messages/ChatInput';
 export default {
     name: "Room",
     props: ["room", "active"],
     components: {
-        GeneralRoom
+        GeneralRoom,
+        'new-input': ChatInput
     },
     computed: {
         ...mapState('roomModule', {
@@ -45,6 +49,9 @@ export default {
                 this.selectRoom(data);
             }
             
+        },
+        selectColor() {
+            console.log("hola");
         }
     }
 }

@@ -118,11 +118,12 @@ async function addUser(user, roomID) {
     var data = {
         user: user
     };
-    
+    console.log(roomID + " RS id");
     return fb.firestore.collection("rooms")
         .where("uid", "==", roomID)
         .add(data)
             .then(function(doc) {
+                console.log(doc.id +  " es igual a " + roomID);
                 return {success: true, roomID: doc.id};
             }).catch(handleError);
 }

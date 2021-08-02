@@ -45,12 +45,6 @@ export default {
         name: function() {
             return this.userState ? this.userState.Name : "";
         },
-        email: function() {
-            return this.userState ? this.userState.Email : "";
-        },
-        photo: function() {
-            return this.userState ? this.userState.Photo : "";
-        },
         isRequiresLogin: function() {
             return !this.userState || Object.keys(this.userState).length === 0;
         }

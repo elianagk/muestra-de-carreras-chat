@@ -28,7 +28,7 @@ const actions = {
                     };
 
                     commit('loginSuccess', user);
-                    return uid;
+                    return {user: user};
                 }
             } catch (err) {
                 commit('loginFailure', err);

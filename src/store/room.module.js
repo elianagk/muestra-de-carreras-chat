@@ -89,9 +89,16 @@ const actions = {
     clearRoom({commit}) {
         commit('clearRoom');
     },
-    async addUserToGeneral({commit, rootState}, {user}){
-        var resp = roomService.getGeneral();
+    async addUserToGeneral({commit, rootState}, {user, users}){
+        console.log("RM user " + user);
+       
+        var resp = roomService.getGeneral(users);
+
+        console.log("RM resp " + resp.success);
+
         var roomID = resp.roomID;
+
+        console.log(roomID + " RM id ");
 
         const response = await roomService.addUser(user, roomID);
         return response;
