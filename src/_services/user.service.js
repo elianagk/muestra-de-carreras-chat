@@ -26,7 +26,6 @@ async function createUpdate(uid, name) {
     var data = {
         name: name,
     };
-    
     return fb.firestore.collection("users").doc(uid).set(data)
             .then(function() {
                 return {success: true};
@@ -38,7 +37,6 @@ async function login(uid) {
     var data = {
         loginAt: now
     }
-
     return fb.firestore.collection("online").doc(uid).set(data);
 }
 

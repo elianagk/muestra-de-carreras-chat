@@ -7,7 +7,7 @@
             class="mx-auto"
         >
         </v-skeleton-loader>
-        <GeneralRoom ref="GR" :room="obtenerGeneral()" />
+        <GeneralRoom v-if="this.cargado" :room="this.generalRoom" />
         <Room v-for="room in sortedRooms" :key="room.id" :room="room" :active="room.active" />  
     </div>
 </template>
@@ -26,8 +26,8 @@ export default {
         return {
             isLoaded: false,
             rooms: {},
-            generalRoom: null
-            
+            generalRoom: null,
+            cargado: false,
         }
     },
     computed: {
@@ -72,22 +72,6 @@ export default {
         },
        
     },
-    methods: {
-        createGeneralChat() {
-                return this.$refs.GR.handleCreateChat();
-        },
-        obtenerGeneral(){
-            if(this.generalRoom === null) {
-                console.log("Creando general");
-               return  this.createGeneralChat();
-                
-            }
-            else{
-                console.log("Ya habia general");
-                return this.generalRoom
-            }
-        }
-    },
     created() {
         // Get all the users
         fb.firestore.collection("rooms")
@@ -100,15 +84,13 @@ export default {
                 if(room.isPrivate)
                     rooms.push(room);
                 else{
-                    console.log(room.id + " GR");
                     this.generalRoom = room;
                     this.generalRoom.name = "General";
                 }
             });
-            //If there's no generalChat
-            
             this.rooms = rooms;
             this.isLoaded = true;
+            this.cargado = true;
         });
     }
 }

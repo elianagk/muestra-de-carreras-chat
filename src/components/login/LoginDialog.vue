@@ -60,9 +60,6 @@ export default {
                     && !(this.statusState && this.statusState.loggingIn);
         }
     },
-    created() {
-        
-    },
     methods: {
         ...mapActions('userModule', ['login']),
         ...mapActions('roomModule', ['addUserToGeneral']),
@@ -72,12 +69,14 @@ export default {
             }
             else {
                 //login ahora retorna para tener el uid del user
-                
+
+                //cambiar resp por userState y asi podemos sacar todo a un metodo diferente
                 var resp = await this.login(this.username);
-                 var data = {
-                            user: resp.user.ID,
-                            users: this.allUsers,
-                        };
+                var data = {
+                        user: resp.user.ID,
+                        users: this.allUsers,
+                    };
+                //sacarlo a un metodo que se llame cuando el RoomList nos avisa que finalizo
                 this.addUserToGeneral(data);
                 
             }

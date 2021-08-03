@@ -117,9 +117,6 @@ async function createChatRoom(userIDs) {
 }
 
 async function addUser(users, roomID) {
-    var data = {
-        users: users
-    };
     return fb.firestore.collection("rooms").doc(roomID).update('users', users)
     // .then(function(doc) {
     //     console.log(doc);

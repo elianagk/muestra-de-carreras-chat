@@ -82,7 +82,6 @@ import MessageContainer from './components/messages/MessageContainer'
 import Avatar from './components/Avatar'
 import RoomList from './components/rooms/RoomList'
 import ContactList from './components/contacts/ContactList'
-import fb from '@/firebase'
 export default {
   name: 'App',
   components: {

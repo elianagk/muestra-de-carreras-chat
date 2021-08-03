@@ -8,7 +8,7 @@ const actions = {
     async login({commit}, username) {
         commit('loginRequest');
         const firebaseLogin = await fb.login();
-        
+
         if(firebaseLogin.success) {
             // Store / update the user info into the firebase            
             const uid = firebaseLogin.data.user.uid;
@@ -16,10 +16,11 @@ const actions = {
 
             try {
                 var result = await userService.createUpdate(uid, name);
+                
                 if(result.success) {
                     // Set the user as login
                     userService.login(uid);
-
+                    
                     // Set the state
                     var user = {
                         ID: uid,

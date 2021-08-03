@@ -35,7 +35,7 @@ export default {
         ...mapActions('roomModule', ['createChatRoom', 'generalRoom', 'clearRoom']),
         async handleCreateChat(e) {
             const values = [];
-            
+            console.log("QUE ONDA");
             for(var i = 0; i < this.allUsers.length; i++) {
                 var user = this.allUsers[i];
                 if(user.id != this.user.ID) {
@@ -48,7 +48,6 @@ export default {
             if(this.room == null){
                 if(userIDs.length > 0) {                
                 const resp = await this.createChatRoom({userIDs});
-                console.log(resp.roomID + " GR no deberia llegar");
                     if(resp.success) {
                         // Clear the room selection first
                         this.clearRoom();
@@ -86,9 +85,14 @@ export default {
                 this.generalRoom(data);
             }
             
-        }
-        
+        }       
     },
+    mounted() {
+        if(this.room == null) {
+            this.handleCreateChat();
+        }
+    }
+
 }
 </script>
 <style scoped>
