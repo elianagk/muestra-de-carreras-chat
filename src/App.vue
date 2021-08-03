@@ -38,7 +38,7 @@
             >
             <Avatar />
             <div class="overline mt-2 mb-2">Recent chats</div>
-            <RoomList v-if="!isRequiresLogin && this.general"/>
+            <RoomList v-if="!isRequiresLogin "/>
         </v-list>
         
     </v-navigation-drawer>
@@ -98,44 +98,18 @@ export default {
         userState: state => state.user
     }),
     ...mapState('contactModule', {
-        allUsers: state => state.users
-      }),
+            allUsers: state => state.users
+        }),
     isRequiresLogin: function() {
         return !this.userState || Object.keys(this.userState).length === 0;
     },
-  },
-  methods: {
-    existGeneral(){
-      var ids = [];
-      var users = this.allUsers;
-      users.forEach(element => {
-        ids.push(element.id);
-      });
-    var toReturn = false
-    return fb.firestore.collection("rooms")
-          .where("isPrivate", "==", false)
-          .get()
-          .then(snapshot => {
-              if (snapshot.empty) {
-                
-                  toReturn = false;
-              } 
-              console.log("me llamaste una vez");
-              for(var i = 0; i < snapshot.docs.length; i++) {
-                  // Workaround as multiple array-contains filter is not allowed
-                  if(ids.every(user => snapshot.docs[i].data().users.includes(user))) {
-                    console.log("IM TRUE");
-                      toReturn = true;
-                  }
-                  
-              }
-              return toReturn;
-          });
+    existGeneral: function(){
+     
   },
   
 },
 created() {
-  this.general = this.existGeneral();
+  
 },
 data: () => ({
     leftdrawer: null,

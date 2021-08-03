@@ -10,7 +10,7 @@
             </v-card-actions>
         </v-card>
         </v-dialog>
-        <v-dialog persistent max-width="468">
+          <v-dialog v-model="loader"  persistent max-width="468">
             <v-card>
             <v-container fill-height fluid>
                 <v-row align="center"
@@ -26,7 +26,7 @@
                 <v-row align="center"
                     justify="center">
                     <v-col align="center">
-                        <v-card-text>Por favor espere...</v-card-text>
+                        <v-card-text>Please wait...</v-card-text>
                     </v-col>
                 </v-row>
             </v-container>
@@ -61,6 +61,7 @@ export default {
         }
     },
     created() {
+        
     },
     methods: {
         ...mapActions('userModule', ['login']),
@@ -78,7 +79,7 @@ export default {
                             users: this.allUsers,
                         };
                 this.addUserToGeneral(data);
-
+                
             }
         },
     }

@@ -7,7 +7,13 @@
             class="mx-auto"
         >
         </v-skeleton-loader>
-        <GeneralRoom ref="GR" :room="generalRoom"/>
+        <div v-if="this.generalRoom == null">
+            {{ifGeneralNull()}}
+            <GeneralRoom ref="GR" :room="generalRoom" />
+        </div>
+        <div v-else>
+            <GeneralRoom ref="GR" :room="generalRoom" />
+        </div>
         <Room v-for="room in sortedRooms" :key="room.id" :room="room" :active="room.active" />  
     </div>
 </template>
@@ -76,6 +82,12 @@ export default {
         createGeneralChat() {
             this.$refs.GR.handleCreateChat();
         },
+        ifGeneralNull(){
+            if(this.generalRoom === null) {
+                console.log("Creando general");
+                this.createGeneralChat();
+            }
+        }
     },
     created() {
         // Get all the users
@@ -89,15 +101,13 @@ export default {
                 if(room.isPrivate)
                     rooms.push(room);
                 else{
+                    console.log(room.id + " GR");
                     this.generalRoom = room;
                     this.generalRoom.name = "General";
                 }
             });
             //If there's no generalChat
-            if(this.generalRoom === null) {
-                console.log("Creando general");
-                this.createGeneralChat();
-            }
+            
             this.rooms = rooms;
             this.isLoaded = true;
         });
