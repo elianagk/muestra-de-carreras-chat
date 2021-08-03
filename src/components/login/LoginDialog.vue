@@ -10,7 +10,7 @@
             </v-card-actions>
         </v-card>
         </v-dialog>
-          <v-dialog v-model="loader"  persistent max-width="468">
+          <!-- <v-dialog v-model="loader"  persistent max-width="468">
             <v-card>
             <v-container fill-height fluid>
                 <v-row align="center"
@@ -31,7 +31,7 @@
                 </v-row>
             </v-container>
             </v-card>
-        </v-dialog>
+        </v-dialog> -->
     </div>
 </template>
 <script>

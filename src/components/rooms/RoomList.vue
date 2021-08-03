@@ -7,13 +7,7 @@
             class="mx-auto"
         >
         </v-skeleton-loader>
-        <div v-if="this.generalRoom == null">
-            {{ifGeneralNull()}}
-            <GeneralRoom ref="GR" :room="generalRoom" />
-        </div>
-        <div v-else>
-            <GeneralRoom ref="GR" :room="generalRoom" />
-        </div>
+        <GeneralRoom ref="GR" :room="obtenerGeneral()" />
         <Room v-for="room in sortedRooms" :key="room.id" :room="room" :active="room.active" />  
     </div>
 </template>
@@ -80,12 +74,17 @@ export default {
     },
     methods: {
         createGeneralChat() {
-            this.$refs.GR.handleCreateChat();
+                return this.$refs.GR.handleCreateChat();
         },
-        ifGeneralNull(){
+        obtenerGeneral(){
             if(this.generalRoom === null) {
                 console.log("Creando general");
-                this.createGeneralChat();
+               return  this.createGeneralChat();
+                
+            }
+            else{
+                console.log("Ya habia general");
+                return this.generalRoom
             }
         }
     },

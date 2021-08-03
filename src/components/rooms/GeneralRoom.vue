@@ -44,11 +44,11 @@ export default {
                 }
             }
             const userIDs = values;
-            
+            var roomReturn;
             if(this.room == null){
                 if(userIDs.length > 0) {                
                 const resp = await this.createChatRoom({userIDs});
-
+                console.log(resp.roomID + " GR no deberia llegar");
                     if(resp.success) {
                         // Clear the room selection first
                         this.clearRoom();
@@ -58,15 +58,19 @@ export default {
                             users: this.allUsers,
                         };
                         this.generalRoom(data);
+                        roomReturn = resp.room;
                     }
                 }
+                roomReturn = null;
             }else{
                 var data = {
                         room: this.room.id,
                         users: this.allUsers,
                     };
                     this.generalRoom(data);
+                roomReturn = this.room;
             }
+            return roomReturn;
  
         },
         ...mapActions('roomModule', ['selectRoom', 'clearRoom']),
