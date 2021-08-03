@@ -21,7 +21,7 @@
       </div>
       <v-spacer></v-spacer>
       <v-btn icon @click.stop="rightdrawer = !rightdrawer">
-          <v-icon>contacts</v-icon>
+          <v-icon>contactos</v-icon>
       </v-btn>
     </v-app-bar>
 
@@ -37,7 +37,7 @@
             class="py-0"
             >
             <Avatar />
-            <div class="overline mt-2 mb-2">Recent chats</div>
+            <div class="overline mt-2 mb-2">Chats recientes</div>
             <RoomList v-if="!isRequiresLogin "/>
         </v-list>
         
@@ -51,7 +51,7 @@
         light
     >
       <div class="contacts-container">
-          <h3 class="overline">All contacts</h3>
+          <h3 class="overline">Todos los contactos</h3>
 
           <v-text-field
               v-model="search"
