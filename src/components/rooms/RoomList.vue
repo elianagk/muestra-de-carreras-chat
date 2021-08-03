@@ -90,7 +90,6 @@ export default {
                     rooms.push(room);
                 else{
                     this.generalRoom = room;
-                    console.log("General Room id " + this.generalRoom.id);
                     this.generalRoom.name = "General";
                 }
             });

@@ -73,7 +73,6 @@ export default {
                 //login ahora retorna para tener el uid del user
                 
                 var resp = await this.login(this.username);
-                console.log(resp.user.ID);
                  var data = {
                             user: resp.user.ID,
                             users: this.allUsers,

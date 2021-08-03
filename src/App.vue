@@ -38,7 +38,7 @@
             >
             <Avatar />
             <div class="overline mt-2 mb-2">Recent chats</div>
-            <RoomList v-if="!isRequiresLogin && existGeneral" />
+            <RoomList v-if="!isRequiresLogin && this.general"/>
         </v-list>
         
     </v-navigation-drawer>
@@ -98,58 +98,50 @@ export default {
         userState: state => state.user
     }),
     ...mapState('contactModule', {
-          allUsers: state => state.users
+        allUsers: state => state.users
       }),
     isRequiresLogin: function() {
         return !this.userState || Object.keys(this.userState).length === 0;
     },
-    
-    existGeneral: function(){
-    //   var ids = [];
-    //   this.allUsers.forEach(element => {
-    //     ids.push(element.id);
-    //   });
-    //     fb.firestore.collection("rooms")
-    //     .where("users", "array-contains", ids)
-    //     .get()
-    //     .then(snapshot => {
-    //             if (snapshot.empty) {
-    //               console.log("false");
-    //                 return false;
-    //             }  else{
-    //               console.log("true");
-    //               return true;
-    //             }
-    // });
-     return fb.firestore.collection("rooms")
-            .where("isPrivate", "==", false)
-            .get()
-            .then(snapshot => {
-                if (snapshot.empty) {
-                    return {success: false, error: "No chat room(s)"};
-                }  
-                var roomId;
-                var success = false;
-                for(var i = 0; i < snapshot.docs.length; i++) {
-                    // Workaround as multiple array-contains filter is not allowed
-                    console.log(snapshot.docs[i].data().users);
-                    if(this.allUsers.every(user => snapshot.docs[i].data().users.includes(user))) {
-                        roomId = snapshot.docs[i].id;
-                        success = true;
-                        break;
-                    
-                    }
-                    
-                }
-                return {success: success, roomID: roomId};
-            });
+  },
+  methods: {
+    existGeneral(){
+      var ids = [];
+      var users = this.allUsers;
+      users.forEach(element => {
+        ids.push(element.id);
+      });
+    var toReturn = false
+    return fb.firestore.collection("rooms")
+          .where("isPrivate", "==", false)
+          .get()
+          .then(snapshot => {
+              if (snapshot.empty) {
+                
+                  toReturn = false;
+              } 
+              console.log("me llamaste una vez");
+              for(var i = 0; i < snapshot.docs.length; i++) {
+                  // Workaround as multiple array-contains filter is not allowed
+                  if(ids.every(user => snapshot.docs[i].data().users.includes(user))) {
+                    console.log("IM TRUE");
+                      toReturn = true;
+                  }
+                  
+              }
+              return toReturn;
+          });
   },
   
+},
+created() {
+  this.general = this.existGeneral();
 },
 data: () => ({
     leftdrawer: null,
     rightdrawer: null,
-    search: ''
+    search: '',
+    general: false
   }),
 };
 </script>

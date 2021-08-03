@@ -101,11 +101,7 @@ const actions = {
 
         const resp = await roomService.getGeneral(array);
 
-        console.log("RM resp " + resp.success);
-
         var roomID = resp.roomID;
-
-        console.log(roomID + " RM id ");
 
         const response = await roomService.addUser(usersIDs, roomID);
         return response;

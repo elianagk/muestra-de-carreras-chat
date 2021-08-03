@@ -41,7 +41,6 @@ async function getGeneral(users){
                 var success = false;
                 for(var i = 0; i < snapshot.docs.length; i++) {
                     // Workaround as multiple array-contains filter is not allowed
-                    console.log(snapshot.docs[i].data().users);
                     if(users.every(user => snapshot.docs[i].data().users.includes(user))) {
                         roomId = snapshot.docs[i].id;
                         success = true;
@@ -121,7 +120,6 @@ async function addUser(users, roomID) {
     var data = {
         users: users
     };
-    console.log(roomID + " RS id");
     return fb.firestore.collection("rooms").doc(roomID).update('users', users)
     // .then(function(doc) {
     //     console.log(doc);
