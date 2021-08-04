@@ -55,9 +55,10 @@ export default {
             
         },},
         created() {
-            this.$notificacion.$on('mensaje nuevo', () => {
-            console.log("escuche un mensaje nuevo")
-            this.color = "green"
+            console.log("HOLANDAAAAAA");
+            this.$notificacion.$on('NuevoMensaje', () => {
+                console.log("escuche un mensaje nuevo")
+                this.color = "green"
            
         });
        
