@@ -18,6 +18,7 @@
 <script>
 import { mapState, mapActions } from 'vuex';
 import GeneralRoom from './GeneralRoom';
+import fb from '@/firebase';
 export default {
     name: "Room",
     props: ["room", "active"],
@@ -33,6 +34,9 @@ export default {
     computed: {
         ...mapState('roomModule', {
             roomID: state => state.activeRoom
+        }),
+        ...mapState('userModule', {
+            userState: state => state.user
         }),
         status() {
             return this.active ? "active" : "";
@@ -56,33 +60,35 @@ export default {
             
         },},
         created() {
-            this.$notificacion.$on('NuevoMensaje', (sender, room) => {
+            this.$notificacion.$on('NuevoMensaje', ( room, sender) => {
                 console.log("escuche un mensaje nuevo")
+                var receiver = null;
                 fb.firestore.collection("rooms")
-                .where("room.id", "==", room)
+                .doc(room)
                 .get()
-                .then(snapshot => {
-                if (snapshot.empty) {
-                    return {success: false, error: "No  room(s)"};
-                }  
-                var roomId;
-                var success = false;
-                for(var i = 0; i < snapshot.docs.length; i++) {
-                    // Workaround as multiple array-contains filter is not allowed
-                    if(users.every(user => snapshot.docs[i].data().users.includes(user))) {
-                        roomId = snapshot.docs[i].id;
-                        success = true;
-                        break;
-                    
-                    }
-                    //Necesitamos buscar el usuario q recibe con snapshot.docs[i].data().users eso, menos el sender :D
-                }
-                return {success: success, roomID: roomId};
-            })
+                .then((doc) => {
+                if (!doc.exists) {
+                    receiver = null
+                } else{
+                    var roomData = doc.data();
+                    roomData.users.forEach(element => {
+                        if(element != sender){
+                            receiver= element;
+                            console.log(receiver + " recibe");
+                        }
+                    });
+                } 
                 
+                  if (this.userState.ID === receiver){
+                      this.color = "green";
+                  }
+                  else{
+                      this.color = "indigo";
+                  }
+                
+                
+            })
 
-                this.color = "green"
-           
         });
        
     }
