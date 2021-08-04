@@ -72,6 +72,12 @@ export default {
         },
        
     },
+    methods: {
+        sendMessageToLogin() {
+            console.log("notifique al login");
+            this.$vueEventBus.$emit('mensaje de roomList');
+        },
+    },
     created() {
         // Get all the users
         fb.firestore.collection("rooms")
@@ -81,16 +87,24 @@ export default {
             snapshot.forEach((doc) => {
                 const room = doc.data();
                 room.id = doc.id;
+                console.log(room);
                 if(room.isPrivate)
                     rooms.push(room);
                 else{
+                    console.log("HAY GENERAL");
                     this.generalRoom = room;
                     this.generalRoom.name = "General";
                 }
             });
+            if(this.generalRoom === null) {
+                console.log("acabo de entrar wi");
+                this.generalRoom = null;
+            }
             this.rooms = rooms;
             this.isLoaded = true;
             this.cargado = true;
+            this.sendMessageToLogin();
+            
         });
     }
 }

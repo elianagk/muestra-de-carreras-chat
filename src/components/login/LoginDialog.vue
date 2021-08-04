@@ -69,18 +69,26 @@ export default {
             }
             else {
                 //login ahora retorna para tener el uid del user
-
+                console.log("INGRESANDO");
                 //cambiar resp por userState y asi podemos sacar todo a un metodo diferente
-                var resp = await this.login(this.username);
-                var data = {
-                        user: resp.user.ID,
-                        users: this.allUsers,
-                    };
-                //sacarlo a un metodo que se llame cuando el RoomList nos avisa que finalizo
-                this.addUserToGeneral(data);
+                this.login(this.username);
+                console.log("YA INGRESE");
                 
             }
         },
+    },
+    created() {
+        mapActions('roomModule', ['addUserToGeneral']),
+        this.$vueEventBus.$on('mensaje de roomList', () => {
+            console.log("escuche")
+            console.log(this.userState.ID);
+            var data = {
+                user: this.userState.ID,
+                users: this.allUsers,
+            };
+            //sacarlo a un metodo que se llame cuando el RoomList nos avisa que finalizo
+            this.addUserToGeneral(data);
+        });
     }
 }
 </script>

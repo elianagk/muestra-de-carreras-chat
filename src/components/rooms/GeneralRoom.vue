@@ -16,7 +16,7 @@
 import { mapState, mapActions } from 'vuex';
 export default {
     name: "GeneralRoom",
-    props: ["room"],
+    props: ['room'],
     data() {
         return {
             userIDs: [],
@@ -35,7 +35,6 @@ export default {
         ...mapActions('roomModule', ['createChatRoom', 'generalRoom', 'clearRoom']),
         async handleCreateChat(e) {
             const values = [];
-            console.log("QUE ONDA");
             for(var i = 0; i < this.allUsers.length; i++) {
                 var user = this.allUsers[i];
                 if(user.id != this.user.ID) {
@@ -87,11 +86,19 @@ export default {
             
         }       
     },
-    mounted() {
-        if(this.room == null) {
-            this.handleCreateChat();
+    watch: { 
+      	room: {
+            deep: true,
+            immediate: true,
+            handler: function(newVal, oldVal) {
+                console.log("lo vi");
+                if(newVal == null) {
+                    console.log("creo nuevo chat");
+                    this.handleCreateChat();
+                }
+            }
         }
-    }
+    },
 
 }
 </script>

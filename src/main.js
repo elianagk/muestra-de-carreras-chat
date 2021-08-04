@@ -13,7 +13,8 @@ import { ValidationObserver, ValidationProvider } from 'vee-validate';
 Vue.config.productionTip = false
 Vue.component('ValidationObserver', ValidationObserver);
 Vue.component('ValidationProvider', ValidationProvider);
-Vue.directive('linkified', linkify)
+Vue.directive('linkified', linkify);
+Vue.prototype.$vueEventBus = new Vue();
 
 new Vue({
   router,

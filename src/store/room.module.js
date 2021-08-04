@@ -90,6 +90,7 @@ const actions = {
         commit('clearRoom');
     },
     async addUserToGeneral({commit, rootState}, {user, users}){
+        console.log("agregando");
         var array= [];
         var usersIDs = [];
         users.forEach(element => {
