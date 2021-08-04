@@ -24,22 +24,25 @@ export default {
     methods: {
         ...mapActions('roomModule', ['sendMessage']),
         async submitHandler(e) {
+            var resp =  null;
             if(this.message.length > 0) {
                 const {message} = this;
-                this.sendMessage({message}); 
+                resp = this.sendMessage({message}); 
+                
                 
             }   
             this.resetMessage();  
-            this.notifyMessage();   
+            resp.then(value => this.notifyMessage(value)) ;   
             //disparar evento luego de llamar a submitHandler   
         },
         resetMessage() {
             this.message = '';
         },
-        notifyMessage(){
+        notifyMessage(informacion){
             console.log("notificar mensaje nuevo");
-            this.$notificacion.$emit('NuevoMensaje');
-        }
+            this.$notificacion.$emit('NuevoMensaje', informacion.room, informacion.sender);
+        },
+        
     }
 }
 </script>

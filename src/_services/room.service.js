@@ -97,10 +97,11 @@ async function sendMessage(sender, room, message) {
         message: message,
         timestamp: now
     };
-    
+            
+
     return fb.firestore.collection("rooms").doc(room).collection("messages").add(data)
             .then(function(doc) {
-                return {success: true, messageID: doc.id};
+                return {success: true, messageID: doc.id, room: room, sender: sender};
             }).catch(handleError);
 }
 

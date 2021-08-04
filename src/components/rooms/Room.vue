@@ -52,12 +52,35 @@ export default {
                 };
                 this.selectRoom(data);
             }
+            this.color = "indigo";
             
         },},
         created() {
-            console.log("HOLANDAAAAAA");
-            this.$notificacion.$on('NuevoMensaje', () => {
+            this.$notificacion.$on('NuevoMensaje', (sender, room) => {
                 console.log("escuche un mensaje nuevo")
+                fb.firestore.collection("rooms")
+                .where("room.id", "==", room)
+                .get()
+                .then(snapshot => {
+                if (snapshot.empty) {
+                    return {success: false, error: "No  room(s)"};
+                }  
+                var roomId;
+                var success = false;
+                for(var i = 0; i < snapshot.docs.length; i++) {
+                    // Workaround as multiple array-contains filter is not allowed
+                    if(users.every(user => snapshot.docs[i].data().users.includes(user))) {
+                        roomId = snapshot.docs[i].id;
+                        success = true;
+                        break;
+                    
+                    }
+                    //Necesitamos buscar el usuario q recibe con snapshot.docs[i].data().users eso, menos el sender :D
+                }
+                return {success: success, roomID: roomId};
+            })
+                
+
                 this.color = "green"
            
         });

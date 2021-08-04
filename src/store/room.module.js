@@ -75,6 +75,7 @@ const actions = {
         var room = state.activeRoom;
         
         const resp = await roomService.sendMessage(sender, room, message);
+       
         return resp;
     },
     async createChatRoom({commit, rootState}, {userIDs}) {
