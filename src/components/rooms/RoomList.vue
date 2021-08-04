@@ -88,24 +88,39 @@ export default {
                 const room = doc.data();
                 room.id = doc.id;
                 console.log(room);
+                console.log(room.isPrivate + " privvvvv");
                 if(room.isPrivate)
                     rooms.push(room);
-                else{
-                    console.log("HAY GENERAL");
-                    this.generalRoom = room;
-                    this.generalRoom.name = "General";
-                }
+                
             });
+            this.rooms = rooms;
+            });
+            fb.firestore.collection("rooms")
+            .where("isPrivate", "==", false)
+            .onSnapshot((snapshot) => {
+            const rooms = [];
+            snapshot.forEach((doc) => {
+                const room = doc.data();
+                room.id = doc.id;
+                console.log(room);
+                console.log(room.isPrivate + " priv");
+                this.generalRoom = room;
+                this.generalRoom.name = "General";
+                
+            });
+
             if(this.generalRoom === null) {
                 console.log("acabo de entrar wi");
                 this.generalRoom = null;
             }
-            this.rooms = rooms;
+            
             this.isLoaded = true;
             this.cargado = true;
             this.sendMessageToLogin();
             
         });
+
+           
     }
 }
 </script>
