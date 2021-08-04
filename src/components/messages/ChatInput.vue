@@ -37,8 +37,8 @@ export default {
             this.message = '';
         },
         notifyMessage(){
-            console.log("notificar");
-            this.$emit('NuevoMensaje');
+            console.log("notificar mensaje nuevo");
+            this.$notificacion.$emit('NuevoMensaje');
         }
     }
 }

@@ -74,7 +74,6 @@ export default {
     },
     methods: {
         sendMessageToLogin() {
-            console.log("notifique al login");
             this.$vueEventBus.$emit('mensaje de roomList');
         },
     },
@@ -87,8 +86,6 @@ export default {
             snapshot.forEach((doc) => {
                 const room = doc.data();
                 room.id = doc.id;
-                console.log(room);
-                console.log(room.isPrivate + " privvvvv");
                 if(room.isPrivate)
                     rooms.push(room);
                 
@@ -102,15 +99,12 @@ export default {
             snapshot.forEach((doc) => {
                 const room = doc.data();
                 room.id = doc.id;
-                console.log(room);
-                console.log(room.isPrivate + " priv");
                 this.generalRoom = room;
                 this.generalRoom.name = "General";
                 
             });
 
             if(this.generalRoom === null) {
-                console.log("acabo de entrar wi");
                 this.generalRoom = null;
             }
             

@@ -91,9 +91,7 @@ export default {
             deep: true,
             immediate: true,
             handler: function(newVal, oldVal) {
-                console.log("lo vi");
                 if(newVal == null) {
-                    console.log("creo nuevo chat");
                     this.handleCreateChat();
                 }
             }

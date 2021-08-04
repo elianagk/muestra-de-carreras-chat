@@ -68,11 +68,8 @@ export default {
                 alert("Ingrese su nombre");
             }
             else {
-                //login ahora retorna para tener el uid del user
-                console.log("INGRESANDO");
-                //cambiar resp por userState y asi podemos sacar todo a un metodo diferente
                 this.login(this.username);
-                console.log("YA INGRESE");
+                
                 
             }
         },
@@ -80,8 +77,6 @@ export default {
     created() {
         mapActions('roomModule', ['addUserToGeneral']),
         this.$vueEventBus.$on('mensaje de roomList', () => {
-            console.log("escuche")
-            console.log(this.userState.ID);
             var data = {
                 user: this.userState.ID,
                 users: this.allUsers,

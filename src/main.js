@@ -15,6 +15,8 @@ Vue.component('ValidationObserver', ValidationObserver);
 Vue.component('ValidationProvider', ValidationProvider);
 Vue.directive('linkified', linkify);
 Vue.prototype.$vueEventBus = new Vue();
+Vue.prototype.$notificacion = new Vue();
+
 
 new Vue({
   router,
