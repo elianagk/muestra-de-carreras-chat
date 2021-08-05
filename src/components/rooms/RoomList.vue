@@ -5,23 +5,29 @@
             ref="skeleton"
             type="list-item-avatar-two-line"
             class="mx-auto"
-        ></v-skeleton-loader>
-        <Room v-for="room in sortedRooms" :key="room.id" :room="room" :active="room.active" />
+        >
+        </v-skeleton-loader>
+        <GeneralRoom v-if="this.cargado" :room="this.generalRoom" />
+        <Room v-for="room in sortedRooms" :key="room.id" :room="room" :active="room.active" />  
     </div>
 </template>
 <script>
 import { mapState, mapActions } from 'vuex';
 import Room from './Room';
+import GeneralRoom from './GeneralRoom'
 import fb from '@/firebase';
 export default {
     name: "RoomList",
     components: {
-        Room
+        Room,
+        GeneralRoom
     },
     data() {
         return {
             isLoaded: false,
-            rooms: {}
+            rooms: {},
+            generalRoom: null,
+            cargado: false,
         }
     },
     computed: {
@@ -38,6 +44,7 @@ export default {
             var activeRooms = [];
             var inactiveRooms = [];
             var rooms = this.rooms;
+            
             for(var i = 0; i < rooms.length; i++) {
                 var room = rooms[i];
                 // Preprocessing: Build the room name and photo
@@ -51,9 +58,6 @@ export default {
                     names.push(contacts[j].name);                        
                 }
                 room.name = names.join(', ');
-                if(room.isPrivate) {
-                    room.photoUrl = contacts[0] ? contacts[0].photoUrl : "";
-                }
                 // For active room
                 if(room.id == this.roomID) {
                     room.active = true;
@@ -66,6 +70,12 @@ export default {
             }
             return [...activeRooms, ...inactiveRooms];
         },
+       
+    },
+    methods: {
+        sendMessageToLogin() {
+            this.$vueEventBus.$emit('mensaje de roomList');
+        },
     },
     created() {
         // Get all the users
@@ -76,12 +86,35 @@ export default {
             snapshot.forEach((doc) => {
                 const room = doc.data();
                 room.id = doc.id;
-                rooms.push(room);
+                if(room.isPrivate)
+                    rooms.push(room);
+                
             });
-            
             this.rooms = rooms;
+            });
+            fb.firestore.collection("rooms")
+            .where("isPrivate", "==", false)
+            .onSnapshot((snapshot) => {
+            const rooms = [];
+            snapshot.forEach((doc) => {
+                const room = doc.data();
+                room.id = doc.id;
+                this.generalRoom = room;
+                this.generalRoom.name = "General";
+                
+            });
+
+            if(this.generalRoom === null) {
+                this.generalRoom = null;
+            }
+            
             this.isLoaded = true;
+            this.cargado = true;
+            this.sendMessageToLogin();
+            
         });
+
+           
     }
 }
 </script>

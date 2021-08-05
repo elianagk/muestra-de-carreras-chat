@@ -4,8 +4,8 @@ export const userService = {
     createUpdate, login, logout
 };
 
-async function get(email) {
-    return fb.firestore.collection("users").where("email", "==", email).limit(1).get()
+async function get(username) {
+    return fb.firestore.collection("users").where("name", "==", username).limit(1).get()
             .then(snapshot => {
                 if (snapshot.empty) {
                     return {success: false, error: "No user(s)"};
@@ -22,13 +22,10 @@ async function get(email) {
             }).catch(handleError);
 }
 
-async function createUpdate(uid, name, email, photoUrl) {
+async function createUpdate(uid, name) {
     var data = {
         name: name,
-        email: email,
-        photoUrl: photoUrl
     };
-    
     return fb.firestore.collection("users").doc(uid).set(data)
             .then(function() {
                 return {success: true};
@@ -40,7 +37,6 @@ async function login(uid) {
     var data = {
         loginAt: now
     }
-
     return fb.firestore.collection("online").doc(uid).set(data);
 }
 

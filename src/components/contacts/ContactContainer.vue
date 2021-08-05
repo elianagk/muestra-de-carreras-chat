@@ -7,7 +7,7 @@
         light
     >
         <div class="contacts-container">
-            <h3 class="overline">All contacts</h3>
+            <h3 class="overline">Todos los contactos</h3>
 
             <v-text-field
                 v-model="search"

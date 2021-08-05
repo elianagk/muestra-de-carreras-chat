@@ -1,18 +1,16 @@
-//No deberia existir, ingresar con nombre de usuario de wordpress
-
 <template>
     <div>   
         <v-dialog v-model="dialog" persistent max-width="468">
         <v-card>
-            <v-card-title class="headline">Login using Google account</v-card-title>        
-            <v-card-text>Please do not send confidential information. Any message leaked will not be held responsible.</v-card-text>
+            <v-card-title class="headline">Ingrese su nombre</v-card-title>        
             <v-card-actions>
+            <input type="text" class="form-control px-4" placeholder="Nombre de usuario" v-model="username">
             <v-spacer></v-spacer>
-            <v-btn color="green darken-1" text @click="handleLogin">Agree</v-btn>
+            <v-btn color="green darken-1" text @click="handleLogin">Confirmar</v-btn>
             </v-card-actions>
         </v-card>
         </v-dialog>
-        <v-dialog v-model="loader" persistent max-width="468">
+          <!-- <v-dialog v-model="loader"  persistent max-width="468">
             <v-card>
             <v-container fill-height fluid>
                 <v-row align="center"
@@ -33,7 +31,7 @@
                 </v-row>
             </v-container>
             </v-card>
-        </v-dialog>
+        </v-dialog> -->
     </div>
 </template>
 <script>
@@ -43,13 +41,16 @@ export default {
     props: [],
     data() {
         return {
-            
+            username: ''
         }
     },
     computed: {
         ...mapState('userModule', {
             userState: state => state.user,
             statusState: state => state.status,
+        }),
+        ...mapState('contactModule', {
+            allUsers: state => state.users
         }),
         loader: function() {
             return this.statusState && this.statusState.loggingIn;
@@ -59,13 +60,30 @@ export default {
                     && !(this.statusState && this.statusState.loggingIn);
         }
     },
-    created() {
-    },
     methods: {
         ...mapActions('userModule', ['login']),
+        ...mapActions('roomModule', ['addUserToGeneral']),
         async handleLogin(e) {
-            this.login();
-        }
+            if(this.username === "") {
+                alert("Ingrese su nombre");
+            }
+            else {
+                this.login(this.username);
+                
+                
+            }
+        },
+    },
+    created() {
+        mapActions('roomModule', ['addUserToGeneral']),
+        this.$vueEventBus.$on('mensaje de roomList', () => {
+            var data = {
+                user: this.userState.ID,
+                users: this.allUsers,
+            };
+            //sacarlo a un metodo que se llame cuando el RoomList nos avisa que finalizo
+            this.addUserToGeneral(data);
+        });
     }
 }
 </script>

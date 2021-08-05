@@ -17,11 +17,11 @@
           transition="scale-transition"
           width="30"
         />
-        <h4>Real time chat</h4>
+        <h4>Chat -NOMBRE STAND-</h4>
       </div>
       <v-spacer></v-spacer>
       <v-btn icon @click.stop="rightdrawer = !rightdrawer">
-          <v-icon>contacts</v-icon>
+          <v-icon>contactos</v-icon>
       </v-btn>
     </v-app-bar>
 
@@ -37,10 +37,9 @@
             class="py-0"
             >
             <Avatar />
-            <div class="overline mt-2 mb-2">Recent chats</div>
-            <RoomList v-if="!isRequiresLogin" />
+            <div class="overline mt-2 mb-2">Chats recientes</div>
+            <RoomList v-if="!isRequiresLogin "/>
         </v-list>
-        <RoomDialog />
         
     </v-navigation-drawer>
 
@@ -52,7 +51,7 @@
         light
     >
       <div class="contacts-container">
-          <h3 class="overline">All contacts</h3>
+          <h3 class="overline">Todos los contactos</h3>
 
           <v-text-field
               v-model="search"
@@ -82,7 +81,6 @@ import ContactContainer from  './components/contacts/ContactContainer'
 import MessageContainer from './components/messages/MessageContainer'
 import Avatar from './components/Avatar'
 import RoomList from './components/rooms/RoomList'
-import RoomDialog from './components/rooms/RoomDialog'
 import ContactList from './components/contacts/ContactList'
 export default {
   name: 'App',
@@ -91,22 +89,32 @@ export default {
     ContactContainer,
     MessageContainer,
     Avatar, 
-    RoomList, 
-    RoomDialog,
+    RoomList,
     ContactList
   },
   computed: {
     ...mapState('userModule', {
         userState: state => state.user
     }),
+    ...mapState('contactModule', {
+            allUsers: state => state.users
+        }),
     isRequiresLogin: function() {
         return !this.userState || Object.keys(this.userState).length === 0;
-    }
+    },
+    existGeneral: function(){
+     
   },
-  data: () => ({
+  
+},
+created() {
+  
+},
+data: () => ({
     leftdrawer: null,
     rightdrawer: null,
-    search: ''
+    search: '',
+    general: false
   }),
 };
 </script>

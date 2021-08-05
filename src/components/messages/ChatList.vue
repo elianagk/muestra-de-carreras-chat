@@ -41,7 +41,6 @@ export default {
                             timestamp: change.doc.data().timestamp,
                             senderID: change.doc.data().sender
                         };
-                        
                         newChats.push(chat);
                     }
                 });

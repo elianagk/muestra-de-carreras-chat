@@ -6,13 +6,9 @@
             class="mx-auto"
         ></v-skeleton-loader>
         <v-list-item v-if="!isRequiresLogin" two-line class="px-0">
-            <v-avatar class="mr-2" size="38">
-                <img :src="`${photo}`" :alt="`${name}`" />
-            </v-avatar>
 
             <v-list-item-content>
                 <v-list-item-title>{{name}}</v-list-item-title>
-                <v-list-item-subtitle>{{email}}</v-list-item-subtitle>
             </v-list-item-content>
 
 
@@ -48,12 +44,6 @@ export default {
         }),
         name: function() {
             return this.userState ? this.userState.Name : "";
-        },
-        email: function() {
-            return this.userState ? this.userState.Email : "";
-        },
-        photo: function() {
-            return this.userState ? this.userState.Photo : "";
         },
         isRequiresLogin: function() {
             return !this.userState || Object.keys(this.userState).length === 0;

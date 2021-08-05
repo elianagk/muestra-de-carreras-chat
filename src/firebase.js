@@ -1,4 +1,4 @@
-import * as firebase from 'firebase/app';
+import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 import 'firebase/analytics';
@@ -16,3 +16,28 @@ var firebaseConfig = {
   
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+
+const fb = {
+  auth: firebase.auth(),
+  firestore: firebase.firestore(),
+  async login() {
+      return firebase.auth().signInAnonymously()
+              .then(function(result) {
+                  return {success: true, data: result};
+              })
+              .catch(function(error){
+                  return {success: false, error: error.message};
+              });
+  },
+  // async logout() {
+  //     return firebase.auth().signOut()
+  //         .then(function() {
+  //             return {success: true};
+  //         })
+  //         .catch(function(error) {
+  //             return {success: false, error: error};
+  //         });
+  // }
+}
+
+export default fb

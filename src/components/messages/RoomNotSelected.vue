@@ -3,7 +3,7 @@
         <v-row align="center"
             justify="center">
             <v-col align="center">
-                <h3 class="display-1 font-weight-light">Please select a chat room</h3>
+                <h3 class="display-1 font-weight-light">Selecciona un chat</h3>
             </v-col>
         </v-row>
     </v-container>
