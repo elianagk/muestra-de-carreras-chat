@@ -32,16 +32,25 @@ export default {
                 
             }   
             this.resetMessage();  
-            resp.then(value => this.notifyMessage(value)) ;   
+
+            messaging.getToken({vapidKey: "BA8w-EHrjwdNdi8gehISa8Hr5vIsuvv2b0HG4q6XTzF-uvramgDS5QsWSH2wYtsxCWea2RI1BkT6vytdbYRFiVY"})
+            .then((currentToken) => {
+                if (currentToken) {
+                    console.log('client token', currentToken)
+                } else {
+                    console.log('No registration token available. Request permission to generate one.');
+                }
+                }).catch((err) => {
+                console.log('An error occurred while retrieving token. ', err);
+                })
+
+            // resp.then(value => this.notifyMessage(value)) ;   
             //disparar evento luego de llamar a submitHandler   
         },
         resetMessage() {
             this.message = '';
         },
-        notifyMessage(informacion){
-            console.log("notificar mensaje nuevo");
-            this.$notificacion.$emit('NuevoMensaje', informacion.room, informacion.sender);
-        },
+        
         
     }
 }

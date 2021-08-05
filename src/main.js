@@ -6,6 +6,8 @@ import vuetify from './plugins/vuetify';
 import  fb  from './firebase';
 import linkify from 'vue-linkify'
  
+import firebaseMessaging from './firebase'
+
 
 
 import { ValidationObserver, ValidationProvider } from 'vee-validate';
@@ -15,7 +17,7 @@ Vue.component('ValidationObserver', ValidationObserver);
 Vue.component('ValidationProvider', ValidationProvider);
 Vue.directive('linkified', linkify);
 Vue.prototype.$vueEventBus = new Vue();
-Vue.prototype.$notificacion = new Vue();
+Vue.prototype.$messaging = firebaseMessaging
 
 
 new Vue({

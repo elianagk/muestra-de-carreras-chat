@@ -2,6 +2,7 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 import 'firebase/analytics';
+import 'firebase/firebase-messaging'
 
 // Your web app's Firebase configuration
 var firebaseConfig = {
@@ -13,11 +14,12 @@ var firebaseConfig = {
     appId: "1:502634347735:web:72ec28fbb394d3d791c492",
     measurementId: "G-7V8Z7K2W1Q"
   };
-  
+ 
+  // messaging.getToken({vapidKey: "BA8w-EHrjwdNdi8gehISa8Hr5vIsuvv2b0HG4q6XTzF-uvramgDS5QsWSH2wYtsxCWea2RI1BkT6vytdbYRFiVY"});
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-const fb = {
+export const fb = {
   auth: firebase.auth(),
   firestore: firebase.firestore(),
   async login() {
@@ -40,4 +42,5 @@ const fb = {
   // }
 }
 
-export default fb
+
+export default firebase.messaging()

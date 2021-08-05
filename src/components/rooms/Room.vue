@@ -60,36 +60,17 @@ export default {
             
         },},
         created() {
-            this.$notificacion.$on('NuevoMensaje', ( room, sender) => {
-                console.log("escuche un mensaje nuevo")
-                var receiver = null;
-                fb.firestore.collection("rooms")
-                .doc(room)
-                .get()
-                .then((doc) => {
-                if (!doc.exists) {
-                    receiver = null
-                } else{
-                    var roomData = doc.data();
-                    roomData.users.forEach(element => {
-                        if(element != sender){
-                            receiver= element;
-                            console.log(receiver + " recibe");
-                        }
-                    });
-                } 
+            
+                // var receiver = null;
+                // fb.firestore.collection("rooms")
+                // .doc(room)
+                // .get()
+                // .then((doc) => {
+                // if (!doc.exists) {
+                //     receiver = null
+                // } else{
+                //     var roomData = doc.data();
                 
-                  if (this.userState.ID === receiver){
-                      this.color = "green";
-                  }
-                  else{
-                      this.color = "indigo";
-                  }
-                
-                
-            })
-
-        });
        
     }
 }
