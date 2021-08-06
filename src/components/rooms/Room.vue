@@ -18,7 +18,7 @@
 <script>
 import { mapState, mapActions } from 'vuex';
 import GeneralRoom from './GeneralRoom';
-import fb from '@/firebase';
+
 export default {
     name: "Room",
     props: ["room", "active"],

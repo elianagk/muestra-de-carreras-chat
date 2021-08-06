@@ -5,6 +5,7 @@ import store from './store'
 import vuetify from './plugins/vuetify';
 import  fb  from './firebase';
 import linkify from 'vue-linkify'
+import GoogleAPIs from 'vue-googleapis'
  
 import firebaseMessaging from './firebase'
 
@@ -27,3 +28,9 @@ new Vue({
   fb,
   render: function (h) { return h(App) }
 }).$mount('#app') 
+
+Vue.use(GoogleAPIs, {
+  clientId: '502634347735-p1d05bu1go6irn8mfvnsob606n9olv5u.apps.googleusercontent.com',
+  discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest'],
+  scope: 'https://www.googleapis.com/auth/cloud-platform',
+})

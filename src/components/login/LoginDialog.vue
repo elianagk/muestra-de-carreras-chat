@@ -36,6 +36,7 @@
 </template>
 <script>
 import { mapState, mapActions } from 'vuex';
+import fb from '@/firebase';
 export default {
     name: "LoginDialog",
     props: [],
@@ -69,14 +70,14 @@ export default {
                 alert("Ingrese su nombre");
             }
             else {
-                const token = await getToken();
+                const token = await this.getToken();
                 this.login(this.username, token);
                 
                 
             }
         },
         async getToken(){
-            messaging.getToken({vapidKey: "BA8w-EHrjwdNdi8gehISa8Hr5vIsuvv2b0HG4q6XTzF-uvramgDS5QsWSH2wYtsxCWea2RI1BkT6vytdbYRFiVY"})
+            fb.messaging.getToken({vapidKey: "BA8w-EHrjwdNdi8gehISa8Hr5vIsuvv2b0HG4q6XTzF-uvramgDS5QsWSH2wYtsxCWea2RI1BkT6vytdbYRFiVY"})
                 .then((currentToken) => {
                 if (currentToken) {
                     console.log('client token', currentToken);

@@ -102,7 +102,9 @@ async function sendMessage(sender, room, message) {
         method: "POST",
         headers: { 
         "Content-Type": "application/json" ,
-        'Authorization': 'Bearer ya29.a0ARrdaM_9iEe7vLlRXtEF-SI1hQPgfeinpjk35KXdLwDO-MOKmWW9a7nu9vnmzR1n0w1ltqYjokqbzl8QZ8OqGGnp_E9gORblt1KmvAbFBDELADFUICzfahT9zRo9Ka3Bh4MB4LH99CHjAcT8sy3stZyflGsr',},
+        'Authorization': 'Bearer ya29.a0ARrdaM_9iEe7vLlRXtEF-SI1hQPgfeinpjk35KXdLwDO-MOKmWW9a7nu9vnmzR1n0w1ltqYjokqbzl8QZ8OqGGnp_E9gORblt1KmvAbFBDELADFUICzfahT9zRo9Ka3Bh4MB4LH99CHjAcT8sy3stZyflGsr',
+        
+        },
         message: {
             "token" : tokenReceiver,
             "notification": {

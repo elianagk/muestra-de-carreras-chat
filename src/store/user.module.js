@@ -5,7 +5,7 @@ const user = JSON.parse(localStorage.getItem('user'));
 const state = user ? { status: { loggedIn: true }, user} : { status: {}, user: null };
 
 const actions = {
-    async login({commit}, username, token) {
+    async login({commit}, username, userToken) {
         commit('loginRequest');
         const firebaseLogin = await fb.login();
 
@@ -13,7 +13,7 @@ const actions = {
             // Store / update the user info into the firebase            
             const uid = firebaseLogin.data.user.uid;
             const name = username;
-            const token = token;
+            const token = userToken;
 
             try {
 
@@ -30,7 +30,6 @@ const actions = {
                         Token: token
                     
                     };
-
                 
                     commit('loginSuccess', user);
                     return {user: user};
