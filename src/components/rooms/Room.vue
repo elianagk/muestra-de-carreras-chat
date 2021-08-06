@@ -24,7 +24,8 @@ export default {
     props: ["room", "active"],
     data() {
         return{
-            color: "indigo"
+            color: "indigo",
+            receiver: null
         }
 
     },
@@ -34,6 +35,9 @@ export default {
     computed: {
         ...mapState('roomModule', {
             roomID: state => state.activeRoom
+        }),
+        ...mapState('userModule', {
+            newMessage: state => state.newMessage
         }),
         ...mapState('userModule', {
             userState: state => state.user
@@ -58,18 +62,16 @@ export default {
             }
             this.color = "indigo";
             
-        },},
+        },
+        changeColor(){
+                if(this.receiver != null){
+                    
+                }
+        },
+        
+        },
         created() {
-            
-                // var receiver = null;
-                // fb.firestore.collection("rooms")
-                // .doc(room)
-                // .get()
-                // .then((doc) => {
-                // if (!doc.exists) {
-                //     receiver = null
-                // } else{
-                //     var roomData = doc.data();
+           
                 
        
     }

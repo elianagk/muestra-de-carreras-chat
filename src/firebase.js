@@ -19,8 +19,9 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-export const fb = {
+ const fb = {
   auth: firebase.auth(),
+  messaging: firebase.messaging(),
   firestore: firebase.firestore(),
   async login() {
       return firebase.auth().signInAnonymously()
@@ -43,4 +44,4 @@ export const fb = {
 }
 
 
-export default firebase.messaging()
+export default fb

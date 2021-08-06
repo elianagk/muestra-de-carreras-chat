@@ -2,10 +2,10 @@ import { userService } from '../_services/user.service';
 import fb from '@/firebase';
 
 const user = JSON.parse(localStorage.getItem('user'));
-const state = user ? { status: { loggedIn: true }, user } : { status: {}, user: null };
+const state = user ? { status: { loggedIn: true }, user} : { status: {}, user: null };
 
 const actions = {
-    async login({commit}, username) {
+    async login({commit}, username, token) {
         commit('loginRequest');
         const firebaseLogin = await fb.login();
 
@@ -13,9 +13,11 @@ const actions = {
             // Store / update the user info into the firebase            
             const uid = firebaseLogin.data.user.uid;
             const name = username;
+            const token = token;
 
             try {
-                var result = await userService.createUpdate(uid, name);
+
+                var result = await userService.createUpdate(uid, name, token);
                 
                 if(result.success) {
                     // Set the user as login
@@ -24,10 +26,12 @@ const actions = {
                     // Set the state
                     var user = {
                         ID: uid,
-                        Name: name
+                        Name: name,
+                        Token: token
                     
                     };
 
+                
                     commit('loginSuccess', user);
                     return {user: user};
                 }
@@ -46,6 +50,12 @@ const actions = {
         }
         fb.logout();
         commit('logout');
+    },
+    newMessage({commit, state}, id){
+        if (id === state.user.ID){
+            state.newMessage = true;
+        }
+        commit('newMessage');
     }
 }
 

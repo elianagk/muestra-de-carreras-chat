@@ -41,7 +41,8 @@ export default {
     props: [],
     data() {
         return {
-            username: ''
+            username: '',
+            token: ''
         }
     },
     computed: {
@@ -68,13 +69,30 @@ export default {
                 alert("Ingrese su nombre");
             }
             else {
-                this.login(this.username);
+                const token = await getToken();
+                this.login(this.username, token);
                 
                 
             }
         },
+        async getToken(){
+            messaging.getToken({vapidKey: "BA8w-EHrjwdNdi8gehISa8Hr5vIsuvv2b0HG4q6XTzF-uvramgDS5QsWSH2wYtsxCWea2RI1BkT6vytdbYRFiVY"})
+                .then((currentToken) => {
+                if (currentToken) {
+                    console.log('client token', currentToken);
+                    return currentToken;
+                } else {
+                    console.log('No registration token available. Request permission to generate one.');
+                    return null;
+                }
+                }).catch((err) => {
+                console.log('An error occurred while retrieving token. ', err);
+                })
+
+        }
     },
     created() {
+        
         mapActions('roomModule', ['addUserToGeneral']),
         this.$vueEventBus.$on('mensaje de roomList', () => {
             var data = {

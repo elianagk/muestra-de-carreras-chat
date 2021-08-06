@@ -110,6 +110,12 @@ export default {
 created() {
   
 },
+mounted(){
+  messaging.onMessage((payload) => {
+  console.log('Message received. ', payload);
+  
+});
+},
 data: () => ({
     leftdrawer: null,
     rightdrawer: null,

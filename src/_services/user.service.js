@@ -22,9 +22,10 @@ async function get(username) {
             }).catch(handleError);
 }
 
-async function createUpdate(uid, name) {
+async function createUpdate(uid, name, token) {
     var data = {
         name: name,
+        token: token
     };
     return fb.firestore.collection("users").doc(uid).set(data)
             .then(function() {

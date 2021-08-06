@@ -73,7 +73,7 @@ const actions = {
     async sendMessage({commit, state, rootState}, {message}) {
         var sender = rootState.userModule.user ? rootState.userModule.user.ID : null;
         var room = state.activeRoom;
-        
+
         const resp = await roomService.sendMessage(sender, room, message);
        
         return resp;
