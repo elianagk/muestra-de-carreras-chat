@@ -82,6 +82,7 @@ import MessageContainer from './components/messages/MessageContainer'
 import Avatar from './components/Avatar'
 import RoomList from './components/rooms/RoomList'
 import ContactList from './components/contacts/ContactList'
+import fb from '@/firebase';
 export default {
   name: 'App',
   components: {
@@ -111,7 +112,7 @@ created() {
   
 },
 mounted(){
-  messaging.onMessage((payload) => {
+  fb.messaging.onMessage((payload) => {
   console.log('Message received. ', payload);
   
 });
