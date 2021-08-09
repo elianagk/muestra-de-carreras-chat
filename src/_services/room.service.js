@@ -99,31 +99,25 @@ async function sendMessage(sender, room, message) {
         timestamp: now
     };
     const tokenReceiver = getUserToken(sender, room);
-    var key = 'Bearer ya29.a0ARrdaM_9iEe7vLlRXtEF-SI1hQPgfeinpjk35KXdLwDO-MOKmWW9a7nu9vnmzR1n0w1ltqYjokqbzl8QZ8OqGGnp_E9gORblt1KmvAbFBDELADFUICzfahT9zRo9Ka3Bh4MB4LH99CHjAcT8sy3stZyflGsr';
-    var to = tokenReceiver;
-    var notification = {
-      'title': 'Notificacion',
-      'body': 'nuevo mensaje',
-      'icon': 'firebase-logo.png',
-      'click_action': 'http://localhost:8081'
+    const requestOptions = {
+        method: "POST",
+        headers: { 
+        "Content-Type": "application/json" ,
+        'Authorization': 'Bearer ya29.a0ARrdaM9ryxvPc0I0hnK1Rfkl_DvLh4OwiMBALlQ2-G9qSwr_SYXkqcGFSfDEXno0iu4iiXxT1A3fHBhT48AdQcOPUJzAfrnzmb-dwHRo1newFZFsugARVHy8FBODDqI3qXHNKEjwN8rRT3d7wbleWAEGVn5f',
+        
+        },
+        message: {
+            "token" : tokenReceiver,
+            "notification": {
+                "title": "Notificacion",
+                "body": "Nuevo mensaje"
+            }
+        },
+        body: JSON.stringify({ title: "Holanda"})
     };
-    
-    fetch('https://fcm.googleapis.com/v1/projects/chat-muestra/messages:send', {
-      'method': 'POST',
-      'headers': {
-        'Authorization': key,
-        'Content-Type': 'application/json'
-      },
-      'body': JSON.stringify({
-        'notification': notification,
-        'to': to
-      })
-    }).then(function(response) {
-      console.log(response);
-    }).catch(function(error) {
-      console.error(error);
-    })
-    
+    fetch("https://fcm.googleapis.com/v1/projects/chat-muestra/messages:send", requestOptions)
+        .then(response => response.json())
+        .then(data => (this.postId = data.id));
 
     return fb.firestore.collection("rooms").doc(room).collection("messages").add(data)
             .then(function(doc) {
