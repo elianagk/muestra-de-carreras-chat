@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify';
-import  fb  from './firebase';
+import  fb  from './firebase'; 
 import linkify from 'vue-linkify'
 import GoogleAPIs from 'vue-googleapis'
  
@@ -20,6 +20,14 @@ Vue.directive('linkified', linkify);
 Vue.prototype.$vueEventBus = new Vue();
 Vue.prototype.$messaging = firebaseMessaging
 
+navigator.serviceWorker
+  .register("firebase-messaging-sw.js")
+  .then(function(registration) {
+    console.log("Service Worker Registered!", registration);
+  })
+  .catch(function(err) {
+    console.error("Service Worker registration failed", err);
+  });
 
 new Vue({
   router,

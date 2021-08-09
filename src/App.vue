@@ -82,7 +82,9 @@ import MessageContainer from './components/messages/MessageContainer'
 import Avatar from './components/Avatar'
 import RoomList from './components/rooms/RoomList'
 import ContactList from './components/contacts/ContactList'
-import fb from '@/firebase';
+import Notification from "./components/notification/Notification";
+import firebase from "firebase/app";
+import "firebase/messaging";
 export default {
   name: 'App',
   components: {
@@ -91,7 +93,8 @@ export default {
     MessageContainer,
     Avatar, 
     RoomList,
-    ContactList
+    ContactList,
+    Notification
   },
   computed: {
     ...mapState('userModule', {
@@ -109,8 +112,8 @@ export default {
   
 },
 created() {
-  
-},
+   
+  },
 mounted(){
   fb.messaging.onMessage((payload) => {
   console.log('Message received. ', payload);
