@@ -72,7 +72,7 @@ export default {
             else {
                 const token = await this.getToken();
                 this.login(this.username, token);
-                
+                console.log("loggeado");
                 
             }
         },

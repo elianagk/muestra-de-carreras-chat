@@ -83,8 +83,9 @@ import Avatar from './components/Avatar'
 import RoomList from './components/rooms/RoomList'
 import ContactList from './components/contacts/ContactList'
 import Notification from "./components/notification/Notification";
-import firebase from "firebase/app";
+import fb from '@/firebase';
 import "firebase/messaging";
+import firebase from 'firebase';
 export default {
   name: 'App',
   components: {
