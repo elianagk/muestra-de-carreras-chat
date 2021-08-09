@@ -70,11 +70,8 @@ export default {
                 alert("Ingrese su nombre");
             }
             else {
-                const token =  await this.getToken();
-                // if(token != null){
-                //     console.log(token);
-                //     this.login(this.username, token);
-                // }
+                await this.getToken();
+                
                     
                 
                 
@@ -85,7 +82,6 @@ export default {
             fb.messaging.getToken({vapidKey: "BA8w-EHrjwdNdi8gehISa8Hr5vIsuvv2b0HG4q6XTzF-uvramgDS5QsWSH2wYtsxCWea2RI1BkT6vytdbYRFiVY"})
                 .then((currentToken) => {
                 if (currentToken) {
-                    console.log('client token', currentToken);
                     var data = {
                         username: this.username,
                         userToken: currentToken

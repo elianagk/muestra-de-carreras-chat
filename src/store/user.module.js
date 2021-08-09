@@ -10,7 +10,6 @@ const actions = {
         const firebaseLogin = await fb.login();
         
         if(firebaseLogin.success) {
-            console.log(userToken + " aaaaaaa")
             // Store / update the user info into the firebase            
             const uid = firebaseLogin.data.user.uid;
             const name = username;

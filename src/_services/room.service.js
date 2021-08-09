@@ -1,4 +1,5 @@
 import fb from '@/firebase';
+import axios from "axios";
 
 export const roomService = {
     get, createPrivateChat, createChatRoom, getRoomDetail, sendMessage, createPublicChat, getGeneral, addUser,getUserToken
@@ -98,25 +99,31 @@ async function sendMessage(sender, room, message) {
         timestamp: now
     };
     const tokenReceiver = getUserToken(sender, room);
-    const requestOptions = {
-        method: "POST",
-        headers: { 
-        "Content-Type": "application/json" ,
-        'Authorization': 'Bearer ya29.a0ARrdaM_9iEe7vLlRXtEF-SI1hQPgfeinpjk35KXdLwDO-MOKmWW9a7nu9vnmzR1n0w1ltqYjokqbzl8QZ8OqGGnp_E9gORblt1KmvAbFBDELADFUICzfahT9zRo9Ka3Bh4MB4LH99CHjAcT8sy3stZyflGsr',
-        
-        },
-        message: {
-            "token" : tokenReceiver,
-            "notification": {
-                "title": "Notificacion",
-                "body": "Nuevo mensaje"
-            }
-        },
-        body: JSON.stringify({ title: "Holanda"})
+    var key = 'Bearer ya29.a0ARrdaM_9iEe7vLlRXtEF-SI1hQPgfeinpjk35KXdLwDO-MOKmWW9a7nu9vnmzR1n0w1ltqYjokqbzl8QZ8OqGGnp_E9gORblt1KmvAbFBDELADFUICzfahT9zRo9Ka3Bh4MB4LH99CHjAcT8sy3stZyflGsr';
+    var to = tokenReceiver;
+    var notification = {
+      'title': 'Notificacion',
+      'body': 'nuevo mensaje',
+      'icon': 'firebase-logo.png',
+      'click_action': 'http://localhost:8081'
     };
-    fetch("https://fcm.googleapis.com//v1/projects/chat-muestra/messages:send", requestOptions)
-        .then(response => response.json())
-        .then(data => (this.postId = data.id));
+    
+    fetch('https://fcm.googleapis.com/v1/projects/chat-muestra/messages:send', {
+      'method': 'POST',
+      'headers': {
+        'Authorization': key,
+        'Content-Type': 'application/json'
+      },
+      'body': JSON.stringify({
+        'notification': notification,
+        'to': to
+      })
+    }).then(function(response) {
+      console.log(response);
+    }).catch(function(error) {
+      console.error(error);
+    })
+    
 
     return fb.firestore.collection("rooms").doc(room).collection("messages").add(data)
             .then(function(doc) {
@@ -142,7 +149,7 @@ async function addUser(users, roomID) {
 async function getUserToken(sender, room){
     var receiver = null;
     fb.firestore.collection("rooms")
-                .doc(room.id)
+                .doc(room)
                 .get()
                 .then((doc) => {
                     if (!doc.exists) {
