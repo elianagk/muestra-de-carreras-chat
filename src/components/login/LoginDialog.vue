@@ -70,17 +70,27 @@ export default {
                 alert("Ingrese su nombre");
             }
             else {
-                const token = await this.getToken();
-                this.login(this.username, token);
-                console.log("loggeado");
+                const token =  await this.getToken();
+                // if(token != null){
+                //     console.log(token);
+                //     this.login(this.username, token);
+                // }
+                    
+                
                 
             }
         },
-        async getToken(){
+        ...mapActions('userModule', ['login']),
+         async getToken(){
             fb.messaging.getToken({vapidKey: "BA8w-EHrjwdNdi8gehISa8Hr5vIsuvv2b0HG4q6XTzF-uvramgDS5QsWSH2wYtsxCWea2RI1BkT6vytdbYRFiVY"})
                 .then((currentToken) => {
                 if (currentToken) {
                     console.log('client token', currentToken);
+                    var data = {
+                        username: this.username,
+                        userToken: currentToken
+                    }
+                    this.login(data);
                     return currentToken;
                 } else {
                     console.log('No registration token available. Request permission to generate one.');
