@@ -96,6 +96,7 @@ async function sendMessage(sender, room, message) {
         message: message,
         timestamp: now
     };
+    const senderName = await userService.getUserName(sender);
     const tokenReceiver = await getUserToken(sender, room);
     const requestOptions = {
         method: "POST",
@@ -103,11 +104,11 @@ async function sendMessage(sender, room, message) {
             "Content-Type": "application/json" ,
             'Authorization': "key=AAAAdQdXfNc:APA91bH2riVlThLOVV0WKeW3SnmUgnZtZ9KbArjrCxGAVhsdebSTa4parHJ2FkDHR-9FgQg0Ll8cbov8gWA33xecGCjiVs4d_M3fGSmYIAiu7FdZZfFLAl8_y7ixY18yH6p4fbmsrSuG",
         },
-        body: JSON.stringify({ 
+        body: JSON.stringify({
             to: tokenReceiver, 
             notification: {
-                "title": "Nuevo Mensaje",
-                "body": "Mensaje nuevo"
+                "title": "Mensaje nuevo de " + senderName,
+                "body": message
             } 
         })
     };
@@ -142,13 +143,9 @@ async function getUserToken(sender, room){
 
     if (doc.exists) {
         const roomData = doc.data();
-        const tokens = await Promise.all(roomData.users.map(async element => {
-            if (element != sender){
-                return await userService.getUserTokenFCM(element);
-            }
-            return null;
-        })
-        );
+        const tokens = await Promise.all(roomData.users.filter(user => user != sender).map(async element => {
+            return await userService.getUserTokenFCM(element);
+        }));
         return tokens[0];
     }
     

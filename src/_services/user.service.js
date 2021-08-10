@@ -1,7 +1,7 @@
 import fb from '@/firebase';
 
 export const userService = {
-    createUpdate, login, logout, getUserTokenFCM
+    createUpdate, login, logout, getUserTokenFCM, getUserName
 };
 
 async function get(username) {
@@ -53,7 +53,14 @@ async function logout(uid) {
 
 async function getUserTokenFCM(userId) {
     const user = await fb.firestore.collection("users").doc(userId).get();
-    return user.data().token;
+    const data = user.data();
+    return data.token;
+}
+
+async function getUserName(userId) {
+    const user = await fb.firestore.collection("users").doc(userId).get();
+    const data = user.data();
+    return data.name;
 }
 
 function handleError(error) {
