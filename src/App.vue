@@ -81,7 +81,6 @@ import MessageContainer from './components/messages/MessageContainer'
 import Avatar from './components/Avatar'
 import RoomList from './components/rooms/RoomList'
 import ContactList from './components/contacts/ContactList'
-import  fb  from './firebase'; 
 import "firebase/messaging";
 import firebase from "firebase/app";
 
@@ -108,14 +107,11 @@ export default {
   },
   created() {
     this.messaging.onMessage(payload => {
-      console.log(payload);
-        const notif = new Notification(payload.notification.title, {
+        new Notification(payload.notification.title, {
           body: payload.notification.body,
           tag: "Dummy"
         });
-        console.log(notif);
       });
-      
   },
   data: () => ({
     leftdrawer: null,
