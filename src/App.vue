@@ -10,12 +10,12 @@
       <div class="d-flex align-center">
         <v-app-bar-nav-icon class="mr-2" @click.stop="leftdrawer = !leftdrawer"></v-app-bar-nav-icon>
         <v-img
-          :src="require('./assets/logo.png')"
-          alt="Real time chat"
-          class="shrink mr-2"
+          :src="require('./assets/boton-texto-29.png')"
+          alt="Chat Muestra Carrera UNS"
+          class="shrink mr-2 mt-2"
           contain
           transition="scale-transition"
-          width="30"
+          width="60"
         />
         <h4>Chat -NOMBRE STAND-</h4>
       </div>
