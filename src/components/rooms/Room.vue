@@ -17,8 +17,6 @@
 </template>
 <script>
 import { mapState, mapActions } from 'vuex';
-import GeneralRoom from './GeneralRoom';
-
 export default {
     name: "Room",
     props: ["room", "active"],
@@ -28,9 +26,6 @@ export default {
             receiver: null
         }
 
-    },
-    components: {
-        GeneralRoom,
     },
     computed: {
         ...mapState('roomModule', {
