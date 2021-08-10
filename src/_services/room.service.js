@@ -97,7 +97,7 @@ async function sendMessage(sender, room, message) {
         timestamp: now
     };
     
-    if (getRoomPrivacy(room)){
+     if (await getRoomPrivacy(room)){
 
         const senderName = await userService.getUserName(sender);
         const tokenReceiver = await getUserToken(sender, room);
@@ -118,7 +118,7 @@ async function sendMessage(sender, room, message) {
         fetch("https://fcm.googleapis.com/fcm/send", requestOptions)
             .then(response => response.json())
             .then(data => (this.postId = data.id));
-    }
+     }
 
     return fb.firestore.collection("rooms").doc(room).collection("messages").add(data)
             .then(function(doc) {
@@ -159,7 +159,7 @@ async function getUserToken(sender, room){
         const tokens = await Promise.all(roomData.users.filter(user => user != sender).map(async element => {
             return await userService.getUserTokenFCM(element);
         }));
-        return tokens;
+        return tokens[0];
     }
     
 }
