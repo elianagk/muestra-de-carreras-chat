@@ -1,7 +1,7 @@
 <template>
     <div class="chat-list">        
         <ChatLoader v-if="!isLoaded" />
-        <v-list three-line v-if="isLoaded">
+        <v-list v-if="isLoaded">
             <Chat v-for="chat in chats" :key="chat.id" :chat="chat" />
         </v-list>
     </div>

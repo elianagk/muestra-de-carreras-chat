@@ -1,6 +1,6 @@
 <template>
     <div id="chat-container" class="chat-container">
-        <div id="name-chat" class="px-2 py-2 font-weight-bold">
+        <div id="chat-name" class="overline py-3 myClass">
             {{this.name}}
         </div>
         <div id="chat-list-container" class="chat-list-container">
@@ -43,6 +43,9 @@ export default {
                 if (!roomData.data().isPrivate){
                     this.name = "General";
                 }
+                else {
+                    this.name = "Privado";
+                }
             
         }
         }
@@ -54,7 +57,7 @@ export default {
     width: 100%;
 }
 .chat-list-container {
-    height: calc(100% - 120px);  
+    height: calc(100% - 170px);  
     width: inherit;
     overflow-y: auto;
 }
@@ -65,5 +68,10 @@ export default {
     position: absolute;
     bottom: 0;
 }
-
+.myClass {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    width: 97%;
+    margin: 0 auto;
+    height: 50px;
+}
 </style>

@@ -1,9 +1,5 @@
 <template>
     <v-list-item :key="chat.id">
-        <v-list-item-avatar>
-            <v-img :src="avatar"></v-img>
-        </v-list-item-avatar>
-
         <v-list-item-content>
             <v-list-item-title>{{senderName}}</v-list-item-title>
             <v-list-item-subtitle v-html="chat.message" v-linkified></v-list-item-subtitle>
@@ -48,3 +44,12 @@ export default {
     }
 }
 </script>
+</script>
+<style scoped>
+.v-list-item__title, .v-list-item__subtitle {
+    flex: 1 1 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+}
+</style>
