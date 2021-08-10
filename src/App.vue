@@ -85,7 +85,6 @@ import ContactList from './components/contacts/ContactList'
 import Notification from "./components/notification/Notification";
 import fb from '@/firebase';
 import "firebase/messaging";
-import firebase from 'firebase';
 export default {
   name: 'App',
   components: {
@@ -111,15 +110,6 @@ export default {
      
   },
   
-},
-created() {
-   
-  },
-mounted(){
-  fb.messaging.onMessage((payload) => {
-  console.log('Message received. ', payload);
-  console.log(payload.title);
-});
 },
 data: () => ({
     leftdrawer: null,
