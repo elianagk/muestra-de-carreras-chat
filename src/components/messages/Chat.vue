@@ -16,6 +16,7 @@
 <script>
 import { mapState, mapActions } from 'vuex';
 import moment from 'moment';
+moment.locale(window.navigator.language);
 export default {
     name: "Chat",
     props: ["chat"],

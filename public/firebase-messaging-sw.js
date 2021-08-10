@@ -10,8 +10,3 @@ firebase.initializeApp({
 });
 
 const messaging = firebase.messaging();
-
-messaging.onMessage((payload) => {
-  console.log('Message received. ', payload);
-  console.log(payload.title);
-});
