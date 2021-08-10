@@ -20,8 +20,3 @@ new Vue({
   fb,
   render: function (h) { return h(App) }
 }).$mount('#app') 
-
-fb.messaging.onMessage((payload) => {
-  console.log('Message received. ', payload);
-  console.log(payload.title);
-});
