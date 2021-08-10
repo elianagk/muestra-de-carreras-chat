@@ -4,8 +4,6 @@ import 'firebase/firestore';
 import 'firebase/analytics';
 import 'firebase/firebase-messaging'
 
-
-
 // Your web app's Firebase configuration
 var firebaseConfig = {
   apiKey: "AIzaSyAH0Ase4QWtwT8xdFp0c3bvK98UI6j0bnY",
@@ -22,23 +20,19 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-  const fb = {
-    auth: firebase.auth(),
-    messaging: firebase.messaging(),
-    firestore: firebase.firestore(),
-    async login() {
-        return firebase.auth().signInAnonymously()
-                .then(function(result) {
-                    return {success: true, data: result};
-                })
-                .catch(function(error){
-                    return {success: false, error: error.message};
-                });
-    },
+const fb = {
+  auth: firebase.auth(),
+  messaging: firebase.messaging(),
+  firestore: firebase.firestore(),
+  async login() {
+      return firebase.auth().signInAnonymously()
+              .then(function(result) {
+                  return {success: true, data: result};
+              })
+              .catch(function(error){
+                  return {success: false, error: error.message};
+              });
+  },
 
-  }
-
-  
-
-
+}
 export default fb

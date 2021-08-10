@@ -21,7 +21,7 @@
       </div>
       <v-spacer></v-spacer>
       <v-btn icon @click.stop="rightdrawer = !rightdrawer">
-          <v-icon>contactos</v-icon>
+          <v-icon>contacts</v-icon>
       </v-btn>
     </v-app-bar>
 
