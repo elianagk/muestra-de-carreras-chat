@@ -1,8 +1,8 @@
 import fb from '@/firebase';
-import axios from "axios";
+import { userService } from './user.service';
 
 export const roomService = {
-    get, createPrivateChat, createChatRoom, getRoomDetail, sendMessage, createPublicChat, getGeneral, addUser,getUserToken
+    get, createPrivateChat, createChatRoom, getRoomDetail, sendMessage, createPublicChat, getGeneral, addUser, getUserToken
 };
 
 async function get(currentUser, targetUser) {
@@ -54,8 +54,6 @@ async function getGeneral(users){
             }).catch(handleError);
 }
 
-
-
 async function createPrivateChat(currentUser, targetUser) {
     var data = {
         isPrivate: true,
@@ -98,24 +96,22 @@ async function sendMessage(sender, room, message) {
         message: message,
         timestamp: now
     };
-    const tokenReceiver = getUserToken(sender, room);
+    const tokenReceiver = await getUserToken(sender, room);
     const requestOptions = {
         method: "POST",
         headers: { 
-        "Content-Type": "application/json" ,
-        'Authorization': 'Bearer ya29.a0ARrdaM9ryxvPc0I0hnK1Rfkl_DvLh4OwiMBALlQ2-G9qSwr_SYXkqcGFSfDEXno0iu4iiXxT1A3fHBhT48AdQcOPUJzAfrnzmb-dwHRo1newFZFsugARVHy8FBODDqI3qXHNKEjwN8rRT3d7wbleWAEGVn5f',
-        
+            "Content-Type": "application/json" ,
+            'Authorization': "key=AAAAdQdXfNc:APA91bH2riVlThLOVV0WKeW3SnmUgnZtZ9KbArjrCxGAVhsdebSTa4parHJ2FkDHR-9FgQg0Ll8cbov8gWA33xecGCjiVs4d_M3fGSmYIAiu7FdZZfFLAl8_y7ixY18yH6p4fbmsrSuG",
         },
-        message: {
-            "token" : tokenReceiver,
-            "notification": {
-                "title": "Notificacion",
-                "body": "Nuevo mensaje"
-            }
-        },
-        body: JSON.stringify({ title: "Holanda"})
+        body: JSON.stringify({ 
+            to: tokenReceiver, 
+            notification: {
+                "title": "Nuevo Mensaje",
+                "body": "Mensaje nuevo"
+            } 
+        })
     };
-    fetch("https://fcm.googleapis.com/v1/projects/chat-muestra/messages:send", requestOptions)
+    fetch("https://fcm.googleapis.com/fcm/send", requestOptions)
         .then(response => response.json())
         .then(data => (this.postId = data.id));
 
@@ -140,24 +136,22 @@ async function createChatRoom(userIDs) {
 async function addUser(users, roomID) {
     return fb.firestore.collection("rooms").doc(roomID).update('users', users)
 }
+
 async function getUserToken(sender, room){
-    var receiver = null;
-    fb.firestore.collection("rooms")
-                .doc(room)
-                .get()
-                .then((doc) => {
-                    if (!doc.exists) {
-                        receiver = null
-                    } else{
-                        var roomData = doc.data();
-                        roomData.users.forEach(element => {
-                            if (element != sender){
-                                receiver = element;
-                                return receiver.token;
-                            }
-                        });
-                    }
-                })
+    const doc = await fb.firestore.collection("rooms").doc(room).get();
+
+    if (doc.exists) {
+        const roomData = doc.data();
+        const tokens = await Promise.all(roomData.users.map(async element => {
+            if (element != sender){
+                return await userService.getUserTokenFCM(element);
+            }
+            return null;
+        })
+        );
+        return tokens[0];
+    }
+    
 }
 
 function handleError(error) {

@@ -1,7 +1,7 @@
 import fb from '@/firebase';
 
 export const userService = {
-    createUpdate, login, logout
+    createUpdate, login, logout, getUserTokenFCM
 };
 
 async function get(username) {
@@ -49,6 +49,11 @@ async function logout(uid) {
     }).catch(function(error) {
         console.error("Error removing document: ", error);
     });
+}
+
+async function getUserTokenFCM(userId) {
+    const user = await fb.firestore.collection("users").doc(userId).get();
+    return user.data().token;
 }
 
 function handleError(error) {
