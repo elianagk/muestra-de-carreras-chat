@@ -96,30 +96,43 @@ async function sendMessage(sender, room, message) {
         message: message,
         timestamp: now
     };
-    const senderName = await userService.getUserName(sender);
-    const tokenReceiver = await getUserToken(sender, room);
-    const requestOptions = {
-        method: "POST",
-        headers: { 
-            "Content-Type": "application/json" ,
-            'Authorization': "key=AAAAdQdXfNc:APA91bH2riVlThLOVV0WKeW3SnmUgnZtZ9KbArjrCxGAVhsdebSTa4parHJ2FkDHR-9FgQg0Ll8cbov8gWA33xecGCjiVs4d_M3fGSmYIAiu7FdZZfFLAl8_y7ixY18yH6p4fbmsrSuG",
-        },
-        body: JSON.stringify({
-            to: tokenReceiver, 
-            notification: {
-                "title": "Mensaje nuevo de " + senderName,
-                "body": message
-            } 
-        })
-    };
-    fetch("https://fcm.googleapis.com/fcm/send", requestOptions)
-        .then(response => response.json())
-        .then(data => (this.postId = data.id));
+    
+    if (getRoomPrivacy(room)){
+
+        const senderName = await userService.getUserName(sender);
+        const tokenReceiver = await getUserToken(sender, room);
+        const requestOptions = {
+            method: "POST",
+            headers: { 
+                "Content-Type": "application/json" ,
+                'Authorization': "key=AAAAdQdXfNc:APA91bH2riVlThLOVV0WKeW3SnmUgnZtZ9KbArjrCxGAVhsdebSTa4parHJ2FkDHR-9FgQg0Ll8cbov8gWA33xecGCjiVs4d_M3fGSmYIAiu7FdZZfFLAl8_y7ixY18yH6p4fbmsrSuG",
+            },
+            body: JSON.stringify({
+                to: tokenReceiver, 
+                notification: {
+                    "title": "Mensaje nuevo de " + senderName,
+                    "body": message
+                } 
+            })
+        };
+        fetch("https://fcm.googleapis.com/fcm/send", requestOptions)
+            .then(response => response.json())
+            .then(data => (this.postId = data.id));
+    }
 
     return fb.firestore.collection("rooms").doc(room).collection("messages").add(data)
             .then(function(doc) {
                 return {success: true, messageID: doc.id, room: room, sender: sender};
             }).catch(handleError);
+}
+
+async function getRoomPrivacy(ID){
+    const doc = await fb.firestore.collection("rooms").doc(ID).get();
+
+    if (doc.exists) {
+        const roomData = doc.data();
+        return roomData.isPrivate;
+    }
 }
 
 async function createChatRoom(userIDs) {
@@ -146,7 +159,7 @@ async function getUserToken(sender, room){
         const tokens = await Promise.all(roomData.users.filter(user => user != sender).map(async element => {
             return await userService.getUserTokenFCM(element);
         }));
-        return tokens[0];
+        return tokens;
     }
     
 }
