@@ -108,13 +108,13 @@ export default {
   },
   created() {
     Vue.prototype.$department = this.department;
-    // this.messaging.onMessage(payload => {
-    //   console.log("notificaciones?");
-    //     new Notification(payload.notification.title, {
-    //       body: payload.notification.body,
-    //       tag: "Dummy"
-    //     });
-    //   });
+    this.messaging.onMessage(payload => {
+      console.log("notificaciones?");
+        new Notification(payload.notification.title, {
+          body: payload.notification.body,
+          tag: "Dummy"
+        });
+      });
 
       
   },
