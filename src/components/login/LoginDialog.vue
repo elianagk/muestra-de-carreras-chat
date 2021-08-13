@@ -117,8 +117,3 @@ export default {
     }
 }
 </script>
-<style scoped>
-.half {
-    width: 100%;
-}
-</style>
