@@ -115,7 +115,7 @@ async function sendMessage(sender, room, message, department) {
                 } 
             })
         };
-        console.log("esto se hace");
+       
         fetch("https://fcm.googleapis.com/fcm/send", requestOptions)
             .then(response => response.json())
             .then(data => (this.postId = data.id));
