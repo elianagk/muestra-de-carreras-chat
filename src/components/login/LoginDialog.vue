@@ -108,6 +108,7 @@ export default {
             var data = {
                 user: this.userState.ID,
                 users: this.allUsers,
+                department: this.$department
             };
             //sacarlo a un metodo que se llame cuando el RoomList nos avisa que finalizo
             this.addUserToGeneral(data);
