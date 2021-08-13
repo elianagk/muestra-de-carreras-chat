@@ -78,9 +78,9 @@
 // import Avatar from './components/Avatar'
 // import RoomList from './components/rooms/RoomList'
 // import ContactList from './components/contacts/ContactList'
-// import "firebase/messaging";
-// import firebase from "firebase/app";
-// export default {
+ import "firebase/messaging";
+import firebase from "firebase/app";
+export default {
 //   name: 'App',
 //   components: {
 //     LoginDialog,
@@ -101,22 +101,19 @@
 //         return !this.userState || Object.keys(this.userState).length === 0;
 //     }, 
 //   },
-//   created() {
-//     this.messaging.onMessage(payload => {
-//         new Notification(payload.notification.title, {
-//           body: payload.notification.body,
-//           tag: "Dummy"
-//         });
-//       });
-//   },
-//   data: () => ({
-//     leftdrawer: null,
-//     rightdrawer: null,
-//     search: '',
-//     general: false,
-//     messaging: firebase.messaging()
-//   }),
-// };
+  created() {
+    this.messaging.onMessage(payload => {
+       console.log("esto se hacex2");
+        new Notification(payload.notification.title, {
+          body: payload.notification.body,
+          tag: "Dummy"
+        });
+      });
+  },
+  data: () => ({
+    messaging: firebase.messaging()
+  }),
+};
 </script>
 <style scoped>
     .contacts-container {

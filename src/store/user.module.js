@@ -16,8 +16,6 @@ const actions = {
             const token = userToken;
             const departmentt = department
 
-            console.log(departmentt + " departmentt" )
-
             try {
 
                 var result = await userService.createUpdate(uid, name, token, departmentt);
