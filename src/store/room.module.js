@@ -101,7 +101,7 @@ const actions = {
             }
             usersIDs.push(element.id);
         });
-
+        console.log(department + " aaaaaa");
         const resp = await roomService.getGeneral(array, department);
 
         var roomID = resp.roomID;

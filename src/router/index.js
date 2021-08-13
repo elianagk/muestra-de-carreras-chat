@@ -8,13 +8,13 @@ const routes = [
     {
       path: '/dcic',
       name: 'Chat-DCIC',
-      props: { departamento: "DCIC" },
+      props: { department: "DCIC" },
       component: Home
     },
     {
         path: '/matematica',
         name: 'Chat-Matematica',
-        props: { departamento: "Matematica" },
+        props: { department: "Matematica" },
         component: Home
       },
     ]

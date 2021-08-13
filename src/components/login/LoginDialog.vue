@@ -86,7 +86,7 @@ export default {
                     var data = {
                         username: this.username,
                         userToken: currentToken,
-                        departamento: this.$department
+                        department: this.$department
                     }
                     
                     this.login(data);

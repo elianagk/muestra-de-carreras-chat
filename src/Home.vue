@@ -17,7 +17,7 @@
           transition="scale-transition"
           width="60"
         />
-        <h4>Chat {{this.departamento}}</h4>
+        <h4>Chat {{this.department}}</h4>
       </div>
       <v-spacer></v-spacer>
       <v-btn icon @click.stop="rightdrawer = !rightdrawer">
@@ -94,7 +94,7 @@ export default {
     RoomList,
     ContactList,
   },
-  props: ["departamento"],
+  props: ["department"],
   computed: {
     ...mapState('userModule', {
         userState: state => state.user
@@ -107,7 +107,7 @@ export default {
     }, 
   },
   created() {
-    Vue.prototype.$department = this.departamento;
+    Vue.prototype.$department = this.department;
     this.messaging.onMessage(payload => {
         new Notification(payload.notification.title, {
           body: payload.notification.body,
