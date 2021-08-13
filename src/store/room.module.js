@@ -50,6 +50,7 @@ const actions = {
             if(roomResp.success) {
                 roomID = roomResp.roomID;
             } else {
+                console.log(department + " CreatePublicchat" );
                 const resp = await roomService.createPublicChat(users, department);
                 if(resp.success) {
                     roomID = resp.roomID;
