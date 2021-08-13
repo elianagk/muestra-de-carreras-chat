@@ -60,7 +60,6 @@ export default {
                             users: this.allUsers,
                             department: this.$department
                         };
-                        console.log(this.$department + " GR" );
                         this.generalRoom(data);
                         roomReturn = resp.room;
                     }

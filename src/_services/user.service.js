@@ -27,7 +27,6 @@ async function createUpdate(uid, name, token, department) {
         name: name,
         token: token
     };
-    console.log(department + " eeeeee");
     return fb.firestore.collection("users-"+department).doc(uid).set(data)
             .then(function() {
                 return {success: true};
