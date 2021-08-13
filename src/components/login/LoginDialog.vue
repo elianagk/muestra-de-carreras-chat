@@ -1,13 +1,18 @@
 <template>
-    <div>   
+    <div class="container-fluid">
         <v-dialog v-model="dialog" persistent max-width="468">
         <v-card>
-            <v-card-title class="headline">Ingrese su nombre</v-card-title>        
-            <v-card-actions>
-            <input type="text" class="form-control px-4" placeholder="Nombre de usuario" v-model="username">
-            <v-spacer></v-spacer>
-            <v-btn color="green darken-1" text @click="handleLogin">Confirmar</v-btn>
-            </v-card-actions>
+            <v-card-title class="headline">Ingrese su nombre</v-card-title>   
+            <div class="row px-6">  
+                <div class="col-12 col-sm-8 py-0">
+                    <input type="text" class="form-control col-12" placeholder="Nombre de usuario" v-model="username">
+                </div>
+                <div class="col-12 col-sm-4 mb-5">
+                    <v-btn class="success" text @click="handleLogin">Confirmar</v-btn>
+                </div>
+            </div>
+            <div class="form-group">
+        </div>
         </v-card>
         </v-dialog>
           <!-- <v-dialog v-model="loader"  persistent max-width="468">
@@ -112,3 +117,8 @@ export default {
     }
 }
 </script>
+<style scoped>
+.half {
+    width: 100%;
+}
+</style>
