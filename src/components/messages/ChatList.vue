@@ -30,7 +30,7 @@ export default {
     created() {
         // Get the messages
         if(this.roomID) {            
-            fb.firestore.collection("rooms").doc(this.roomID).collection("messages").orderBy("timestamp", "asc")
+            fb.firestore.collection("rooms-"+this.$department).doc(this.roomID).collection("messages").orderBy("timestamp", "asc")
             .onSnapshot((snapshot) => {
                 const newChats = [];
                 snapshot.docChanges().forEach(function(change) {

@@ -22,7 +22,6 @@ export default {
         return{
             name: ''
         }
-
     },
     components: {
         ChatInput, ChatList
@@ -39,7 +38,7 @@ export default {
     methods:{
          roomName: async function(e){
             if(this.roomID) {            
-            const  roomData = await fb.firestore.collection("rooms").doc(this.roomID).get();
+            const  roomData = await fb.firestore.collection("rooms-"+this.$department).doc(this.roomID).get();
                 if (!roomData.data().isPrivate){
                     this.name = "General";
                 }

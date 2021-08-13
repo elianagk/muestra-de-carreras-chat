@@ -66,7 +66,7 @@ export default {
     },
     created() {
         // Get all the users
-        fb.firestore.collection("users")
+        fb.firestore.collection("users-"+this.$department)
         .onSnapshot((snapshot) => {
             const users = [];
             snapshot.forEach((doc) => {

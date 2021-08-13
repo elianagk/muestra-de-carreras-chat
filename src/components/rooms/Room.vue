@@ -25,7 +25,6 @@ export default {
             color: "indigo",
             receiver: null
         }
-
     },
     computed: {
         ...mapState('roomModule', {
@@ -51,7 +50,8 @@ export default {
                 var data = {
                     room: this.room.id,
                     targetUser: null,
-                    currentUser: null
+                    currentUser: null,
+                     department: this.$department
                 };
                 this.selectRoom(data);
             }

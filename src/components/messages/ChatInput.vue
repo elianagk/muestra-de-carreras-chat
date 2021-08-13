@@ -27,8 +27,12 @@ export default {
             var resp =  null;
             if(this.message.length > 0) {
                 const {message} = this;
-                resp = this.sendMessage({message}); 
                 
+                var data={
+                    message: message,
+                    department: this.$department
+                }
+                resp = this.sendMessage(data); 
                 
             }   
             this.resetMessage();  

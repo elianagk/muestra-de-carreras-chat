@@ -45,8 +45,12 @@ export default {
             const userIDs = values;
             var roomReturn;
             if(this.room == null){
-                if(userIDs.length > 0) {                
-                const resp = await this.createChatRoom({userIDs});
+                if(userIDs.length > 0) {   
+                    var data = {
+                        userIDs: userIDs,
+                        department: this.$department
+                    }             
+                const resp = await this.createChatRoom(data);
                     if(resp.success) {
                         // Clear the room selection first
                         this.clearRoom();
@@ -54,6 +58,7 @@ export default {
                         var data = {
                             room: resp.roomID,
                             users: this.allUsers,
+                            department: this.$department
                         };
                         this.generalRoom(data);
                         roomReturn = resp.room;
@@ -64,6 +69,7 @@ export default {
                 var data = {
                         room: this.room.id,
                         users: this.allUsers,
+                        department: this.$department
                     };
                     this.generalRoom(data);
                 roomReturn = this.room;
@@ -80,6 +86,7 @@ export default {
                 var data = {
                     room: this.room.id,
                     users: this.allUsers,
+                    department: this.$department
                 };
                 this.generalRoom(data);
             }
@@ -97,7 +104,6 @@ export default {
             }
         }
     },
-
 }
 </script>
 <style scoped>

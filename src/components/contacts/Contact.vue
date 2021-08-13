@@ -39,7 +39,8 @@ export default {
             var data = {
                 room: null,
                 targetUser: this.user.id,
-                currentUser: this.userState.ID
+                currentUser: this.userState.ID,
+                department: this.$department
             };
             
             this.selectRoom(data);

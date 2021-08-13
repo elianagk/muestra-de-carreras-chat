@@ -5,8 +5,8 @@ export const roomService = {
     get, createPrivateChat, createChatRoom, getRoomDetail, sendMessage, createPublicChat, getGeneral, addUser, getUserToken
 };
 
-async function get(currentUser, targetUser) {
-    return fb.firestore.collection("rooms")
+async function get(currentUser, targetUser, department) {
+    return fb.firestore.collection("rooms-"+department)
             .where("isPrivate", "==", true)
             .where("users", "array-contains", currentUser)
             .get()
@@ -30,8 +30,8 @@ async function get(currentUser, targetUser) {
             }).catch(handleError);
 }
 
-async function getGeneral(users){
-    return fb.firestore.collection("rooms")
+async function getGeneral(users, department){
+    return fb.firestore.collection("rooms-"+department)
             .where("isPrivate", "==", false)
             .get()
             .then(snapshot => {
@@ -54,32 +54,32 @@ async function getGeneral(users){
             }).catch(handleError);
 }
 
-async function createPrivateChat(currentUser, targetUser) {
+async function createPrivateChat(currentUser, targetUser, department) {
     var data = {
         isPrivate: true,
         users: [currentUser, targetUser]
     };
 
-    return fb.firestore.collection("rooms").add(data)
+    return fb.firestore.collection("rooms-"+department).add(data)
             .then(function(doc) {
                 return {success: true, roomID: doc.id};
             }).catch(handleError);
 }
 
-async function createPublicChat(users) {
+async function createPublicChat(users, department) {
     var data = {
         isPrivate: false,
         users: users
     };
 
-    return fb.firestore.collection("rooms").add(data)
+    return fb.firestore.collection("rooms-"+department).add(data)
             .then(function(doc) {
                 return {success: true, roomID: doc.id};
             }).catch(handleError);
 }
 
-async function getRoomDetail(room) {
-    return fb.firestore.collection("rooms").doc(room).get()
+async function getRoomDetail(room, department) {
+    return fb.firestore.collection("rooms-"+department).doc(room).get()
             .then(snapshot => {
                 if (!snapshot.exists) {
                     return {success: false, error: "No chat room(s)"};
@@ -89,7 +89,7 @@ async function getRoomDetail(room) {
             }).catch(handleError);
 }
 
-async function sendMessage(sender, room, message) {
+async function sendMessage(sender, room, message, department) {
     var now = new Date();
     var data = {
         sender: sender,
@@ -99,7 +99,7 @@ async function sendMessage(sender, room, message) {
     
      if (await getRoomPrivacy(room)){
 
-        const senderName = await userService.getUserName(sender);
+        const senderName = await userService.getUserName(sender, department);
         const tokenReceiver = await getUserToken(sender, room);
         const requestOptions = {
             method: "POST",
@@ -120,14 +120,14 @@ async function sendMessage(sender, room, message) {
             .then(data => (this.postId = data.id));
      }
 
-    return fb.firestore.collection("rooms").doc(room).collection("messages").add(data)
+    return fb.firestore.collection("rooms-"+department).doc(room).collection("messages").add(data)
             .then(function(doc) {
                 return {success: true, messageID: doc.id, room: room, sender: sender};
             }).catch(handleError);
 }
 
-async function getRoomPrivacy(ID){
-    const doc = await fb.firestore.collection("rooms").doc(ID).get();
+async function getRoomPrivacy(ID, department){
+    const doc = await fb.firestore.collection("rooms-"+department).doc(ID).get();
 
     if (doc.exists) {
         const roomData = doc.data();
@@ -135,29 +135,29 @@ async function getRoomPrivacy(ID){
     }
 }
 
-async function createChatRoom(userIDs) {
+async function createChatRoom(userIDs, department) {
     var data = {
         isPrivate: false,
         users: userIDs
     };
     
-    return fb.firestore.collection("rooms").add(data)
+    return fb.firestore.collection("rooms-"+department).add(data)
             .then(function(doc) {
                 return {success: true, roomID: doc.id};
             }).catch(handleError);
 }
 
-async function addUser(users, roomID) {
-    return fb.firestore.collection("rooms").doc(roomID).update('users', users)
+async function addUser(users, roomID, department) {
+    return fb.firestore.collection("rooms-"+department).doc(roomID).update('users', users)
 }
 
-async function getUserToken(sender, room){
-    const doc = await fb.firestore.collection("rooms").doc(room).get();
+async function getUserToken(sender, room, department){
+    const doc = await fb.firestore.collection("rooms-"+department).doc(room).get();
 
     if (doc.exists) {
         const roomData = doc.data();
         const tokens = await Promise.all(roomData.users.filter(user => user != sender).map(async element => {
-            return await userService.getUserTokenFCM(element);
+            return await userService.getUserTokenFCM(element, department);
         }));
         return tokens[0];
     }

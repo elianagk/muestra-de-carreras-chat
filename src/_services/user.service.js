@@ -22,12 +22,12 @@ async function get(username) {
             }).catch(handleError);
 }
 
-async function createUpdate(uid, name, token) {
+async function createUpdate(uid, name, token, department) {
     var data = {
         name: name,
         token: token
     };
-    return fb.firestore.collection("users").doc(uid).set(data)
+    return fb.firestore.collection("users-"+department).doc(uid).set(data)
             .then(function() {
                 return {success: true};
             }).catch(handleError);
@@ -51,14 +51,14 @@ async function logout(uid) {
     });
 }
 
-async function getUserTokenFCM(userId) {
-    const user = await fb.firestore.collection("users").doc(userId).get();
+async function getUserTokenFCM(userId, department) {
+    const user = await fb.firestore.collection("users-"+department).doc(userId).get();
     const data = user.data();
     return data.token;
 }
 
-async function getUserName(userId) {
-    const user = await fb.firestore.collection("users").doc(userId).get();
+async function getUserName(userId, department) {
+    const user = await fb.firestore.collection("users-"+department).doc(userId).get();
     const data = user.data();
     return data.name;
 }
