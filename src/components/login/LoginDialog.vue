@@ -71,10 +71,6 @@ export default {
             }
             else {
                 await this.getToken();
-                
-                    
-                
-                
             }
         },
        

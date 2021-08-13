@@ -45,7 +45,7 @@ export default {
             const userIDs = values;
             var roomReturn;
             if(this.room == null){
-                if(userIDs.length > 0) {   
+                if(userIDs.length >= 0) {   
                     var data = {
                         userIDs: userIDs,
                         department: this.$department

@@ -92,6 +92,8 @@ export default {
             });
             this.rooms = rooms;
             });
+
+
             fb.firestore.collection("rooms-"+this.$department)
             .where("isPrivate", "==", false)
             .onSnapshot((snapshot) => {
@@ -103,6 +105,7 @@ export default {
                 this.generalRoom.name = "General";
                 
             });
+            
             if(this.generalRoom === null) {
                 this.generalRoom = null;
             }

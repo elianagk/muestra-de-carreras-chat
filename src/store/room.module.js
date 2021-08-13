@@ -86,6 +86,7 @@ const actions = {
         }
         
         const resp = await roomService.createChatRoom(userIDs, department);
+        
         return resp;
     },
     clearRoom({commit}) {
@@ -104,6 +105,8 @@ const actions = {
         const resp = await roomService.getGeneral(array, department);
 
         var roomID = resp.roomID;
+
+        console.log(roomID + " RM 108");
 
         const response = await roomService.addUser(usersIDs, roomID, department);
         return response;
