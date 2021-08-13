@@ -82,6 +82,7 @@ import Avatar from './components/Avatar'
 import RoomList from './components/rooms/RoomList'
 import ContactList from './components/contacts/ContactList'
 import "firebase/messaging";
+import Vue from 'vue'
 import firebase from "firebase/app";
 export default {
   name: 'App',
@@ -106,13 +107,15 @@ export default {
     }, 
   },
   created() {
-    this.$department = this.departamento;
+    Vue.prototype.$department = this.departamento;
     this.messaging.onMessage(payload => {
         new Notification(payload.notification.title, {
           body: payload.notification.body,
           tag: "Dummy"
         });
       });
+
+      
   },
   data: () => ({
     leftdrawer: null,
