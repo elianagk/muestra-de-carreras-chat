@@ -77,6 +77,9 @@ export default {
                 
             }
         },
+        async getDepartment() {
+            return this.$department;
+        },
         ...mapActions('userModule', ['login']),
          async getToken(){
             fb.messaging.getToken({vapidKey: "BA8w-EHrjwdNdi8gehISa8Hr5vIsuvv2b0HG4q6XTzF-uvramgDS5QsWSH2wYtsxCWea2RI1BkT6vytdbYRFiVY"})
@@ -84,8 +87,10 @@ export default {
                 if (currentToken) {
                     var data = {
                         username: this.username,
-                        userToken: currentToken
+                        userToken: currentToken,
+                        departamento: this.getDepartment()
                     }
+                    console.log(this.$department);
                     this.login(data);
                     return currentToken;
                 } else {
