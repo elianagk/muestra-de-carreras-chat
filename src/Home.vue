@@ -67,9 +67,9 @@
 
     <LoginDialog />
 
-    <v-content>
+    <v-main>
       <MessageContainer />
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 
