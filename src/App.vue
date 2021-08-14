@@ -1,8 +1,6 @@
 <template>
   <v-app>
-    
-   
-  <router-view />
+    <router-view />
   </v-app>
 </template>
 
@@ -10,7 +8,7 @@
 
 </script>
 <style scoped>
-    .contacts-container {
-        padding: 12px 18px;
-    }
+  .contacts-container {
+      padding: 12px 18px;
+  }
 </style>
