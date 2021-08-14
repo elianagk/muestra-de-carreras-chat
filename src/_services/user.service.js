@@ -1,25 +1,24 @@
 import fb from '@/firebase';
 
 export const userService = {
-    createUpdate, login, logout, getUserTokenFCM, getUserName
+    createUpdate, login, getUserTokenFCM, getUserName
 };
 
 async function get(username) {
     return fb.firestore.collection("users").where("name", "==", username).limit(1).get()
-            .then(snapshot => {
-                if (snapshot.empty) {
-                    return {success: false, error: "No user(s)"};
-                }  
-                
-                var id, content;
+        .then(snapshot => {
+            if (snapshot.empty) {
+                return {success: false, error: "No user(s)"};
+            }  
+            
+            var id, content;
+            snapshot.forEach(doc => {
+                id = doc.id;
+                content = doc.data();
+            });
 
-                snapshot.forEach(doc => {
-                    id = doc.id;
-                    content = doc.data();
-                });
-
-                return {success: true, id: id, data: content};
-            }).catch(handleError);
+            return {success: true, id: id, data: content};
+        }).catch(handleError);
 }
 
 async function createUpdate(uid, name, token, department) {
@@ -28,9 +27,9 @@ async function createUpdate(uid, name, token, department) {
         token: token
     };
     return fb.firestore.collection("users-"+department).doc(uid).set(data)
-            .then(function() {
-                return {success: true};
-            }).catch(handleError);
+        .then(function() {
+            return {success: true};
+        }).catch(handleError);
 }
 
 async function login(uid) {
@@ -39,16 +38,6 @@ async function login(uid) {
         loginAt: now
     }
     return fb.firestore.collection("online").doc(uid).set(data);
-}
-
-async function logout(uid) {
-    console.log("Logging out " + uid);
-    return fb.firestore.collection("online").doc(uid).delete()
-    .then(function() {
-        console.log("Document successfully deleted!");
-    }).catch(function(error) {
-        console.error("Error removing document: ", error);
-    });
 }
 
 async function getUserTokenFCM(userId, department) {
