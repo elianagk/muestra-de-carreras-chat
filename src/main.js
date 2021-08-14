@@ -13,7 +13,6 @@ Vue.component('ValidationProvider', ValidationProvider);
 Vue.directive('linkified', linkify);
 Vue.prototype.$vueEventBus = new Vue();
 
-
 new Vue({
   router,
   store,

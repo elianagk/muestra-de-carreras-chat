@@ -7,7 +7,7 @@
                 :color="statusColor"
                 dot
                 offset-x="10"
-                offset-y="10"
+                offset-y="5"
                 class="mr-2" 
             >
             </v-badge>
@@ -42,7 +42,6 @@ export default {
                 currentUser: this.userState.ID,
                 department: this.$department
             };
-            
             this.selectRoom(data);
         }
     }
