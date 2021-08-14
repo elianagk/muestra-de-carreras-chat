@@ -22,9 +22,6 @@ export default {
             roomID: state => state.activeRoom
         }),
         ...mapState('userModule', {
-            newMessage: state => state.newMessage
-        }),
-        ...mapState('userModule', {
             userState: state => state.user
         }),
         status() {
