@@ -5,28 +5,11 @@
             type="list-item-avatar-two-line"
             class="mx-auto"
         ></v-skeleton-loader>
-        <v-list-item v-if="!isRequiresLogin" two-line class="px-0">
-
-            <v-list-item-content>
-                <v-list-item-title>{{name}}</v-list-item-title>
-            </v-list-item-content>
-
-
-            <v-menu bottom left offset-y>
-                <template v-slot:activator="{ on }">
-                <v-btn icon v-on="on">
-                    <v-icon>expand_more</v-icon>
-                </v-btn>
-                </template>
-
-                <v-list>
-                    <v-list-item class="item">
-                        <v-list-item-title class="overline" @click="handleLogout"><v-icon size="18">exit_to_app</v-icon> Logout</v-list-item-title>
-                    </v-list-item>
-                </v-list>
-            </v-menu>
-        </v-list-item>
-
+            <v-list-item v-if="!isRequiresLogin" two-line class="px-0">
+                <v-list-item-content>
+                    <v-list-item-title>{{name}}</v-list-item-title>
+                </v-list-item-content>
+            </v-list-item>
         <v-divider></v-divider>
     </div>
 </template>
@@ -49,13 +32,6 @@ export default {
             return !this.userState || Object.keys(this.userState).length === 0;
         }
     },
-    methods: {
-        ...mapActions('userModule', ['logout']),
-        handleLogout(e) {
-            e.preventDefault();
-            this.logout();
-        }
-    }
 }
 </script>
 <style scoped>
