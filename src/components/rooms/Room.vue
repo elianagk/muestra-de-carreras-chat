@@ -1,12 +1,9 @@
 <template>
 <div>
-    
     <div v-on:click="selectRoomHandler" :class="`${status} room`">
         <v-list-item two-line class="px-0">
-            <v-avatar size="38" class="mr-2"  :color="this.color" >
-                
+            <v-avatar size="38" class="mr-2" color="indigo">
                 <v-icon v-if="!room.isPrivate" dark>mdi-account-circle</v-icon>
-               
             </v-avatar>
             <v-list-item-content>
                 <v-list-item-title class="body-2">{{room.name}}</v-list-item-title>
@@ -20,12 +17,6 @@ import { mapState, mapActions } from 'vuex';
 export default {
     name: "Room",
     props: ["room", "active"],
-    data() {
-        return{
-            color: "indigo",
-            receiver: null
-        }
-    },
     computed: {
         ...mapState('roomModule', {
             roomID: state => state.activeRoom
@@ -51,24 +42,11 @@ export default {
                     room: this.room.id,
                     targetUser: null,
                     currentUser: null,
-                     department: this.$department
+                    department: this.$department
                 };
                 this.selectRoom(data);
             }
-            this.color = "indigo";
-            
         },
-        changeColor(){
-                if(this.receiver != null){
-                    
-                }
-        },
-        
-        },
-        created() {
-           
-                
-       
     }
 }
 </script>
