@@ -36,17 +36,11 @@ export default {
                 
             }   
             this.resetMessage();  
-
-            
-            // resp.then(value => this.notifyMessage(value)) ;   
-            //disparar evento luego de llamar a submitHandler   
         },
         resetMessage() {
             this.message = '';
         },
-       
-        
-        
+
     }
 }
 </script>
