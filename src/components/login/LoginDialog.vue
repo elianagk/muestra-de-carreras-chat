@@ -15,28 +15,6 @@
              </v-card-text>
         </v-card>
         </v-dialog>
-          <!-- <v-dialog v-model="loader"  persistent max-width="468">
-            <v-card>
-            <v-container fill-height fluid>
-                <v-row align="center"
-                    justify="center">
-                    <v-col align="center">
-                        <v-progress-circular
-                        :size="75"
-                        color="primary"                
-                        indeterminate
-                        ></v-progress-circular>
-                    </v-col>
-                </v-row>
-                <v-row align="center"
-                    justify="center">
-                    <v-col align="center">
-                        <v-card-text>Please wait...</v-card-text>
-                    </v-col>
-                </v-row>
-            </v-container>
-            </v-card>
-        </v-dialog> -->
     </div>
 </template>
 <script>
@@ -111,7 +89,6 @@ export default {
                 users: this.allUsers,
                 department: this.$department
             };
-            //sacarlo a un metodo que se llame cuando el RoomList nos avisa que finalizo
             this.addUserToGeneral(data);
         });
     }
