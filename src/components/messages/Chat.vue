@@ -1,7 +1,7 @@
 <template>
     <v-list-item :key="chat.id">
         <v-list-item-content>
-            <v-list-item-title>{{senderName}}</v-list-item-title>
+            <v-list-item-title v-if="senderName != ''">{{senderName}}</v-list-item-title>
             <v-list-item-subtitle v-html="chat.message"></v-list-item-subtitle>
         </v-list-item-content>
         <v-list-item-action>            
@@ -25,10 +25,8 @@ export default {
             });
             return users.length > 0 ? users[0] : {};
         },
-        avatar: function() {
-            return this.sender ? this.sender.photoUrl : "";
-        },
         senderName: function() {
+            console.log(this.sender.name);
             return this.sender ? this.sender.name : "Unknown";
         },
         datetime: function() {
