@@ -106,6 +106,14 @@ const actions = {
         var roomID = resp.roomID;
 
         const response = await roomService.addUser(usersIDs, roomID, department);
+
+        var totalUsers = rootState.contactModule.users.filter(function(val) {
+            return response.userIds.indexOf(val.id) >= 0;
+        });
+        if(response.success && rootState.contactModule.users) {
+            commit('setUsers', totalUsers);
+        }
+
         return response;
     }
 }
