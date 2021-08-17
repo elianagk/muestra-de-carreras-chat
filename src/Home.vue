@@ -17,7 +17,7 @@
           transition="scale-transition"
           width="60"
         />
-        <h4>Chat {{this.department}}</h4>
+        <h4>Chat {{this.name}}</h4>
       </div>
       <v-spacer></v-spacer>
       <v-btn icon @click.stop="rightdrawer = !rightdrawer">
@@ -92,7 +92,7 @@ export default {
     RoomList,
     ContactList
   },
-  props: ["department"],
+  props: ["department", "name"],
   computed: {
     ...mapState('userModule', {
         userState: state => state.user
