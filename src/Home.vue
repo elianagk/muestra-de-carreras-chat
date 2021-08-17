@@ -17,7 +17,7 @@
           transition="scale-transition"
           width="60"
         />
-        <h4>Chat {{this.name}}</h4>
+        <h4 class="myText">Chat {{this.name}}</h4>
       </div>
       <v-spacer></v-spacer>
       <v-btn icon @click.stop="rightdrawer = !rightdrawer">
@@ -113,8 +113,6 @@ export default {
           tag: "Dummy"
         });
       });
-
-      
   },
   data: () => ({
     leftdrawer: null,
@@ -126,7 +124,17 @@ export default {
 };
 </script>
 <style scoped>
-    .contacts-container {
-        padding: 12px 18px;
-    }
+  .contacts-container {
+      padding: 12px 18px;
+  }
+  @media screen and (max-width: 376px) {
+  .myText {
+    font-size: 12px;
+  }
+  @media screen and (min-width: 375px) {
+  div.example {
+    font-size: 16px;
+  }
+}
+}
 </style>
