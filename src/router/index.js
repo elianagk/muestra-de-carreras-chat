@@ -20,49 +20,67 @@ const routes = [
     {
     path: '/agronomia',
     name: 'Chat-Agronomia',
-    props: { department: "AGRONOMIA", name: "AGRONOMÍA" },
+    props: { department: "AGRONOMIA", name: "Departamento de Agronomía" },
     component: Home
     },
     {
-    path: '/oe',
+    path: '/doe',
     name: 'Chat-Orientacion-Educacional',
     props: { department: "Departamento-Orientacion-Educacional", name: "Departamento de Orientación Educacional" },
     component: Home
     },
     {
-      path: '/bbf',
-      name: 'Chat-BBF',
-      props: { department: "BIOLOGIA-BIOQUIMICA-FARMACIA", name: "BIOLOGÍA, BIOQUÍMICA y FARMACIA" },
+      path: '/biologia',
+      name: 'Chat-Biologia',
+      props: { department: "BIOLOGIA", name: "Departamento de Biologia" },
       component: Home
     },
     {
       path: '/administracion',
       name: 'Chat-Administracion',
-      props: { department: "CIENCIAS-DE-LA-ADMINISTRACION", name: "CIENCIAS DE LA ADMINISTRACIÓN" },
+      props: { department: "CIENCIAS-DE-LA-ADMINISTRACION", name: "Departamento de Ciencias de la Administración" },
       component: Home
     },
     {
-      path: '/educacion',
-      name: 'Chat-Educacion',
-      props: { department: "CIENCIAS-DE-LA-EDUCACIÓN", name: "CIENCIAS DE LA EDUCACION" },
+      path: '/isft',
+      name: 'Chat-ISFT',
+      props: { department: "INSTITUTO-SUPERIOR-FORMACION-TECNICA", name: "Instituto Superior de Formación Técnica Nª191" },
+      component: Home
+    },
+    {
+      path: '/spec',
+      name: 'Chat-SPEC',
+      props: { department: "SECRETARIA-POSGRADO-EDUCACION-CONTINUA", name: "Secretaria de Posgrado y Eduación Continua" },
+      component: Home
+    },
+    {
+      path: '/comercio',
+      name: 'Chat-Comercio',
+      props: { department: "ESCUELA-DE-COMERCIO", name: "Escuela Superior de Comercio" },
       component: Home
     },
     {
       path: '/salud',
       name: 'Chat-Salud',
-      props: { department: "CIENCIAS-DE-LA-SALUD", name: "CIENCIAS DE LA SALUD" },
+      props: { department: "CIENCIAS-DE-LA-SALUD", name: "Departamento de Ciencias de la Salud" },
+      component: Home
+    },
+    {
+      path: '/cfp',
+      name: 'Chat-Centro-Formacion-Profesional',
+      props: { department: "CENTRO-DE-FORMACION-PROFESIONAL", name: "Centro de formación Profesional 403" },
       component: Home
     },
     {
       path: '/dcic',
       name: 'Chat-DCIC',
-      props: { department: "CIENCIAS-E-INGENIERIA-DE-COMPUTACION", name: "CIENCIAS E INGENIERÍA DE COMPUTACIÓN"},
+      props: { department: "CIENCIAS-E-INGENIERIA-DE-COMPUTACION", name: "Departamento de Ciencias e Ingienería de la Computación"},
       component: Home
     },
     {
       path: '/derecho',
       name: 'Chat-Derecho',
-      props: { department: "DERECHO", name: "DERECHO" },
+      props: { department: "DERECHO", name: "Departamento de Derecho" },
       component: Home
     },
     {
@@ -74,19 +92,19 @@ const routes = [
     {
       path: '/fisica',
       name: 'Chat-Fisica',
-      props: { department: "FISICA", name: "FÍSICA" },
+      props: { department: "FISICA", name: "Departamento de Física" },
       component: Home
     },
     {
       path: '/geografia',
       name: 'Chat-Geografia',
-      props: { department: "GEOGRAFIA-TURISMO", name: "GEOGRAFÍA Y TURISMO" },
+      props: { department: "GEOGRAFIA-TURISMO", name: "Departamento de Geografía y Turismo" },
       component: Home
     },
     {
       path: '/geologia',
       name: 'Chat-Geologia',
-      props: { department: "GEOLOGIA", name: "GEOLOGÍA" },
+      props: { department: "GEOLOGIA", name: "Departamento de Geología" },
       component: Home
     },
     {
@@ -110,7 +128,7 @@ const routes = [
     {
       path: '/ingquimica',
       name: 'Chat-INGQuimica',
-      props: { department: "INGENIERIA-QUIMICA", name: "INGENIERÍA QUÍMICA" },
+      props: { department: "INGENIERIA-QUIMICA", name: "Departamento de Ingeniería Química" },
       component: Home
     },
     {
@@ -122,7 +140,55 @@ const routes = [
       {
         path: '/quimica',
         name: 'Chat-Quimica',
-        props: { department: "QUIMICA", name: "QUÍMICA" },
+        props: { department: "QUIMICA", name: "Departamento de Química" },
+        component: Home
+      },
+      {
+        path: '/sga',
+        name: 'Chat-SGA',
+        props: { department: "SECRETARIA-GENERAL-ACADEMICA", name: "Secretaria General Académica" },
+        component: Home
+      },
+      {
+        path: '/salesiana',
+        name: 'Chat-Salesiana',
+        props: { department: "UNIVERSIDAD-SALESIANA", name: "Universidad Salesiana" },
+        component: Home
+      },
+      {
+        path: '/juan23',
+        name: 'Chat-Juan',
+        props: { department: "JUAN-XXIII", name: "Juan XXIII" },
+        component: Home
+      },
+      {
+        path: '/utn',
+        name: 'Chat-UTN',
+        props: { department: "UNIVERSIDAD-TECNOLOGICA-NACIONAL", name: "Universidad Tecnológica Nacional" },
+        component: Home
+      },
+      {
+        path: '/ups',
+        name: 'Chat-UPS',
+        props: { department: "UNIVERSIDAD-PROVINCIAL-DEL-SUDOESTE", name: "Universidad Provincial del Sudoeste" },
+        component: Home
+      },
+      {
+        path: '/ieme',
+        name: 'Chat-IEME',
+        props: { department: "INSTITUTO-EZEQUIEL-MARTINEZ-ESTRADA", name: "Instituto Ezequiel Martinez Estrada" },
+        component: Home
+      },
+      {
+        path: '/ucalp',
+        name: 'Chat-UCALP',
+        props: { department: "UNIVERSIDAD-CATOLICA-DE-LA-PLATA", name: "Universidad Católica de la Plata" },
+        component: Home
+      },
+      {
+        path: '/isfd',
+        name: 'Chat-FormacionDocente',
+        props: { department: "INSTITUTO-SUPERIOR-DE-FORMACION-DOCENTE", name: "Instituto Superior de Formación Docente Nª86" },
         component: Home
       },
     ]
