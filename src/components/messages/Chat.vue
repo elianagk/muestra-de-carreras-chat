@@ -1,7 +1,7 @@
 <template>
     <v-list-item :key="chat.id">
         <v-list-item-content>
-            <v-list-item-title>{{nameSender()}}</v-list-item-title>
+            <v-list-item-title>{{this.senderNAME}}</v-list-item-title>
             <v-list-item-subtitle v-html="chat.message" v-linkified></v-list-item-subtitle>
         </v-list-item-content>
         <v-list-item-action>            
@@ -16,6 +16,12 @@ moment.locale(window.navigator.language);
 export default {
     name: "Chat",
     props: ["chat"],
+    data() {
+        return{
+             senderNAME: this.sender.name
+        }
+       
+    },
     methods: {
         nameSender(){
             return this.sender ? this.sender.name : "Unknown";
