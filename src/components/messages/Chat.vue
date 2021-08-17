@@ -1,8 +1,8 @@
 <template>
     <v-list-item :key="chat.id">
         <v-list-item-content>
-            <v-list-item-title>{{this.senderNAME}}</v-list-item-title>
-            <v-list-item-subtitle v-html="chat.message" v-linkified></v-list-item-subtitle>
+            <v-list-item-title>{{senderName}}</v-list-item-title>
+            <v-list-item-subtitle v-html="chat.message"></v-list-item-subtitle>
         </v-list-item-content>
         <v-list-item-action>            
             <v-list-item-action-text v-text="datetime"></v-list-item-action-text>
@@ -12,21 +12,9 @@
 <script>
 import { mapState, mapActions } from 'vuex';
 import moment from 'moment';
-moment.locale(window.navigator.language);
 export default {
     name: "Chat",
     props: ["chat"],
-    data() {
-        return{
-             senderNAME: this.sender.name
-        }
-       
-    },
-    methods: {
-        nameSender(){
-            return this.sender ? this.sender.name : "Unknown";
-        }
-    },
     computed: {
         ...mapState('roomModule', {
             users: state => state.users
@@ -55,12 +43,3 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-.v-list-item__title, .v-list-item__subtitle {
-    flex: 1 1 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: normal;
-}
-</style>
