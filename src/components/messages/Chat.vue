@@ -20,13 +20,16 @@ export default {
             users: state => state.users
         }),
         sender: function() {
+            console.log(this.users);
             var users = this.users.filter((val) => {
                 return val.id == this.chat.senderID;
             });
+
             return users.length > 0 ? users[0] : {};
         },
         senderName: function() {
-            console.log(this.sender.name);
+            console.log(this.users);
+            
             return this.sender ? this.sender.name : "Unknown";
         },
         datetime: function() {
