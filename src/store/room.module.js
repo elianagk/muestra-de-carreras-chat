@@ -107,9 +107,7 @@ const actions = {
 
         const response = await roomService.addUser(usersIDs, roomID, department);
         
-        if(response.success && rootState.contactModule.users) {
-            commit('setUsers', users);
-        }
+        commit('setUsers', users);
 
         return response;
     }
