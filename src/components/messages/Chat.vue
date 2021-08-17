@@ -1,7 +1,7 @@
 <template>
     <v-list-item :key="chat.id">
         <v-list-item-content>
-            <v-list-item-title>{{senderName}}</v-list-item-title>
+            <v-list-item-title>{{nameSender()}}</v-list-item-title>
             <v-list-item-subtitle v-html="chat.message" v-linkified></v-list-item-subtitle>
         </v-list-item-content>
         <v-list-item-action>            
@@ -16,6 +16,11 @@ moment.locale(window.navigator.language);
 export default {
     name: "Chat",
     props: ["chat"],
+    methods: {
+        nameSender(){
+            return this.sender ? this.sender.name : "Unknown";
+        }
+    },
     computed: {
         ...mapState('roomModule', {
             users: state => state.users
@@ -44,7 +49,7 @@ export default {
     }
 }
 </script>
-</script>
+
 <style scoped>
 .v-list-item__title, .v-list-item__subtitle {
     flex: 1 1 100%;
