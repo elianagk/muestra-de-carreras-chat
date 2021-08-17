@@ -25,9 +25,6 @@ export default {
             });
             return users.length > 0 ? users[0] : {};
         },
-        avatar: function() {
-            return this.sender ? this.sender.photoUrl : "";
-        },
         senderName: function() {
             return this.sender ? this.sender.name : "Unknown";
         },
