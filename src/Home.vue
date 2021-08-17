@@ -17,7 +17,7 @@
           transition="scale-transition"
           width="60"
         />
-        <h4 class="myText">Chat {{this.name}}</h4>
+        <h4 class="myText">{{this.name}}</h4>
       </div>
       <v-spacer></v-spacer>
       <v-btn icon @click.stop="rightdrawer = !rightdrawer">
