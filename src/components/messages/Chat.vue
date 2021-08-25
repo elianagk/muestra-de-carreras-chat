@@ -2,7 +2,7 @@
     <v-list-item :key="chat.id">
         <v-list-item-content>
             <v-list-item-title>{{senderName}}</v-list-item-title>
-            <v-list-item-subtitle v-html="chat.message"></v-list-item-subtitle>
+            <v-list-item-subtitle v-html="chat.message" v-linkified></v-list-item-subtitle>
         </v-list-item-content>
         <v-list-item-action>            
             <v-list-item-action-text v-text="datetime"></v-list-item-action-text>
