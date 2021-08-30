@@ -3,7 +3,7 @@
         <v-dialog v-model="dialog" class="mx-auto" persistent max-width="468">
         <v-card>
             <v-card-title class="headline">Ingrese su nombre</v-card-title>   
-             <v-card-text>
+            <v-card-text>
             <div class="row">  
                 <div class="col-12 col-sm-8">
                     <input type="text" class="form-control col-12" placeholder="Nombre de usuario" v-model="username">
@@ -12,7 +12,10 @@
                     <v-btn class="success" text @click="handleLogin">Confirmar</v-btn>
                 </div>
             </div>
-             </v-card-text>
+            <div> 
+                <small style="color:red">Para entrar debe permitir las notificaciones</small>
+            </div>
+            </v-card-text>
         </v-card>
         </v-dialog>
     </div>
