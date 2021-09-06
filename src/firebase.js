@@ -16,7 +16,6 @@ var firebaseConfig = {
   measurementId: "G-7V8Z7K2W1Q"
 };
 
-// messaging.getToken({vapidKey: "BA8w-EHrjwdNdi8gehISa8Hr5vIsuvv2b0HG4q6XTzF-uvramgDS5QsWSH2wYtsxCWea2RI1BkT6vytdbYRFiVY"});
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 

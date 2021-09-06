@@ -7,7 +7,7 @@
             class="mx-auto"
         >
         </v-skeleton-loader>
-        <GeneralRoom v-if="this.cargado" :room="this.generalRoom" />
+        <GeneralRoom v-if="this.finish" :room="this.generalRoom" />
         <Room v-for="room in sortedRooms" :key="room.id" :room="room" :active="room.active"  />  
     </div>
 </template>
@@ -27,7 +27,7 @@ export default {
             isLoaded: false,
             rooms: {},
             generalRoom: null,
-            cargado: false,
+            finish: false,
         }
     },
     computed: {
@@ -78,7 +78,7 @@ export default {
         },
     },
     created() {
-        // Get all the users
+        // Get all the individual rooms
         fb.firestore.collection("rooms-"+this.$department)
         .where("users", "array-contains", this.userState.ID)
         .onSnapshot((snapshot) => {
@@ -91,10 +91,11 @@ export default {
                 
             });
             this.rooms = rooms;
-            });
-            fb.firestore.collection("rooms-"+this.$department)
-            .where("isPrivate", "==", false)
-            .onSnapshot((snapshot) => {
+        });
+        // Get the general if exist
+        fb.firestore.collection("rooms-"+this.$department)
+        .where("isPrivate", "==", false)
+        .onSnapshot((snapshot) => {
             const rooms = [];
             snapshot.forEach((doc) => {
                 const room = doc.data();
@@ -103,16 +104,14 @@ export default {
                 this.generalRoom.name = "General";
                 
             });
+
             if(this.generalRoom === null) {
                 this.generalRoom = null;
             }
-            
             this.isLoaded = true;
-            this.cargado = true;
+            this.finish = true;
             this.sendMessageToLogin();
-            
-        });
-           
+        });    
     }
 }
 </script>

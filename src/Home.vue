@@ -17,7 +17,7 @@
           transition="scale-transition"
           width="60"
         />
-        <h4>Chat {{this.department}}</h4>
+        <h4 class="myText">{{this.name}}</h4>
       </div>
       <v-spacer></v-spacer>
       <v-btn icon @click.stop="rightdrawer = !rightdrawer">
@@ -57,7 +57,7 @@
               v-model="search"
               outlined
               dense
-              label="Search"
+              label="Buscar"
               prepend-inner-icon="search"
               class="mt-2"
           ></v-text-field>
@@ -67,20 +67,19 @@
 
     <LoginDialog />
 
-    <v-content>
+    <v-main>
       <MessageContainer />
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 
 <script>
 import { mapState, mapActions } from 'vuex';
 import LoginDialog from './components/login/LoginDialog'
-import ContactContainer from  './components/contacts/ContactContainer'
 import MessageContainer from './components/messages/MessageContainer'
 import Avatar from './components/Avatar'
 import RoomList from './components/rooms/RoomList'
-import ContactList from './components/contacts/ContactList'
+import ContactList from './components/contacts/ContactList.vue'
 import "firebase/messaging";
 import Vue from 'vue'
 import firebase from "firebase/app";
@@ -88,13 +87,12 @@ export default {
   name: 'App',
   components: {
     LoginDialog,
-    ContactContainer,
     MessageContainer,
     Avatar, 
     RoomList,
-    ContactList,
+    ContactList
   },
-  props: ["department"],
+  props: ["department", "name"],
   computed: {
     ...mapState('userModule', {
         userState: state => state.user
@@ -109,13 +107,12 @@ export default {
   created() {
     Vue.prototype.$department = this.department;
     this.messaging.onMessage(payload => {
+      console.log("notificaciones?");
         new Notification(payload.notification.title, {
           body: payload.notification.body,
           tag: "Dummy"
         });
       });
-
-      
   },
   data: () => ({
     leftdrawer: null,
@@ -127,7 +124,17 @@ export default {
 };
 </script>
 <style scoped>
-    .contacts-container {
-        padding: 12px 18px;
-    }
+  .contacts-container {
+      padding: 12px 18px;
+  }
+  @media screen and (max-width: 376px) {
+  .myText {
+    font-size: 12px;
+  }
+  @media screen and (min-width: 375px) {
+  div.example {
+    font-size: 16px;
+  }
+}
+}
 </style>

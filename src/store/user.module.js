@@ -16,12 +16,8 @@ const actions = {
             const token = userToken;
             const departmentt = department
 
-            console.log(departmentt + " departmentt" )
-
             try {
-
                 var result = await userService.createUpdate(uid, name, token, departmentt);
-                
                 if(result.success) {
                     // Set the user as login
                     userService.login(uid);
@@ -46,19 +42,6 @@ const actions = {
         }    
         return null; 
     },
-    logout({commit, state}) {
-        if(state.user.ID) {
-            userService.logout(state.user.ID);
-        }
-        fb.logout();
-        commit('logout');
-    },
-    newMessage({commit, state}, id){
-        if (id === state.user.ID){
-            state.newMessage = true;
-        }
-        commit('newMessage');
-    }
 }
 
 const mutations = {
@@ -74,10 +57,6 @@ const mutations = {
         state.status = {};
         state.user = null;
     },
-    logout(state) {
-        state.status = {};
-        state.user = {};
-    }
 }
 
 export const userModule = {

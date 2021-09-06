@@ -61,11 +61,11 @@ const actions = {
         const response = await roomService.getRoomDetail(roomID, department);
         if(response.success && rootState.contactModule.users) {
             // Postprocessing on the users
-            var users = rootState.contactModule.users.filter(function(val) {
+            var usersId = rootState.contactModule.users.filter(function(val) {
                 return response.userIds.indexOf(val.id) >= 0;
             });
             
-            commit('setUsers', users);
+            commit('setUsers', usersId);
         }        
         
         commit('setActiveRoom', roomID);
@@ -106,6 +106,9 @@ const actions = {
         var roomID = resp.roomID;
 
         const response = await roomService.addUser(usersIDs, roomID, department);
+        
+        commit('setUsers', users);
+
         return response;
     }
 }

@@ -1,37 +1,23 @@
 <template>
-    <div>   
-        <v-dialog v-model="dialog" persistent max-width="468">
+    <div class="container-fluid">
+        <v-dialog v-model="dialog" class="mx-auto" persistent max-width="468">
         <v-card>
-            <v-card-title class="headline">Ingrese su nombre</v-card-title>        
-            <v-card-actions>
-            <input type="text" class="form-control px-4" placeholder="Nombre de usuario" v-model="username">
-            <v-spacer></v-spacer>
-            <v-btn color="green darken-1" text @click="handleLogin">Confirmar</v-btn>
-            </v-card-actions>
+            <v-card-title class="headline">Ingrese su nombre</v-card-title>   
+            <v-card-text>
+            <div class="row">  
+                <div class="col-12 col-sm-8">
+                    <input type="text" class="form-control col-12" placeholder="Nombre de usuario" v-model="username">
+                </div>
+                <div class="col-12 col-sm-4">
+                    <v-btn class="success" text @click="handleLogin">Confirmar</v-btn>
+                </div>
+            </div>
+            <div> 
+                <small style="color:red">Para entrar debe permitir las notificaciones</small>
+            </div>
+            </v-card-text>
         </v-card>
         </v-dialog>
-          <!-- <v-dialog v-model="loader"  persistent max-width="468">
-            <v-card>
-            <v-container fill-height fluid>
-                <v-row align="center"
-                    justify="center">
-                    <v-col align="center">
-                        <v-progress-circular
-                        :size="75"
-                        color="primary"                
-                        indeterminate
-                        ></v-progress-circular>
-                    </v-col>
-                </v-row>
-                <v-row align="center"
-                    justify="center">
-                    <v-col align="center">
-                        <v-card-text>Please wait...</v-card-text>
-                    </v-col>
-                </v-row>
-            </v-container>
-            </v-card>
-        </v-dialog> -->
     </div>
 </template>
 <script>
@@ -71,10 +57,6 @@ export default {
             }
             else {
                 await this.getToken();
-                
-                    
-                
-                
             }
         },
        
@@ -110,7 +92,6 @@ export default {
                 users: this.allUsers,
                 department: this.$department
             };
-            //sacarlo a un metodo que se llame cuando el RoomList nos avisa que finalizo
             this.addUserToGeneral(data);
         });
     }

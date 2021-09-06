@@ -97,10 +97,10 @@ async function sendMessage(sender, room, message, department) {
         timestamp: now
     };
     
-     if (await getRoomPrivacy(room)){
+     if (await getRoomPrivacy(room, department)){
 
         const senderName = await userService.getUserName(sender, department);
-        const tokenReceiver = await getUserToken(sender, room);
+        const tokenReceiver = await getUserToken(sender, room, department);
         const requestOptions = {
             method: "POST",
             headers: { 
@@ -115,6 +115,7 @@ async function sendMessage(sender, room, message, department) {
                 } 
             })
         };
+       
         fetch("https://fcm.googleapis.com/fcm/send", requestOptions)
             .then(response => response.json())
             .then(data => (this.postId = data.id));
