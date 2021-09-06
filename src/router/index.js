@@ -20,7 +20,7 @@ const routes = [
     {
     path: '/agronomia',
     name: 'Chat-Agronomia',
-    props: { department: "AGRONOMIA", name: "Departamento de Agronomía" },
+    props: { department: "AGRONOMIA", name: "Agronomía" },
     component: Home
     },
     {
@@ -32,13 +32,13 @@ const routes = [
     {
       path: '/biologia',
       name: 'Chat-Biologia',
-      props: { department: "BIOLOGIA", name: "Departamento de Biologia" },
+      props: { department: "BIOLOGIA", name: "Biologia" },
       component: Home
     },
     {
       path: '/administracion',
       name: 'Chat-Administracion',
-      props: { department: "CIENCIAS-DE-LA-ADMINISTRACION", name: "Departamento de Ciencias de la Administración" },
+      props: { department: "CIENCIAS-DE-LA-ADMINISTRACION", name: "Ciencias de la Administración" },
       component: Home
     },
     {
@@ -62,7 +62,7 @@ const routes = [
     {
       path: '/salud',
       name: 'Chat-Salud',
-      props: { department: "CIENCIAS-DE-LA-SALUD", name: "Departamento de Ciencias de la Salud" },
+      props: { department: "CIENCIAS-DE-LA-SALUD", name: "Ciencias de la Salud" },
       component: Home
     },
     {
@@ -74,73 +74,73 @@ const routes = [
     {
       path: '/dcic',
       name: 'Chat-DCIC',
-      props: { department: "CIENCIAS-E-INGENIERIA-DE-COMPUTACION", name: "Departamento de Ciencias e Ingienería de la Computación"},
+      props: { department: "CIENCIAS-E-INGENIERIA-DE-COMPUTACION", name: "Ciencias e Ingienería de la Computación"},
       component: Home
     },
     {
       path: '/derecho',
       name: 'Chat-Derecho',
-      props: { department: "DERECHO", name: "Departamento de Derecho" },
+      props: { department: "DERECHO", name: "Derecho" },
       component: Home
     },
     {
       path: '/economia',
       name: 'Chat-Economia',
-      props: { department: "Departamento-Economia", name: "Departamento de Economía" },
+      props: { department: "Departamento-Economia", name: "Economía" },
       component: Home
     },
     {
       path: '/fisica',
       name: 'Chat-Fisica',
-      props: { department: "FISICA", name: "Departamento de Física" },
+      props: { department: "FISICA", name: "Física" },
       component: Home
     },
     {
       path: '/geografia',
       name: 'Chat-Geografia',
-      props: { department: "GEOGRAFIA-TURISMO", name: "Departamento de Geografía y Turismo" },
+      props: { department: "GEOGRAFIA-TURISMO", name: "Geografía y Turismo" },
       component: Home
     },
     {
       path: '/geologia',
       name: 'Chat-Geologia',
-      props: { department: "GEOLOGIA", name: "Departamento de Geología" },
+      props: { department: "GEOLOGIA", name: "Geología" },
       component: Home
     },
     {
       path: '/humanidades',
       name: 'Chat-Humanidades',
-      props: { department: "Departamento-Humanidades", name: "Departamento de Humanidades" },
+      props: { department: "Departamento-Humanidades", name: "Humanidades" },
       component: Home
     },
     {
       path: '/ingenieria',
       name: 'Chat-Ingenieria',
-      props: { department: "Departamento-Ingenieria", name: "Departamento de Ingeniería" },
+      props: { department: "Departamento-Ingenieria", name: "Ingeniería" },
       component: Home
     },
     {
       path: '/ingelectrica',
       name: 'Chat-Electrica',
-      props: { department: "Departamento-Ingeniería-Eléctrica-y-Computadoras", name: "Departamento de Ingeniería Eléctrica y de Computadoras" },
+      props: { department: "Departamento-Ingeniería-Eléctrica-y-Computadoras", name: "Ingeniería Eléctrica y de Computadoras" },
       component: Home
     },
     {
       path: '/ingquimica',
       name: 'Chat-INGQuimica',
-      props: { department: "INGENIERIA-QUIMICA", name: "Departamento de Ingeniería Química" },
+      props: { department: "INGENIERIA-QUIMICA", name: "Ingeniería Química" },
       component: Home
     },
     {
         path: '/matematica',
         name: 'Chat-Matematica',
-        props: { department: "Departamento-Matematica", name: "Departamento de Matemática" },
+        props: { department: "Departamento-Matematica", name: "Matemática" },
         component: Home
       },
       {
         path: '/quimica',
         name: 'Chat-Quimica',
-        props: { department: "QUIMICA", name: "Departamento de Química" },
+        props: { department: "QUIMICA", name: "Química" },
         component: Home
       },
       {
