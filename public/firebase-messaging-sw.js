@@ -6,14 +6,14 @@ importScripts('https://www.gstatic.com/firebasejs/8.9.0/firebase-app.js');
 importScripts('https://www.gstatic.com/firebasejs/8.9.0/firebase-messaging.js');
 
 firebase.initializeApp({
-  apiKey: "AIzaSyDbrCf_cXiappAjWUO7fpBLcFFdftxOQeI",
-  authDomain: "muestradecarreras-4013c.firebaseapp.com",
-  databaseURL: 'https://muestradecarreras-4013c.firebaseio.com',
-  projectId: "muestradecarreras-4013c",
-  storageBucket: "muestradecarreras-4013c.appspot.com",
-  messagingSenderId: "193516897466",
-  appId: "1:193516897466:web:6beade313f4779eb39ae83",
-  measurementId: "G-6GR4KHFESY"
+  apiKey: "AIzaSyCfDIMw1E8aWLe95CdRZJHrx0ujFg90ZF0",
+  authDomain: "muestra-de-carreras.firebaseapp.com",
+  databaseURL: 'https://muestra-de-carreras.firebaseio.com',
+  projectId: "muestra-de-carreras",
+  storageBucket: "muestra-de-carreras.appspot.com",
+  messagingSenderId: "988332083741",
+  appId: "1:988332083741:web:49b60b51304c4f55d794f4",
+  measurementId: "G-QFTTJP229L"
 });
 
 const messaging = firebase.messaging();
