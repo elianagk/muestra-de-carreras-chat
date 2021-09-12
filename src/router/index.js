@@ -32,7 +32,7 @@ const routes = [
     {
       path: '/biologia',
       name: 'Chat-Biologia',
-      props: { department: "BIOLOGIA", name: "Biologia" },
+      props: { department: "BIOLOGIA", name: "Biologia, Bioquimica y Farmacia" },
       component: Home
     },
     {
@@ -63,6 +63,12 @@ const routes = [
       path: '/salud',
       name: 'Chat-Salud',
       props: { department: "CIENCIAS-DE-LA-SALUD", name: "Ciencias de la Salud" },
+      component: Home
+    },
+    {
+      path: '/educacion',
+      name: 'Chat-Educacion',
+      props: { department: "CIENCIAS-DE-LA-EDUCACION", name: "Ciencias de la Educación" },
       component: Home
     },
     
