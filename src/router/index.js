@@ -8,7 +8,7 @@ const routes = [
   {
     path: '/sgbu',
     name: 'Chat-Bienestar-Universitario',
-    props: { department: "Secretaria-General-Binestar-Universitario", name: "Secretaría General de Binestar Universitario" },
+    props: { department: "Secretaria-General-Bienestar-Universitario", name: "Secretaría General de Bienestar Universitario" },
     component: Home
     },
     {
