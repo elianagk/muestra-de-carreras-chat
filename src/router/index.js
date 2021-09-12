@@ -48,8 +48,8 @@ const routes = [
         component: Home
       },
       {
-        path: '/ups',
-        name: 'Chat-UPS',
+        path: '/upso',
+        name: 'Chat-UPSO',
         props: { department: "UNIVERSIDAD-PROVINCIAL-DEL-SUDOESTE", name: "Universidad Provincial del Sudoeste" },
         component: Home
       },
@@ -69,6 +69,12 @@ const routes = [
         path: '/isfd',
         name: 'Chat-FormacionDocente',
         props: { department: "INSTITUTO-SUPERIOR-DE-FORMACION-DOCENTE", name: "Instituto Superior de Formación Docente Nª86" },
+        component: Home
+      },
+      {
+        path: '/ifctma',
+        name: 'Chat-MariaAuxiliadora',
+        props: { department: "Maria-Auxiliadora", name: "Instituto de Formación Docente y Técnica María Auxiliadora" },
         component: Home
       },
     ]
