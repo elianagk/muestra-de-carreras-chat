@@ -71,6 +71,12 @@ const routes = [
       props: { department: "CIENCIAS-DE-LA-EDUCACION", name: "Ciencias de la Educación" },
       component: Home
     },
+    {
+      path: '/unsregion',
+      name: 'Chat-UNS-Region',
+      props: { department: "UNS-EN-LA-REGION", name: "UNS en la Región" },
+      component: Home
+    },
     
     ]
 
