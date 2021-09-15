@@ -24,9 +24,9 @@ const routes = [
     component: Home
     },
     {
-    path: '/astrofisica',
-    name: 'Chat-Astrofisica',
-    props: { department: "Astrofisica", name: "Astrofisica" },
+    path: '/doe',
+    name: 'Chat-DOE',
+    props: { department: "DOE", name: "Departamento de Orientación Educacional" },
     component: Home
     },
     {
