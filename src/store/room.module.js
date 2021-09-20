@@ -101,10 +101,10 @@ const actions = {
             }
             usersIDs.push(element.id);
         });
-        const resp = await roomService.getGeneral(array, department);
+       // const resp = await roomService.getGeneral(array, department);
+       const resp = await roomService.getGeneral(department);
 
         var roomID = resp.roomID;
-
         const response = await roomService.addUser(usersIDs, roomID, department);
         
         commit('setUsers', users);
