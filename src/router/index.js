@@ -24,12 +24,6 @@ const routes = [
     component: Home
     },
     {
-    path: '/doe',
-    name: 'Chat-DOE',
-    props: { department: "DOE", name: "Departamento de Orientación Educacional" },
-    component: Home
-    },
-    {
       path: '/biologia',
       name: 'Chat-Biologia',
       props: { department: "BIOLOGIA", name: "Biologia, Bioquimica y Farmacia" },
