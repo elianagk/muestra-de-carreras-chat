@@ -41,14 +41,9 @@ async function getGeneral(users, department){
                 var roomId;
                 var success = false;
                 for(var i = 0; i < snapshot.docs.length; i++) {
-                    // Workaround as multiple array-contains filter is not allowed
-                    if(users.every(user => snapshot.docs[i].data().users.includes(user))) {
-                        roomId = snapshot.docs[i].id;
+                         roomId = snapshot.docs[i].id;
                         success = true;
                         break;
-                    
-                    }
-                    
                 }
                 return {success: success, roomID: roomId};
             }).catch(handleError);
