@@ -30,7 +30,7 @@ async function get(currentUser, targetUser, department) {
             }).catch(handleError);
 }
 
-async function getGeneral(users, department){
+async function getGeneral(department){
     return fb.firestore.collection("rooms-"+department)
             .where("isPrivate", "==", false)
             .get()
@@ -42,12 +42,12 @@ async function getGeneral(users, department){
                 var success = false;
                 for(var i = 0; i < snapshot.docs.length; i++) {
                     // Workaround as multiple array-contains filter is not allowed
-                    if(users.every(user => snapshot.docs[i].data().users.includes(user))) {
+                    
                         roomId = snapshot.docs[i].id;
                         success = true;
                         break;
                     
-                    }
+                    
                     
                 }
                 return {success: success, roomID: roomId};
