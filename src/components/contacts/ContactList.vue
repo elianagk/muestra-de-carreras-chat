@@ -66,15 +66,17 @@ export default {
     },
     created() {
         // Get all the users
-        fb.firestore.collection("users-"+this.$department)
+       fb.firestore.collection("users-"+this.$department)
         .onSnapshot((snapshot) => {
             const users = [];
+            var count = 0;
             snapshot.forEach((doc) => {
                 const user = doc.data();
                 user.id = doc.id;
                 users.push(user);
+                count++;
             });
-            
+            console.log(count);
             this.allContacts({users});
             this.isLoading = false;
         });
