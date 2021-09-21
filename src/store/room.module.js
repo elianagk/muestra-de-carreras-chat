@@ -93,15 +93,13 @@ const actions = {
     },
     async addUserToGeneral({commit, rootState}, {user, users, department}){
         
-        var array= [];
+       
         var usersIDs = [];
         users.forEach(element => {
-            if(element.id != user){
-                array.push(element.id);
-            }
+           
             usersIDs.push(element.id);
         });
-        const resp = await roomService.getGeneral(array, department);
+        const resp = await roomService.getGeneral(department);
 
         var roomID = resp.roomID;
 
