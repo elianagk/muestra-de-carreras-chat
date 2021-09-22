@@ -76,7 +76,7 @@ export default {
                 users.push(user);
                 count++;
             });
-            console.log(count);
+            //console.log(count);
             this.allContacts({users});
             this.isLoading = false;
         });
