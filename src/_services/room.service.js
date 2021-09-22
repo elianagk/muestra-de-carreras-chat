@@ -30,7 +30,7 @@ async function get(currentUser, targetUser, department) {
             }).catch(handleError);
 }
 
-async function getGeneral(users, department){
+async function getGeneral(department){
     return fb.firestore.collection("rooms-"+department)
             .where("isPrivate", "==", false)
             .get()
