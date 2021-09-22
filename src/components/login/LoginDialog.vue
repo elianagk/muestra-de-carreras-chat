@@ -52,7 +52,7 @@ export default {
         ...mapActions('userModule', ['login']),
         ...mapActions('roomModule', ['addUserToGeneral']),
         async handleLogin(e) {
-            if(this.username === "") {
+            if(this.username === "" || !this.username.trim() ) {
                 alert("Ingrese su nombre");
             }
             else {
