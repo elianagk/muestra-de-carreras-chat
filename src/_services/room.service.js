@@ -105,7 +105,7 @@ async function sendMessage(sender, room, message, department) {
             method: "POST",
             headers: { 
                 "Content-Type": "application/json" ,
-                'Authorization': "key=AAAAZtfOtB8:APA91bHwDZoRiiS-bXW0deaZ5CMMU5v8m2PhOMCdKPlhiO5fUy3LJL645PkEMF7aOvQvEtTipGX27nYEgqca8Prbo5stRok2PJG3fp6PtN2nu6szs8EH1OO4T09LvBYqRefStgbTzSll",
+                'Authorization': "key=AAAAWPxLWBw:APA91bEsMTzCvIT9Io3e7mlSDHP4tC8s9T0DNTcdABqC3m2OFRlQmctvvf34-huplrYNGUTjJ6FxmJ4nzGdr1NIq_0VgB_5VmLsMlo2jYOz1S4WZREXQzoj25UB79rblMiUjhnLCQyug",
             },
             body: JSON.stringify({
                 to: tokenReceiver, 

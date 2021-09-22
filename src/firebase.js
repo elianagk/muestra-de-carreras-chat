@@ -6,14 +6,13 @@ import 'firebase/firebase-messaging'
 
 // Your web app's Firebase configuration
 var firebaseConfig = {
-  apiKey: "AIzaSyB6DfKbesGx3sDvO_QhVmPixlLVJgE1ADk",
-  authDomain: "doe-database.firebaseapp.com",
-  databaseURL: 'https://doe-database.firebaseio.com',
-  projectId: "doe-database",
-  storageBucket: "doe-database.appspot.com",
-  messagingSenderId: "441707312159",
-  appId: "1:441707312159:web:07b81aa2fbe4ab0f94912a",
-  measurementId: "G-LZK6YJ34H3"
+  apiKey: "AIzaSyCPA2dn-gYwNONAm-x_IXfweHnUvPANfGM",
+  authDomain: "doe2-ef06f.firebaseapp.com",
+  projectId: "doe2-ef06f",
+  storageBucket: "doe2-ef06f.appspot.com",
+  messagingSenderId: "382189918236",
+  appId: "1:382189918236:web:4ede3b931bb7b3541fe7d9",
+  measurementId: "G-HTT9F94MMS"
 };
 
 // Initialize Firebase
