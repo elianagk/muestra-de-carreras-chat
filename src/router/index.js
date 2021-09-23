@@ -5,6 +5,12 @@ import Home from '../Home.vue'
 Vue.use(VueRouter);
 
 const routes = [
+  {
+    path: '/isfd',
+    name: 'Chat-FormacionDocente',
+    props: { department: "INSTITUTO-SUPERIOR-DE-FORMACION-DOCENTE", name: "Instituto Superior de Formación Docente Nª86" },
+    component: Home
+  },
     {
       path: '/cfp',
       name: 'Chat-Centro-Formacion-Profesional',
