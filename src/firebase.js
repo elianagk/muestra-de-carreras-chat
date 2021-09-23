@@ -6,14 +6,14 @@ import 'firebase/firebase-messaging'
 
 // Your web app's Firebase configuration
 var firebaseConfig = {
-  apiKey: "AIzaSyBDzghvnjDkvGdtmEG-DWXAC78DWoPdK30",
-  authDomain: "chat1-repuesto.firebaseapp.com",
-  databaseURL: 'https://chat1-repuesto.firebaseio.com',
-  projectId: "chat1-repuesto",
-  storageBucket: "chat1-repuesto.appspot.com",
-  messagingSenderId: "722807632334",
-  appId: "1:722807632334:web:2273e7954226493d58fb9f",
-  measurementId: "G-CXGDZRTWM2"
+  apiKey: "AIzaSyCzRdX1OEAbq71JaiZd5Ihmw-5p3aLoA3s",
+  authDomain: "chat1-7bd8c.firebaseapp.com",
+  databaseURL: 'https://chat1-7bd8c.firebaseio.com',
+  projectId: "chat1-7bd8c",
+  storageBucket: "chat1-7bd8c.appspot.com",
+  messagingSenderId: "629871516449",
+  appId: "1:629871516449:web:341cfa12a2577a26ee3c60",
+  measurementId: "G-36JT8EP2E5"
 };
 
 // Initialize Firebase
