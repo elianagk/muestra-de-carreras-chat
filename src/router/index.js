@@ -20,7 +20,7 @@ const routes = [
     {
       path: '/dcic',
       name: 'Chat-DCIC',
-      props: { department: "CIENCIAS-E-INGENIERIA-DE-COMPUTACION", name: "Ciencias e Ingienería de la Computación"},
+      props: { department: "CIENCIAS-E-INGENIERIA-DE-COMPUTACION", name: "Ciencias e Ingeniería de la Computación"},
       component: Home
     },
     {
