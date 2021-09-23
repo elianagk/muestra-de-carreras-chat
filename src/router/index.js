@@ -54,12 +54,7 @@ const routes = [
         props: { department: "UNIVERSIDAD-CATOLICA-DE-LA-PLATA", name: "Universidad Católica de la Plata" },
         component: Home
       },
-      {
-        path: '/isfd',
-        name: 'Chat-FormacionDocente',
-        props: { department: "INSTITUTO-SUPERIOR-DE-FORMACION-DOCENTE", name: "Instituto Superior de Formación Docente Nª86" },
-        component: Home
-      },
+      
       {
         path: '/ifctma',
         name: 'Chat-MariaAuxiliadora',
