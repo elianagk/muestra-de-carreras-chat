@@ -6,6 +6,18 @@ Vue.use(VueRouter);
 
 const routes = [
   {
+    path: '/geografia',
+    name: 'Chat-Geografia',
+    props: { department: "GEOGRAFIA-TURISMO", name: "Geografía y Turismo" },
+    component: Home
+  },
+  {
+      path: '/matematica',
+      name: 'Chat-Matematica',
+      props: { department: "Departamento-Matematica", name: "Matemática" },
+      component: Home
+    },
+  {
     path: '/sgbu',
     name: 'Chat-Bienestar-Universitario',
     props: { department: "Secretaria-General-Bienestar-Universitario", name: "Secretaría General de Bienestar Universitario" },
