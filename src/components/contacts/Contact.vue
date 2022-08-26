@@ -1,3 +1,4 @@
+<!--Componente que define la visualización de un contacto en la interfaz-->
 <template>
     <div v-on:click="selectUser" class="contact">
         <v-list-item two-line class="px-0">

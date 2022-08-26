@@ -1,3 +1,4 @@
+<!--Componente que define la visualización de una lista de contactos en la interfaz-->
 <template>
     <div class="contact-list">
         <div v-if="!isLoaded">

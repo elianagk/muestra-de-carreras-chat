@@ -1,3 +1,4 @@
+<!--Componente que define la visualización del inicio de sesión en la interfaz-->
 <template>
     <div class="container-fluid">
         <v-dialog v-model="dialog" class="mx-auto" persistent max-width="468">
