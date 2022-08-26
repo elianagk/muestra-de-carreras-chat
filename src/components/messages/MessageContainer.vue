@@ -1,3 +1,4 @@
+<!--Componente que define la visualizacion del chat acorde a si se selecciono o no una sala -->
 <template>
     <v-container fluid class="fill-height message-container" v-if="!isRequiresLogin">
         <v-row

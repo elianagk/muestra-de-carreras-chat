@@ -1,3 +1,4 @@
+<!--Componente que permite visualizar todos los mensajes de la sala-->
 <template>
     <div class="chat-list">        
         <ChatLoader v-if="!isLoaded" />

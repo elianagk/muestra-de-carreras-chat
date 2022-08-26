@@ -1,3 +1,4 @@
+<!--Componente que contiene la componente ChatList y ChatInput -->
 <template>
     <div id="chat-container" class="chat-container">
         <div id="chat-name" class="overline py-3 myClass">

@@ -1,3 +1,4 @@
+<!--Componente que define un unico mensaje, incluye nombre de usuario, mensaje y timestamps-->
 <template>
     <v-list-item :key="chat.id">
         <v-list-item-content>

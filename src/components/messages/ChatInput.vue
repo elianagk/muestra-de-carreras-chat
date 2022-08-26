@@ -1,3 +1,4 @@
+<!--Componente que permite la introduccion de mensajes y su envio-->
 <template>
     <v-container class="chat-input">
         <v-textarea
