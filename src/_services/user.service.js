@@ -46,7 +46,9 @@ async function createUpdate(uid, name, token, department) {
 }
 /**
  * 
- * @param  uid 
+ * @param  uid id de la base de datos
+ * @return usuario loggeado
+ * 
  * Registra a un usuario como loggeado. Lo agrega como usuario online en la base de datos.
  */
 async function login(uid) {
@@ -60,6 +62,7 @@ async function login(uid) {
  * 
  * @param  userId 
  * @param  department 
+ * @return token
  * Cada usuario tiene su propio token en la base de datos. Esta funcion obtiene el token correspondiente.
  */
 async function getUserTokenFCM(userId, department) {
@@ -71,14 +74,20 @@ async function getUserTokenFCM(userId, department) {
  * 
  * @param  userId 
  * @param  department 
+ * @return nombre de usuario
  * Obtiene el nombre de un usuario en base a su Id y departamento.
+ * 
  */
 async function getUserName(userId, department) {
     const user = await fb.firestore.collection("users-"+department).doc(userId).get();
     const data = user.data();
     return data.name;
 }
-
+/**
+ * 
+ * @param  error descripción del error
+ * Escribe por pantalla la descripción del error producido.
+ */
 function handleError(error) {
     console.log("Ops! " + error);
     return Promise.reject(error);
