@@ -2,6 +2,9 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../Home.vue'
 
+/**
+ * Se especifican todas las rutas necesarias para acceder al chat de diferentes departamentos
+ */
 Vue.use(VueRouter);
 
 const routes = [
