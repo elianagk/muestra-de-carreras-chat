@@ -2,6 +2,13 @@ import { roomService } from '../_services/room.service';
 const state = {activeRoom: null, users: []};
 
 const actions = {
+    /**
+     * @param room contiene el identificador de la sala
+     * @param currentUser usuario actual en el sistema
+     * @param targetUser usuario con el cual se va a inicializar un nuevo chat
+     * @param department departamento con el que se identifica el chat actual
+     * @function selectRoom selecciona la sala, en caso de no existir (se desencadena por la seleccion de un usuario en la seccion derecha) la crea mediante el servicio createPrivateChat provisto por room.service.js
+     */
     async selectRoom({commit, rootState}, {room, currentUser, targetUser, department}) {
         // If the room has already been created, then set it as active room (usually triggered from selecting the chat room from left)
         var roomID;
@@ -34,6 +41,13 @@ const actions = {
         
         commit('setActiveRoom', roomID);
     },
+
+    /**
+     * @param user usuario actual en el sistema
+     * @param users lista de usuarios registrados en la base de datos
+     * @param department departamento con el que se identifica el chat actual
+     * @function generalRoom selecciona la sala general, en caso de no existir la crea mediante el servicio createPublicChat provisto por room.service.js
+     */
     async generalRoom({commit, rootState}, {room, users, department}) {
         // If the room has already been created, then set it as active room (usually triggered from selecting the chat room from left)
         const ids = [];
@@ -70,6 +84,12 @@ const actions = {
         
         commit('setActiveRoom', roomID);
     },
+    /**
+     * @param message mensajea ser enviado
+     * @param department departamento con el que se identifica el chat actual
+     * @function sendMessage envia el mensaje mediante el servicio sendMessage provisto por room.service.js
+     * @returns retorna la respuesta de la operación
+     */
     async sendMessage({commit, state, rootState}, {message, department}) {
         var sender = rootState.userModule.user ? rootState.userModule.user.ID : null;
         var room = state.activeRoom;
@@ -79,6 +99,13 @@ const actions = {
         return resp;
     },
     
+    /**
+     * 
+     * @param userIDs identificador del usuario
+     * @param department departamento con el que se identifica el chat actual
+     * @function createChatRoom agrega al usuario al chat general en caso de que no este, en caso de no existir la sala la crea
+     * @returns retorna la respuesta de la operación
+     */
     async createChatRoom({commit, rootState}, {userIDs, department}) {
         var currentUserID = rootState.userModule.user ? rootState.userModule.user.ID : null;
         if(currentUserID) {
@@ -88,12 +115,21 @@ const actions = {
         const resp = await roomService.createChatRoom(userIDs, department);
         return resp;
     },
+    /**
+     * @function clearRoom limpia la selección del chat
+     */
     clearRoom({commit}) {
         commit('clearRoom');
     },
+    /**
+     * 
+     * @param user usuario actual en el sistema
+     * @param users lista de usuarios registrados en la base de datos
+     * @param department departamento con el que se identifica el chat actual
+     * @function addUserToGeneral agrega al usuario que ingreso al chat general mediante los servicios provistos por room.service.js
+     * @returns retorna la respuesta de la operación
+     */
     async addUserToGeneral({commit, rootState}, {user, users, department}){
-        
-       
         var usersIDs = [];
         users.forEach(element => {
            
