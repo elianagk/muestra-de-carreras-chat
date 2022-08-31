@@ -4,7 +4,15 @@ import fb from '@/firebase';
 const user = JSON.parse(localStorage.getItem('user'));
 const state = user ? { status: { loggedIn: true }, user} : { status: {}, user: null };
 
+
 const actions = {
+    /**
+     * 
+     * @param  username 
+     * @param  userToken 
+     * @param  department
+     * @returns usuario recientemente loggeado al sistema.
+     */
     async login({commit}, {username, userToken, department}) {
         commit('loginRequest');
         const firebaseLogin = await fb.login();

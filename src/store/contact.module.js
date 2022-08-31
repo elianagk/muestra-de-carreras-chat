@@ -1,5 +1,7 @@
 const state = {users: null}
-
+/**
+ * Obtiene todos los contactos de la base de datos.
+ */
 const actions = {
     allContacts({commit}, {users}) {
         // Set all the users to the state
