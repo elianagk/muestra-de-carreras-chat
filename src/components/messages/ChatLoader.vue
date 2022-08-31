@@ -1,3 +1,4 @@
+<!--Componente que se visualiza mientras se obtienen los mensajes de la base de datos-->
 <template>
     <v-container fill-height fluid>
         <v-row align="center"

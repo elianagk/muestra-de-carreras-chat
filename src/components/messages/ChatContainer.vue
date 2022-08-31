@@ -32,10 +32,15 @@ export default {
             roomID: state => state.activeRoom
         })
     },
+    /**
+     * Obtiene el nombre de la sala mediante el metodo roomName()
+     */
     created() {
-        // Get room name
        this.roomName()
     },
+    /**
+     * Obtiene de la base de datos el nombre de la sala
+     */
     methods:{
          roomName: async function(e){
             if(this.roomID) {            

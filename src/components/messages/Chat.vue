@@ -16,6 +16,11 @@ import moment from 'moment';
 export default {
     name: "Chat",
     props: ["chat"],
+    /**
+     * sender -> Obtiene de la base de datos el usuario que envió el mensaje
+     * senderName -> Obtiene el nombre del usuario que envió el mensaje
+     * datetime -> Obtiene la fecha del mensaje enviado
+     */
     computed: {
         ...mapState('roomModule', {
             users: state => state.users
@@ -33,6 +38,9 @@ export default {
             return moment(this.chat.timestamp.toDate()).format("h:mm a, Do MMM YYYY");
         }
     },
+    /**
+     * Inicializa la componente
+     */
     mounted() {
         var element = document.getElementById("chat-list-container");
         if (typeof(element) != 'undefined' && element != null) {
