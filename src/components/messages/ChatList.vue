@@ -28,8 +28,10 @@ export default {
             roomID: state => state.activeRoom
         })
     },
+    /**
+     * Obtiene todo el historial de mensajes de esa sala
+     */
     created() {
-        // Get the messages
         if(this.roomID) {            
             fb.firestore.collection("rooms-"+this.$department).doc(this.roomID).collection("messages").orderBy("timestamp", "asc")
             .onSnapshot((snapshot) => {
@@ -51,6 +53,9 @@ export default {
             });
         }
     },
+    /**
+     * Inicializa la componente
+     */
     mounted() {
         var element = document.getElementById("chat-container");
         function resize() {

@@ -38,8 +38,10 @@ export default {
     methods: {
         ...mapActions('roomModule', ['clearRoom'])
     },
+    /**
+     * Inicializa la componente
+     */
     created() {
-        // Clear room selection
         this.clearRoom();
     }
 }

@@ -1,3 +1,4 @@
+<!--Componente que indica que ninguna sala ha sido seleccionado-->
 <template>
     <v-container fill-height fluid>
         <v-row align="center"

@@ -22,6 +22,12 @@ export default {
             message: ''
         }
     },
+    /**
+     * @function submitHandler envia el mensaje que se ingreso en campo de texto 
+     * y lo almacena en la base de datos.
+     * 
+     * @function resetMessage resetea el campo de texto.
+     */
     methods: {
         ...mapActions('roomModule', ['sendMessage']),
         async submitHandler(e) {
