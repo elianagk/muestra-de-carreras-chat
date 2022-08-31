@@ -17,9 +17,9 @@ export default {
     name: "Chat",
     props: ["chat"],
     /**
-     * sender -> Obtiene de la base de datos el usuario que envió el mensaje
-     * senderName -> Obtiene el nombre del usuario que envió el mensaje
-     * datetime -> Obtiene la fecha del mensaje enviado
+     * @param sender -> Obtiene de la base de datos el usuario que envió el mensaje
+     * @param senderName -> Obtiene el nombre del usuario que envió el mensaje
+     * @param datetime -> Obtiene la fecha del mensaje enviado
      */
     computed: {
         ...mapState('roomModule', {
