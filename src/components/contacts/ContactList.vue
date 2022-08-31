@@ -23,6 +23,10 @@ export default {
             onlineUsers: []
         }
     },
+    /**
+     * sortedUsers --> Ordena la lista de contactos.
+     * filteredUsers--> Busca un contacto por nombre ingresado.
+     */
     computed: {
         ...mapState('userModule', {
             userState: state => state.user
@@ -62,6 +66,10 @@ export default {
             return this.contactState.users && this.contactState.users.length > 0;
         }
     },
+    /**
+     * created --> Toma todos los usuarios de la base de datos para listarlos en los contactos.
+     *             Crea una lista con los usuarios online.
+     */
     methods: {
         ...mapActions('contactModule', ['allContacts'])
     },
@@ -77,7 +85,6 @@ export default {
                 users.push(user);
                 count++;
             });
-            //console.log(count);
             this.allContacts({users});
             this.isLoading = false;
         });

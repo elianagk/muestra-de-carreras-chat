@@ -49,6 +49,10 @@ export default {
                     && !(this.statusState && this.statusState.loggingIn);
         }
     },
+    /**
+     * @function mapActions Se inicializa la sesion del usuario y se lo agrega al chat general.
+     * @param vapidKey leer Readme para cambiar el token necesario
+     */
     methods: {
         ...mapActions('userModule', ['login']),
         ...mapActions('roomModule', ['addUserToGeneral']),

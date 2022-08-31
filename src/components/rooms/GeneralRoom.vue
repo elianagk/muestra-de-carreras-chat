@@ -1,3 +1,4 @@
+<!--Espacio de chat general para cada departamento-->
 <template>
     <div >
         <div v-on:click="selectRoomHandler" class="room" >
@@ -31,6 +32,14 @@ export default {
         }),
         
     },
+    /**
+     * @param allUsers referencia a todos los usuarios en la lista de contactos del departamento.
+     * @function handleCreateChat inicializa el chat general, agregando todos los usuarios que corresponden al departamento.
+     * Si el chat general se inicializa de cero, se le agrega toda la información, asignandole un ID nuevo.
+     * Si el chat ya estaba creado, solo se le agrega la nueva información, los nuevos usuarios.
+     * @function selectRoomHandler es usado para seleccionar el chat general.
+     * Si el usuario se encuentra en un chat inidividual y desea volver al general, se utiliza esta funcion.
+     */
     methods: {
         ...mapActions('roomModule', ['createChatRoom', 'generalRoom', 'clearRoom']),
         async handleCreateChat(e) {

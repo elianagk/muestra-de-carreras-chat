@@ -1,3 +1,4 @@
+<!--Componente que identifica al usuario-->
 <template>
     <div>
         <v-skeleton-loader

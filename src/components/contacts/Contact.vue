@@ -31,7 +31,7 @@ export default {
             return this.online ? "green" : "grey";
         }
     },
-    methods: {        
+    methods: {     
         ...mapActions('roomModule', ['selectRoom', 'clearRoom']),
         selectUser: function(e) {
             // Clear the room selection first

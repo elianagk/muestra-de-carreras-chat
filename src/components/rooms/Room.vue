@@ -1,3 +1,4 @@
+<!--Espacio de chat individual, de a dos usuarios.-->
 <template>
 <div>
     <div v-on:click="selectRoomHandler" :class="`${status} room`">
@@ -28,6 +29,9 @@ export default {
             return this.active ? "active" : "";
         }
     },
+    /**
+     * @function selectRoomHandler selecciona el espacio de chat correspondiente.
+     */
     methods: {        
         ...mapActions('roomModule', ['selectRoom', 'clearRoom']),
         selectRoomHandler: function(e) {

@@ -1,3 +1,4 @@
+<!--Lista los chats activos de cada usuario. Incluye chat general y chats individuales-->
 <template>
     <div class="room-list">        
         <v-skeleton-loader
@@ -30,6 +31,10 @@ export default {
             finish: false,
         }
     },
+    /**
+     * @function sortedRooms Crea una lista con los chats, indentificando activos e inactivos.
+     * Los nombres se componen de los nombres de cada usuario.
+     */
     computed: {
         ...mapState('userModule', {
             userState: state => state.user
@@ -77,6 +82,9 @@ export default {
             this.$vueEventBus.$emit('mensaje de roomList');
         },
     },
+    /**
+     * Obtiene toda la informacion necesaria de la base de datos para poder crear la lista de chats.
+     */
     created() {
         // Get all the individual rooms
         fb.firestore.collection("rooms-"+this.$department)
