@@ -10,7 +10,7 @@ export const roomService = {
  * @param currentUser usuario actual en el sistema
  * @param targetUser usuario seleccionado
  * @param department dato con el que se identifica la unidad academica
- * @function get obtiene la sala que existe entre el usuario actual y el usuario seleccionado
+ * @function get obtiene de la base de datos la sala que existe entre el usuario actual y el usuario seleccionado
  * @returns retorna el estado de la operacion y el identificador de la sala
  */
 async function get(currentUser, targetUser, department) {
@@ -40,9 +40,9 @@ async function get(currentUser, targetUser, department) {
 
 /**
  * 
- * @param department departamento con el que se identifica el chat 
- * @function getGeneral obtiene el chat general de la base de datos con el departamento
- * @returns retorna el estado de la operacion y el identificador de la sala
+ * @param department dato con el que se identifica la unidad academica
+ * @function getGeneral obtiene el chat general del departamento registrado en la base de datos
+ * @returns retorna el resultado de la operación y el identificador de la sala
  */
 async function getGeneral( department){
     return fb.firestore.collection("rooms-"+department)
@@ -109,8 +109,8 @@ async function createPublicChat(users, department) {
  * 
  * @param room identificador de la sala
  * @param department dato con el que se identifica la unidad academica
- * @function getRoomDetail obtiene a todos los usuarios de una sala
- * @returns retorna el estado de la operacion y los identificadores de los usuarios
+ * @function getRoomDetail obtiene a todos los usuarios de la sala room
+ * @returns retorna el resultado de la operación y los identificadores de los usuarios
  */
 async function getRoomDetail(room, department) {
     return fb.firestore.collection("rooms-"+department).doc(room).get()
@@ -174,7 +174,7 @@ async function sendMessage(sender, room, message, department) {
  * 
  * @param ID identificador de la sala
  * @param department dato con el que se identifica la unidad academica
- * @function getRoomPrivacy obtiene mediante el identificador la privacidad de la sala
+ * @function getRoomPrivacy obtiene la sala mediante el identificador y obtiene la privacidad de la misma
  * @returns retorna la privacidad de la sala
  */
 async function getRoomPrivacy(ID, department){
@@ -191,7 +191,7 @@ async function getRoomPrivacy(ID, department){
  * @param userIDs lista de usuarios registrados en la base de datos
  * @param department dato con el que se identifica la unidad academica
  * @function createChatRoom crea un chat con todos los usuarios registrados en el sistema
- * @returns retorna el estado de la operacion y el identificador de la sala
+ * @returns retorna el resultado de la operacion y el identificador de la sala
  */
 async function createChatRoom(userIDs, department) {
     var data = {
@@ -210,8 +210,8 @@ async function createChatRoom(userIDs, department) {
  * @param users lista de usuarios registrados en la base de datos
  * @param roomID identificador de la sala
  * @param department dato con el que se identifica la unidad academica
- * @function addUser agrega un usuario al chat general del departamento especificado
- * @returns retorna el estado de la operación
+ * @function addUser agrega un usuario a la sala general del departamento especificado
+ * @returns retorna el resultado de la operación
  */
 async function addUser(users, roomID, department) {
     return fb.firestore.collection("rooms-"+department).doc(roomID).update('users', users)
@@ -222,7 +222,7 @@ async function addUser(users, roomID, department) {
  * @param sender usuario emisor
  * @param room identificador de la sala
  * @param department dato con el que se identifica la unidad academica
- * @function getUserToken cada usuario tiene su propio token en la base de datos. Esta funcion obtiene el token correspondiente.
+ * @function getUserToken cada usuario tiene su propio token en la base de datos. Esta función obtiene el token correspondiente.
  * @returns 
  */
 async function getUserToken(sender, room, department){
@@ -240,9 +240,9 @@ async function getUserToken(sender, room, department){
 
 /**
  * 
- * @param error descripcion del error
- * @function handleError imprime por pantalla la descripcion del error producido
- * @returns retorna el estado de la operación
+ * @param error descripción del error
+ * @function handleError imprime por pantalla la descripción del error producido
+ * @returns retorna el resultado de la operación
  */
 function handleError(error) {
     console.log("Ops! " + error);
