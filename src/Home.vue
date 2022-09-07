@@ -1,3 +1,4 @@
+<!--Componente principal que determina la estructura del chat-->
 <template>
   <v-app>
     <v-app-bar
