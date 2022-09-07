@@ -7,7 +7,7 @@ export const userService = {
 };
 /**
  * 
- * @param username 
+ * @param username nombre del usuario
  * @returns sucess si encuentra al usuario solicitado.
  */
 async function get(username) {
@@ -28,11 +28,12 @@ async function get(username) {
 }
 /**
  * 
- * @param  uid 
- * @param  name 
- * @param  token 
- * @param  department 
- * Crea o actualiza la información de un usuario
+ * @param  uid identificador de usuario
+ * @param  name nombre asociado al usuario
+ * @param  token token asociado al usuario
+ * @param  department dato con el que se identifica la unidad academica
+ * @function createUpdate crea o actualiza la información de un usuario
+ * @returns retorna el estado de la operacion 
  */
 async function createUpdate(uid, name, token, department) {
     var data = {
@@ -46,10 +47,11 @@ async function createUpdate(uid, name, token, department) {
 }
 /**
  * 
- * @param  uid id de la base de datos
- * @return usuario loggeado
+ * @param  uid identificador de usuario
+ * @function login registra a un usuario como loggeado. Lo agrega como usuario online en la base de datos
+ * @returns usuario loggeado
  * 
- * Registra a un usuario como loggeado. Lo agrega como usuario online en la base de datos.
+ * 
  */
 async function login(uid) {
     const now = new Date();
@@ -62,9 +64,10 @@ async function login(uid) {
  * 
  * @param  userId 
  * @param  department 
- * @return token
- * Cada usuario tiene su propio token en la base de datos. Esta funcion obtiene el token correspondiente.
+ * @function getUserTokenCada usuario tiene su propio token en la base de datos. Esta funcion obtiene el token correspondiente
+ * @returns token asociado al usuario
  */
+
 async function getUserTokenFCM(userId, department) {
     const user = await fb.firestore.collection("users-"+department).doc(userId).get();
     const data = user.data();
@@ -72,11 +75,10 @@ async function getUserTokenFCM(userId, department) {
 }
 /**
  * 
- * @param  userId 
- * @param  department 
+ * @param  userId identificador de usuario
+ * @param  department dato con el que se identifica la unidad academica
+ * @function getUserName obtiene el nombre de un usuario en base a su identificador y departamento.
  * @return nombre de usuario
- * Obtiene el nombre de un usuario en base a su Id y departamento.
- * 
  */
 async function getUserName(userId, department) {
     const user = await fb.firestore.collection("users-"+department).doc(userId).get();
@@ -85,8 +87,9 @@ async function getUserName(userId, department) {
 }
 /**
  * 
- * @param  error descripción del error
- * Escribe por pantalla la descripción del error producido.
+ * @param error descripción del error
+ * @function handleError imprime por pantalla la descripción del error producido
+ * @returns retorna el resultado de la operación
  */
 function handleError(error) {
     console.log("Ops! " + error);

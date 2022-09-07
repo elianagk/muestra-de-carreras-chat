@@ -1,6 +1,8 @@
 import fb from '@/firebase';
 import { userService } from './user.service';
-
+/**
+ * Realiza los cambios en la base de datos, referidos a las salas
+ */
 export const roomService = {
     get, createPrivateChat, createChatRoom, getRoomDetail, sendMessage, createPublicChat, getGeneral, addUser, getUserToken
 };
@@ -11,7 +13,7 @@ export const roomService = {
  * @param targetUser usuario seleccionado
  * @param department dato con el que se identifica la unidad academica
  * @function get obtiene de la base de datos la sala que existe entre el usuario actual y el usuario seleccionado
- * @returns retorna el estado de la operacion y el identificador de la sala
+ * @returns retorna el estado de la operación y el identificador de la sala
  */
 async function get(currentUser, targetUser, department) {
     return fb.firestore.collection("rooms-"+department)
@@ -74,7 +76,7 @@ async function getGeneral( department){
  * @param targetUser usuario seleccionado
  * @param department dato con el que se identifica la unidad academica
  * @function createPrivateChat crea una sala entre el usuario actual y el usuario seleccionado
- * @returns retorna el estado de la operacion y el identificador de la sala
+ * @returns retorna el estado de la operación y el identificador de la sala
  */
 async function createPrivateChat(currentUser, targetUser, department) {
     var data = {
@@ -92,7 +94,7 @@ async function createPrivateChat(currentUser, targetUser, department) {
  * @param users lista de usuarios registrados en la base de datos
  * @param department dato con el que se identifica la unidad academica
  * @function createPublicChat crea un chat con todos los usuarios registrados en el sistema
- * @returns retorna el estado de la operacion y el identificador de la sala
+ * @returns retorna el estado de la operación y el identificador de la sala
  */
 async function createPublicChat(users, department) {
     var data = {
@@ -130,7 +132,7 @@ async function getRoomDetail(room, department) {
  * @param message mensaje a ser enviado
  * @param department dato con el que se identifica la unidad academica
  * @function sendMessage envia el mensaje del emisor a la sala especificada
- * @returns retorna el estado de la operacion, el identificador del mensaje, la sala y el emisor
+ * @returns retorna el estado de la operación, el identificador del mensaje, la sala y el emisor
  */
 async function sendMessage(sender, room, message, department) {
     var now = new Date();
@@ -191,7 +193,7 @@ async function getRoomPrivacy(ID, department){
  * @param userIDs lista de usuarios registrados en la base de datos
  * @param department dato con el que se identifica la unidad academica
  * @function createChatRoom crea un chat con todos los usuarios registrados en el sistema
- * @returns retorna el resultado de la operacion y el identificador de la sala
+ * @returns retorna el resultado de la operación y el identificador de la sala
  */
 async function createChatRoom(userIDs, department) {
     var data = {
