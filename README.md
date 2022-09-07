@@ -29,6 +29,8 @@ Para configurar la base de datos y las notificaciones en el servicio de chat se 
 
 En el proyecto de firebase se debe habilitar la opción “Authentication” y en la parte Sign-in method se debe configurar que los usuarios puedan acceder de forma anónima.
 
+![alt text](https://github.com/elianagk/muestra-de-carreras-chat/blob/main/README/Sign-in%20method.png)
+
 > firebase.js y firebase-messaging-sw.js
 
 En las configuraciones de la base de datos se debe agregar el texto que se copia directamente desde las configuraciones del proyecto de firebase. Además se debe agregar el campo “databaseURL” el cual cumple con el formato “https://project -id.firebaseio.com”
@@ -47,6 +49,10 @@ var firebaseConfig = {
 ```
 #
 Para configurar las notificaciones se debe habilitar la opción Cloud Messaging en las configuraciones del proyecto, debería verse de la siguiente manera:
+
+![alt text](https://github.com/elianagk/muestra-de-carreras-chat/blob/main/README/Cloud%20Messaging%201.jpg)
+
+![alt text](https://github.com/elianagk/muestra-de-carreras-chat/blob/main/README/Cloud%20Messaging%202.jpg)
 
 > room.service.js
 
